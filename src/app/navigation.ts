@@ -6,41 +6,7 @@ export const Navigation: TreeNode[] = [
     type: 'navigation',
     data: '/'
   }, {
-    label: 'Cocoa',
-    children: [{
-      label: 'Interfaces',
-      type: 'navigation',
-      data: 'interfaces/home/cocoa',
-      children: [{
-        label: 'Message Bus',
-        type: 'navigation',
-        data: 'interfaces/IMessageBus'
-      }]
-    }, {
-      label: 'Services',
-      type: 'navigation',
-      data: 'services/home/cocoa',
-      children: [{
-        label: 'Cocoa Core',
-        type: 'navigation',
-        data: 'services/CocoaCore'
-      }, {
-        label: 'Message Bus',
-        type: 'navigation',
-        data: 'services/MessageBus'
-      }]
-    }, {
-      label: 'Miscellaneous',
-      type: 'navigation',
-      data: 'miscellaneous/home/cocoa',
-      children: [{
-        label: 'Variables, Enumerations, etc.',
-        type: 'navigation',
-        data: 'miscellaneous/cocoa'
-      }]
-    }]
-  }, {
-    label: 'Cocoa Cux',
+    label: 'AADAD Gux',
     children: [
       {
         label: 'Components',
