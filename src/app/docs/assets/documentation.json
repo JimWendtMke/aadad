@@ -1,0 +1,955 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "CocoaManifest",
+            "id": "interface-CocoaManifest-138b490c75f011d00a61609d1551db7ae9e07eff64aa6d75708d0b093d97a11ae657e42ff4302584faaeaa701d256d554bf543fef7586ab02007eb3076ed3ce5",
+            "file": "src/app/mbus/models/message-format.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface MessageFormat {\n    type: string;\n    data?: any;\n}\n\nexport interface CocoaManifest {\n    messages?: any;\n}\n",
+            "properties": [
+                {
+                    "name": "messages",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "IMessageBus",
+            "id": "interface-IMessageBus-a4b53edaabced727b04bf4a5d0f33993de8edca7e6885d4602f1217f2207e72abc0e905b83143072be7321a0553b391b8dad6401289100c53f3a3ae7f7c3e3cd",
+            "file": "src/app/mbus/models/IMessageBus.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Observable } from 'rxjs';\nimport { MessageFormat } from './message-format';\n\nexport interface IMessageBus {\n    send: (string, any) => void;\n    listen: (string) => Observable<MessageFormat>;\n}\n",
+            "properties": [
+                {
+                    "name": "listen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "send",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "MessageFormat",
+            "id": "interface-MessageFormat-138b490c75f011d00a61609d1551db7ae9e07eff64aa6d75708d0b093d97a11ae657e42ff4302584faaeaa701d256d554bf543fef7586ab02007eb3076ed3ce5",
+            "file": "src/app/mbus/models/message-format.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface MessageFormat {\n    type: string;\n    data?: any;\n}\n\nexport interface CocoaManifest {\n    messages?: any;\n}\n",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": true,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "MessageBus",
+            "id": "injectable-MessageBus-92eef91789c485f2469f0bbc97b66e6fd6ac419834882e5539fc57a9c6c7a65067712775d8b73321756c571aaa5deb7e8b2c9e9df4b5d3562af9fb121a6df2c4",
+            "file": "src/app/mbus/services/message-bus.service.ts",
+            "properties": [
+                {
+                    "name": "_entries",
+                    "defaultValue": "{} as CocoaManifest",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "messageBus",
+                    "defaultValue": "new Subject<MessageFormat>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subject<MessageFormat>",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "listen",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<MessageFormat>",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "send",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "messageData",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "messageData",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "validateEntry",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        121
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, OnDestroy } from '@angular/core';\nimport { Observable, Subject } from 'rxjs';\nimport { filter } from 'rxjs/operators';\nimport { CocoaManifest, MessageFormat } from '../models/message-format';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class MessageBus implements OnDestroy {\n\n  private messageBus: Subject<MessageFormat> = new Subject<MessageFormat>();\n  private _entries = {} as CocoaManifest;\n\n  constructor() {\n    console.log(\"Instantiated message-bus with \", this._entries);\n  }\n\n  public set entries(entries: CocoaManifest) {\n    if (this._entries.messages === undefined) {\n      this._entries.messages = entries.messages;\n    } else {\n      this._entries.messages = { ...this._entries.messages, ...entries.messages };\n    }\n  }\n\n  public get entries(): CocoaManifest {\n    return this._entries;\n  }\n\n  public send(type: string, messageData: any) {\n    if (this.validateEntry(type)) {\n      const msg: MessageFormat = { type: type, data: messageData };\n      this.messageBus.next(msg);\n    } else {\n      throw new Error(`${type} entry not found in cocoa-manifest registry`);\n    }\n  }\n\n  public listen(type: string): Observable<MessageFormat> {\n    return this.messageBus.pipe(\n      filter(event => event.type === type)\n    );\n  }\n\n  private validateEntry(type: string): boolean {\n    if (this._entries.messages) {\n      return this._entries.messages.hasOwnProperty(type);\n    }\n    return false;\n  }\n\n  ngOnDestroy() {\n    this.messageBus.complete();\n  }\n\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "accessors": {
+                "entries": {
+                    "name": "entries",
+                    "setSignature": {
+                        "name": "entries",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "entries",
+                                "type": "CocoaManifest",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 18,
+                        "jsdoctags": [
+                            {
+                                "name": "entries",
+                                "type": "CocoaManifest",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "entries",
+                        "type": "",
+                        "returnType": "CocoaManifest",
+                        "line": 26
+                    }
+                }
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [
+        {
+            "name": "AppPage",
+            "id": "class-AppPage-216456583e25428faed77a4328eb6552448b3ca5a60c594cca6093d48f5332766845debfe0c05c76cc89e95f1f958caf3ad9253a229c2cc3a570b8ec03f2b4c7",
+            "file": "e2e/src/app.po.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { browser, by, element } from 'protractor';\n\nexport class AppPage {\n  navigateTo(): Promise<unknown> {\n    return browser.get(browser.baseUrl) as Promise<unknown>;\n  }\n\n  getTitleText(): Promise<string> {\n    return element(by.css('app-root .content span')).getText() as Promise<string>;\n  }\n}\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getTitleText",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<string>",
+                    "typeParameters": [],
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "navigateTo",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<>",
+                    "typeParameters": [],
+                    "line": 4,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-292a8a6b95c12e4baaf057d5f08f7eaba4e7790d2c8f92fdde6aba6ed52842322ef197cc663586b0fa9ce48d5f75f2fc4246593f36f70b4c82ccd391bc0bedc5",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "MessageService"
+                }
+            ],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "navigation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'developer'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "collapseAll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "expandAll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleCocoaMessage",
+                    "args": [
+                        {
+                            "name": "messagePacket",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 68,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "messagePacket",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 37,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "nodeSelect",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "recursiveToggle",
+                    "args": [
+                        {
+                            "name": "node",
+                            "type": "TreeNode",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "isExpand",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "node",
+                            "type": "TreeNode",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "isExpand",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService } from 'primeng/api';\n\nimport { Navigation } from './navigation';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ MessageService ]\n})\n\nexport class AppComponent implements OnInit {\n  title = 'developer';\n  navigation: any;\n\n  constructor(\n    private router: Router,\n    // private cocoaCore: CocoaCore,\n    private messageService: MessageService\n  ) {\n    this.navigation = Navigation;\n    /**\n    this.cocoaCore.register(manifest);\n    this.cocoaCore.messageBus.listen('demo_button_buttonClicked').subscribe((messagePacket) => {\n      this.handleCocoaMessage(messagePacket);\n    });\n    this.cocoaCore.messageBus.listen('demo_checkbox_checkboxClicked').subscribe((messagePacket) => {\n      this.handleCocoaMessage(messagePacket);\n    });\n    */\n  }\n\n  ngOnInit() {}\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.messageService.clear();\n    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  handleCocoaMessage(messagePacket) {\n    this.messageService.add({severity: 'info', summary: 'Cocoa Message Bus Event', detail: messagePacket.data });\n  }\n\n}\n\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "body {\n    height: 100%;\n    width: 100%;\n}\n\n.demo-header {\n    position: fixed;\n    top: 0px;\n    left: 0px;\n    right: 0px;\n    z-index: 1000;\n    background-color: #343a40;\n    margin-bottom: 0px;\n    padding: 15px;\n    text-align: center;\n    h1 {\n        color: orange;\n        font-size: 40px;\n        font-weight: 200;\n        margin-top: 22px;\n    }\n    .icon {\n        height: 100px;\n        width: 100px;\n        border-radius: 50%;\n        // background-image: url(../assets/icon-100px.png);\n        display: block;\n        background-repeat: no-repeat;\n        background-color: #ffffff;\n        float: left;\n        margin-left: 35px;\n    }\n}\n.content-wrapper{\n    position: absolute;\n    top: 130px;\n    left: 0px;\n    bottom: 0px;\n    width: 100%;\n    font-family: 'Open Sans', sans-serif;\n    display: flex;\n    margin-left: -10px;\n    .left {\n        background-color: #343a40;\n        width: 300px;\n        min-width: 300px;\n        max-width: 300px;\n        box-shadow: -6px 10px 4px 8px #c8c8c8;\n    }\n    .right{\n      width: calc(100% - #{300px});\n      padding: 50px;\n    }\n}\n\n:host ::ng-deep .p-datatable-tbody tr td:nth-child(1) {\n    text-transform: none !important;\n}\n  \n/**\n* Navigation Tree styles\n*/\n:host ::ng-deep .p-tree {\n    width: 300px;\n    background-color: #343a40;\n    border: none;\n    color: white;\n    font-family: \"Open Sans\";\n    font-size: 13px;\n    font-weight: 600;\n    line-height: 20px;\n    text-decoration: none;\n}\n:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover {\n    color: orange;\n    border-color: transparent;\n    background: transparent;\n}\n:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:focus {\n    box-shadow: 0 0 0 1px transparent;\n}\n:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {\n    background-color: orange;\n    color: #ffffff;\n}\n:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content:focus {\n    box-shadow: 0 0 0 0.2rem orange;\n}\n\n/**\n* Tab styles\n*/\n:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem orange;\n}\n:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {\n    background-color: orange;\n    border-color: orange;\n}\n\n/**\n* Button styles\n*/\n:host ::ng-deep .docs-button.p-button {\n    background: #f4f4f4;;\n    color: #333333;\n    border-color: #b6b6b6;\n}\n:host ::ng-deep .docs-button.p-button.p-button-text {\n    background-color: transparent;\n    color: #343a40;\n    border-color: transparent;\n}\n:host ::ng-deep .docs-button.cux-button.p-button:enabled:hover {\n    background: #dbdbdb;\n    color: #343a40;\n    border-color: transparent;\n}\n\n:host ::ng-deep .docs-button.p-button:enabled:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem orange;\n}\n",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "messageService",
+                        "type": "MessageService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 18,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "messageService",
+                        "type": "MessageService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p-toast></p-toast>\n\n<div class=\"demo-header\">\n  <span class=\"icon\"></span>\n  <h1>COCOA DOCUMENTATION LIBRARY</h1>\n</div>\n\n<!--\n<gux-banner></gux-banner>\n-->\n\n<div class=\"content-wrapper\">\n  <span class=\"left\">\n\n    <div style=\"margin:20px; text-align: center;\">\n      <button\n        pButton\n        type=\"button\"\n        class=\"docs-button p-button-sm p-button-secondary\"\n        icon=\"pi pi-plus\"\n        iconPos=\"left\"\n        label=\"Expand all\"\n        (click)=\"expandAll()\"\n        style=\"margin-right:.5rem\"\n      ></button>\n      <button\n        pButton\n        type=\"button\"\n        class=\"docs-button p-button-sm p-button-secondary\"\n        icon=\"pi pi-minus\"\n        iconPos=\"left\"\n        label=\"Collapse all\"\n        (click)=\"collapseAll()\"\n      ></button>\n    </div>\n\n    <p-tree\n        class=\"navTree\"\n        [value]=\"navigation\"\n        selectionMode=\"single\"\n        (onNodeSelect)=\"nodeSelect($event)\"\n    ></p-tree>\n  </span>\n\n  <div class=\"right\" style=\"overflow-y:auto\">\n    <router-outlet></router-outlet>\n  </div>\n\n</div>"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-0bceb9d0ad900b6c529145e06e16358ba3441a26f5078c83b9480c0829e1f3cdb39fefe75897201343ad580b5fad57870283af100a4cdeff06eab68ab05e5200",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\nimport { ButtonModule } from 'primeng/button';\nimport { ToastModule } from 'primeng/toast';\nimport { TreeModule } from 'primeng/tree';\n\nimport { DemosModule } from './demos/demos.module';\nimport { DocsModule } from './docs/docs.module';\nimport { GuxModule } from './gux/gux.module';\nimport { MbusModule } from './mbus/mbus.module';\n\n@NgModule({\n  declarations: [ AppComponent ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    BrowserModule,\n    BrowserAnimationsModule,\n    ButtonModule,\n    ToastModule,\n    TreeModule,\n    AppRoutingModule,\n    DemosModule,\n    DocsModule,\n    GuxModule,\n    MbusModule\n  ],\n  exports: [ ],\n  providers: [ ],\n  bootstrap: [ AppComponent ]\n})\n\nexport class AppModule {\n  /**\n  constructor(private cocoaDocsService: CocoaDocsService) {\n    this.cocoaDocsService.setDemoComponents({\n      GuxBadgeComponent: {\n        name: 'GuxBadgeDemoComponent',\n        demo: GuxBadgeDemoComponent\n      },\n      GuxBannerComponent: {\n        name: 'GuxBannerDemoComponent',\n        demo: GuxBannerDemoComponent\n      },\n      GuxButtonComponent: {\n        name: 'GuxButtonDemoComponent',\n        demo: GuxButtonDemoComponent\n      },\n      GuxCheckboxComponent: {\n        name: 'GuxCheckboxDemoComponent',\n        demo: GuxCheckboxDemoComponent\n      },\n      GuxInputDirective: {\n        name: 'GuxInputDemoComponent',\n        demo: GuxInputDemoComponent\n      }\n    });\n  }\n  */\n}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "DemosModule"
+                        },
+                        {
+                            "name": "DocsModule"
+                        },
+                        {
+                            "name": "GuxModule"
+                        },
+                        {
+                            "name": "MbusModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-39f00c28006101e7f18a0ad8ef7b34c5f0b32a78147f5be4ae91e6d51960ae5a37115c51beb189c2cfcda396a9a177305e0df569629643ec4f79712ef40a444e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\n\nconst routes: Routes = [];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DemosModule",
+            "id": "module-DemosModule-089b684a5ed4907274fd39469ea04fa624af73c73f47b1308a36d502af10b75b43b22fa4e390d47b57fa8546cbc9169605473ef514a6fd32a3e8a466675bd6ae",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/demos/demos.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class DemosModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DocsModule",
+            "id": "module-DocsModule-ed9c5fb2b253c66c0be8b977a2bcd7040aac19820d853b7f36cbc1f5132627cb4bb100dfe3e91dc892919bd5d3fba1759f6bca4b4e45e8ea81da6825da39954a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/docs/docs.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class DocsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "GuxModule",
+            "id": "module-GuxModule-083eea1e39b4003832d05d7cbb43f6ac3d3fe2f81bd2de5d61b43555d1455eb1682e330c2d3ffb27a03eaa3dbe03ab4a75af5cd3ef2d318931cbb34390d59a55",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/gux/gux.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class GuxModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MbusModule",
+            "id": "module-MbusModule-8f5bb563c014379105dc91a74c9917d489a61c38150dd8349eee6d050340e2077dc95034c2e1137dc072708fef041216138d08f627eac1f1bdbb79cbcbd56978",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/mbus/mbus.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class MbusModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Navigation",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/navigation.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "TreeNode[]",
+                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Cocoa',\n    children: [{\n      label: 'Interfaces',\n      type: 'navigation',\n      data: 'interfaces/home/cocoa',\n      children: [{\n        label: 'Message Bus',\n        type: 'navigation',\n        data: 'interfaces/IMessageBus'\n      }]\n    }, {\n      label: 'Services',\n      type: 'navigation',\n      data: 'services/home/cocoa',\n      children: [{\n        label: 'Cocoa Core',\n        type: 'navigation',\n        data: 'services/CocoaCore'\n      }, {\n        label: 'Message Bus',\n        type: 'navigation',\n        data: 'services/MessageBus'\n      }]\n    }, {\n      label: 'Miscellaneous',\n      type: 'navigation',\n      data: 'miscellaneous/home/cocoa',\n      children: [{\n        label: 'Variables, Enumerations, etc.',\n        type: 'navigation',\n        data: 'miscellaneous/cocoa'\n      }]\n    }]\n  }, {\n    label: 'Cocoa Cux',\n    children: [\n      {\n        label: 'Components',\n        type: 'navigation',\n        data: 'components/home/cux',\n        children: [\n          {\n            label: 'Badge',\n            type: 'navigation',\n            data: 'components/CuxBadgeComponent'\n          },\n          {\n            label: 'Banner',\n            type: 'navigation',\n            data: 'components/CuxBannerComponent'\n          },\n          {\n            label: 'Button',\n            type: 'navigation',\n            data: 'components/CuxButtonComponent'\n          },\n          {\n            label: 'Checkbox',\n            type: 'navigation',\n            data: 'components/CuxCheckboxComponent'\n          },\n          {\n            label: 'Dropdown',\n            type: 'navigation',\n            data: 'components/CuxDropdownComponent'\n          },\n        ],\n      },\n      {\n        label: 'Services',\n        type: 'navigation',\n        data: 'services/home/cux',\n        children: [\n          {\n            label: 'Success Message',\n            type: 'navigation',\n            data: 'services/SuccessMessageService'\n          },\n        ],\n      },\n      {\n        label: 'Interfaces',\n        type: 'navigation',\n        data: 'interfaces/home/cux',\n        children: [\n          {\n            label: 'Accordion Item',\n            type: 'navigation',\n            data: 'interfaces/AccordionItem'\n          },\n          {\n            label: 'Accordion Items',\n            type: 'navigation',\n            data: 'interfaces/AccordionItems'\n          },\n          {\n            label: 'Accordion Title',\n            type: 'navigation',\n            data: 'interfaces/AccordionTitle'\n          },\n          {\n            label: 'Badge',\n            type: 'navigation',\n            data: 'interfaces/CuxBadgeModel'\n          },\n          {\n            label: 'Breadcrumb',\n            type: 'navigation',\n            data: 'interfaces/Breadcrumb'\n          },\n          {\n            label: 'Button',\n            type: 'navigation',\n            data: 'interfaces/Button'\n          },\n          {\n            label: '360 Summary Card',\n            type: 'navigation',\n            data: 'interfaces/CuxCard360SummaryCard'\n          },\n          {\n            label: 'Check Box',\n            type: 'navigation',\n            data: 'interfaces/CheckBoxItem'\n          },\n          {\n            label: 'Dropdown Item',\n            type: 'navigation',\n            data: 'interfaces/CuxDropdownItem'\n          },\n          {\n            label: 'Dropdown Item Value',\n            type: 'navigation',\n            data: 'interfaces/CuxDropDownItemValue'\n          },\n          {\n            label: 'Footer Button',\n            type: 'navigation',\n            data: 'interfaces/FooterButton',\n          },\n          {\n            label: 'Radio Button',\n            type: 'navigation',\n            data: 'interfaces/RadioButtonItem',\n          },\n          {\n            label: 'Selection Change',\n            type: 'navigation',\n            data: 'interfaces/SelectionChange'\n          },\n          {\n            label: 'Sidebar Data',\n            type: 'navigation',\n            data: 'interfaces/SideBarData'\n          },\n          {\n            label: 'Stepper Item',\n            type: 'navigation',\n            data: 'interfaces/StepperItem'\n          }\n        ]\n      }, {\n        label: 'Pipes',\n      }, {\n        label: 'Directives',\n        type: 'navigation',\n        data: 'directives/home/cux',\n        children: [{\n          label: 'Ellipsify',\n          type: 'navigation',\n          data: 'directives/CuxEllipsifyDirective'\n        }, {\n          label: 'Input',\n          type: 'navigation',\n          data: 'directives/CuxInputDirective'\n        }, {\n          label: 'Tooltip',\n          type: 'navigation',\n          data: 'directives/CuxTitleTooltipDirective'\n        }]\n      }, {\n        label: 'Miscellaneous',\n        type: 'navigation',\n        data: 'miscellaneous/home/cux',\n        children: [{\n          label: 'Variables, Enumerations, etc.',\n          type: 'navigation',\n          data: 'miscellaneous/cux'\n        }]\n      }\n    ]\n  }\n]"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/app/navigation.ts": [
+                {
+                    "name": "Navigation",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/navigation.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TreeNode[]",
+                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Cocoa',\n    children: [{\n      label: 'Interfaces',\n      type: 'navigation',\n      data: 'interfaces/home/cocoa',\n      children: [{\n        label: 'Message Bus',\n        type: 'navigation',\n        data: 'interfaces/IMessageBus'\n      }]\n    }, {\n      label: 'Services',\n      type: 'navigation',\n      data: 'services/home/cocoa',\n      children: [{\n        label: 'Cocoa Core',\n        type: 'navigation',\n        data: 'services/CocoaCore'\n      }, {\n        label: 'Message Bus',\n        type: 'navigation',\n        data: 'services/MessageBus'\n      }]\n    }, {\n      label: 'Miscellaneous',\n      type: 'navigation',\n      data: 'miscellaneous/home/cocoa',\n      children: [{\n        label: 'Variables, Enumerations, etc.',\n        type: 'navigation',\n        data: 'miscellaneous/cocoa'\n      }]\n    }]\n  }, {\n    label: 'Cocoa Cux',\n    children: [\n      {\n        label: 'Components',\n        type: 'navigation',\n        data: 'components/home/cux',\n        children: [\n          {\n            label: 'Badge',\n            type: 'navigation',\n            data: 'components/CuxBadgeComponent'\n          },\n          {\n            label: 'Banner',\n            type: 'navigation',\n            data: 'components/CuxBannerComponent'\n          },\n          {\n            label: 'Button',\n            type: 'navigation',\n            data: 'components/CuxButtonComponent'\n          },\n          {\n            label: 'Checkbox',\n            type: 'navigation',\n            data: 'components/CuxCheckboxComponent'\n          },\n          {\n            label: 'Dropdown',\n            type: 'navigation',\n            data: 'components/CuxDropdownComponent'\n          },\n        ],\n      },\n      {\n        label: 'Services',\n        type: 'navigation',\n        data: 'services/home/cux',\n        children: [\n          {\n            label: 'Success Message',\n            type: 'navigation',\n            data: 'services/SuccessMessageService'\n          },\n        ],\n      },\n      {\n        label: 'Interfaces',\n        type: 'navigation',\n        data: 'interfaces/home/cux',\n        children: [\n          {\n            label: 'Accordion Item',\n            type: 'navigation',\n            data: 'interfaces/AccordionItem'\n          },\n          {\n            label: 'Accordion Items',\n            type: 'navigation',\n            data: 'interfaces/AccordionItems'\n          },\n          {\n            label: 'Accordion Title',\n            type: 'navigation',\n            data: 'interfaces/AccordionTitle'\n          },\n          {\n            label: 'Badge',\n            type: 'navigation',\n            data: 'interfaces/CuxBadgeModel'\n          },\n          {\n            label: 'Breadcrumb',\n            type: 'navigation',\n            data: 'interfaces/Breadcrumb'\n          },\n          {\n            label: 'Button',\n            type: 'navigation',\n            data: 'interfaces/Button'\n          },\n          {\n            label: '360 Summary Card',\n            type: 'navigation',\n            data: 'interfaces/CuxCard360SummaryCard'\n          },\n          {\n            label: 'Check Box',\n            type: 'navigation',\n            data: 'interfaces/CheckBoxItem'\n          },\n          {\n            label: 'Dropdown Item',\n            type: 'navigation',\n            data: 'interfaces/CuxDropdownItem'\n          },\n          {\n            label: 'Dropdown Item Value',\n            type: 'navigation',\n            data: 'interfaces/CuxDropDownItemValue'\n          },\n          {\n            label: 'Footer Button',\n            type: 'navigation',\n            data: 'interfaces/FooterButton',\n          },\n          {\n            label: 'Radio Button',\n            type: 'navigation',\n            data: 'interfaces/RadioButtonItem',\n          },\n          {\n            label: 'Selection Change',\n            type: 'navigation',\n            data: 'interfaces/SelectionChange'\n          },\n          {\n            label: 'Sidebar Data',\n            type: 'navigation',\n            data: 'interfaces/SideBarData'\n          },\n          {\n            label: 'Stepper Item',\n            type: 'navigation',\n            data: 'interfaces/StepperItem'\n          }\n        ]\n      }, {\n        label: 'Pipes',\n      }, {\n        label: 'Directives',\n        type: 'navigation',\n        data: 'directives/home/cux',\n        children: [{\n          label: 'Ellipsify',\n          type: 'navigation',\n          data: 'directives/CuxEllipsifyDirective'\n        }, {\n          label: 'Input',\n          type: 'navigation',\n          data: 'directives/CuxInputDirective'\n        }, {\n          label: 'Tooltip',\n          type: 'navigation',\n          data: 'directives/CuxTitleTooltipDirective'\n        }]\n      }, {\n        label: 'Miscellaneous',\n        type: 'navigation',\n        data: 'miscellaneous/home/cux',\n        children: [{\n          label: 'Variables, Enumerations, etc.',\n          type: 'navigation',\n          data: 'miscellaneous/cux'\n        }]\n      }\n    ]\n  }\n]"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [],
+                "kind": "module"
+            }
+        ]
+    }
+}

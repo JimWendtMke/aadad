@@ -1,2 +1,54 @@
-<h1>AADA</h1>
-<router-outlet></router-outlet>
+<div class="banner">
+  <p-messages [(value)]="messages"></p-messages>
+</div>
+<p-toast></p-toast>
+
+
+
+<div class="demo-header">
+  <span class="icon"></span>
+  <h1>DOCUMENTATION LIBRARY</h1>
+</div>
+
+<!--
+<gux-banner></gux-banner>
+-->
+
+<div class="content-wrapper">
+  <span class="left">
+
+    <div style="margin:20px; text-align: center;">
+      <button
+        pButton
+        type="button"
+        class="docs-button p-button-sm p-button-secondary"
+        icon="pi pi-plus"
+        iconPos="left"
+        label="Expand all"
+        (click)="expandAll()"
+        style="margin-right:.5rem"
+      ></button>
+      <button
+        pButton
+        type="button"
+        class="docs-button p-button-sm p-button-secondary"
+        icon="pi pi-minus"
+        iconPos="left"
+        label="Collapse all"
+        (click)="collapseAll()"
+      ></button>
+    </div>
+
+    <p-tree
+        class="navTree"
+        [value]="navigation"
+        selectionMode="single"
+        (onNodeSelect)="nodeSelect($event)"
+    ></p-tree>
+  </span>
+
+  <div class="right" style="overflow-y:auto">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

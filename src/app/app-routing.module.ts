@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-const routes: Routes = [];
+import { DocsComponent } from './docs/docs.component';
+const routes: Routes = [{
+  path: '',
+  redirectTo: 'docs',
+  pathMatch: 'full'
+}, {
+  path: 'docs',
+  component: DocsComponent
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],

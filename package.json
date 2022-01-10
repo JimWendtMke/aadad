@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "gen-docs:json": "compodoc -p ./projects/cocoa/tsconfig.lib.json -e json -d ./projects/cocoa/docs/src/assets --disableCoverage",
     "deploy-ghpages": "ng deploy --base-href=/docs/"
   },
   "private": true,

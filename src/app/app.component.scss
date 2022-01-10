@@ -1,0 +1,134 @@
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.banner {
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    z-index: 1001;
+    margin-left: -300px;
+    width: 600px;
+}
+.demo-header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1000;
+    background-color: #343a40;
+    margin-bottom: 0px;
+    padding: 15px;
+    text-align: center;
+    h1 {
+        color: orange;
+        font-size: 40px;
+        font-weight: 200;
+        margin-top: 22px;
+    }
+    .icon {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        // background-image: url(../assets/icon-100px.png);
+        display: block;
+        background-repeat: no-repeat;
+        background-color: #ffffff;
+        float: left;
+        margin-left: 35px;
+    }
+}
+.content-wrapper{
+    position: absolute;
+    top: 130px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    margin-left: -10px;
+    .left {
+        background-color: #343a40;
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+        box-shadow: -6px 10px 4px 8px #c8c8c8;
+    }
+    .right{
+      width: calc(100% - #{300px});
+      padding: 50px;
+    }
+}
+
+:host ::ng-deep .p-datatable-tbody tr td:nth-child(1) {
+    text-transform: none !important;
+}
+  
+/**
+* Navigation Tree styles
+*/
+:host ::ng-deep .p-tree {
+    width: 300px;
+    background-color: #343a40;
+    border: none;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    text-decoration: none;
+}
+:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover {
+    color: orange;
+    border-color: transparent;
+    background: transparent;
+}
+:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:focus {
+    box-shadow: 0 0 0 1px transparent;
+}
+:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {
+    background-color: orange;
+    color: #ffffff;
+}
+:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content:focus {
+    box-shadow: 0 0 0 0.2rem orange;
+}
+
+/**
+* Tab styles
+*/
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem orange;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background-color: orange;
+    border-color: orange;
+}
+
+/**
+* Button styles
+*/
+:host ::ng-deep .docs-button.p-button {
+    background: #f4f4f4;;
+    color: #333333;
+    border-color: #b6b6b6;
+}
+:host ::ng-deep .docs-button.p-button.p-button-text {
+    background-color: transparent;
+    color: #343a40;
+    border-color: transparent;
+}
+:host ::ng-deep .docs-button.cux-button.p-button:enabled:hover {
+    background: #dbdbdb;
+    color: #343a40;
+    border-color: transparent;
+}
+
+:host ::ng-deep .docs-button.p-button:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem orange;
+}
