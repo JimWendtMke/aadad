@@ -3,40 +3,37 @@
 </div>
 <p-toast></p-toast>
 
-
-
-<div class="demo-header">
-  <span class="icon"></span>
-  <h1>DOCUMENTATION LIBRARY</h1>
-</div>
-
 <!--
 <gux-banner></gux-banner>
 -->
 
 <div class="content-wrapper">
   <span class="left">
+    <!--
 
-    <div style="margin:20px; text-align: center;">
-      <button
-        pButton
-        type="button"
-        class="docs-button p-button-sm p-button-secondary"
-        icon="pi pi-plus"
-        iconPos="left"
-        label="Expand all"
+    <div>
+      <span class="icon"></span>
+    </div>
+    -->
+
+    <div class="button-wrapper">
+      <gux-button
+        icon="angle-double-right"
+        isRounded="true"
+        isRaised="true"
+        pTooltip="Expand All"
+        tooltipPosition="bottom"
         (click)="expandAll()"
-        style="margin-right:.5rem"
-      ></button>
-      <button
-        pButton
-        type="button"
-        class="docs-button p-button-sm p-button-secondary"
-        icon="pi pi-minus"
-        iconPos="left"
-        label="Collapse all"
+        inlineStyle="margin-right:.5rem"
+      ></gux-button>
+      <gux-button
+        isRounded="true"
+        isRaised="true"
+        icon="angle-double-up"
+        pTooltip="Collapse All"
+        tooltipPosition="bottom"
         (click)="collapseAll()"
-      ></button>
+      ></gux-button>
     </div>
 
     <p-tree
@@ -48,7 +45,41 @@
   </span>
 
   <div class="right" style="overflow-y:auto">
-    <router-outlet></router-outlet>
+    <div class="demo-header">
+      <h1><u>A</u>utomated <u>A</u>ngular <u>D</u>ocumentation <u>a</u>nd <u>D</u>emo Library</h1>
+    </div>
+
+    <gux-button
+      label="large"
+      buttonSize="lg"
+      buttonMode="help"
+      icon="check"
+      iconPosition="left"
+      disabled="false"
+      isOutlined=true 
+    ></gux-button>
+
+    <gux-button
+      label="normal"
+      buttonMode="warning"
+      isRounded=true
+      isOutlined=true
+    ></gux-button>
+
+    <gux-button
+      label="small"
+      buttonSize="sm"
+      icon="check"
+      iconPosition="right"
+      buttonMode="info"
+      tooltip="hello"
+      tooltipPosition="bottom"
+      isRaised=true
+    ></gux-button>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </div>

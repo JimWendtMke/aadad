@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs';
+
 import { TreeNode } from 'primeng/api';
-import { MessageService } from 'primeng/api';
+import { MessageService as PrimeMessageService } from 'primeng/api';
+
+import { GlobalMessageService } from './services/global-message.service';
+import { GlobalMessageType } from './interfaces/global-message-type';
 
 import { Navigation } from './navigation';
 
@@ -10,27 +15,24 @@ import { Navigation } from './navigation';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ MessageService ]
+  providers: [ GlobalMessageService, PrimeMessageService ]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy {
   title = 'developer';
   navigation: any;
   messages: any = [];
+  subscription: Subscription;
 
   constructor(
     private router: Router,
-    private messageService: MessageService
+    public primeMessageService: PrimeMessageService,
+    private globalMessageService: GlobalMessageService
   ) {
     this.navigation = Navigation;
-  }
-
-  ngOnInit() {
-    this.messageService.messageObserver.subscribe((message: any) => {
-      if (message.key === 'banner') {
-        this.messages.push({severity:'info', summary:'Info Message', detail:'PrimeNG rocks'});
-      } else if (message.key === 'toast') {
-      }
+    this.subscription = this.globalMessageService.getMessage().subscribe(message => {
+      this.messages.push(message);
+      this.primeMessageService.add(message);
     });
   }
 
@@ -41,8 +43,6 @@ export class AppComponent implements OnInit {
   }
 
   expandAll(){
-    this.messageService.clear();
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
     this.navigation.forEach(node => {
       this.recursiveToggle(node, true);
     });
@@ -63,15 +63,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-
-
-  show() {
-    this.messages.push({severity:'info', summary:'Info Message', detail:'PrimeNG rocks'});
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-
-clear() {
-    this.messages = [];
-}
 
 }
 

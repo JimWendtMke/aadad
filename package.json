@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gen-docs:json": "compodoc -p ./tsconfig.json -e json -d ./src/app/docs/src/assets --disableCoverage",
+    "gen-docs:json": "compodoc -p ./tsconfig.json -e json -d ./src/app/docs/assets --disableCoverage",
     "deploy-ghpages": "ng deploy --base-href=/docs/"
   },
   "private": true,

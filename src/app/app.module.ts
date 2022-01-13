@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from "primeng/tooltip";
 import { TreeModule } from 'primeng/tree';
 
 import { DemosModule } from './demos/demos.module';
@@ -24,10 +26,12 @@ import { GuxModule } from './gux/gux.module';
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    BadgeModule,
     ButtonModule,
     MessageModule,
     MessagesModule,
     ToastModule,
+    TooltipModule,
     TreeModule,
     AppRoutingModule,
     DemosModule,
@@ -41,8 +45,8 @@ import { GuxModule } from './gux/gux.module';
 
 export class AppModule {
   /**
-  constructor(private cocoaDocsService: CocoaDocsService) {
-    this.cocoaDocsService.setDemoComponents({
+  constructor(private docsService: docsService) {
+    this.docsService.setDemoComponents({
       GuxBadgeComponent: {
         name: 'GuxBadgeDemoComponent',
         demo: GuxBadgeDemoComponent

@@ -1,0 +1,15 @@
+<button
+  pButton pRipple
+  [type]="type"
+  [label]="label"
+  [class]="buttonClass"
+  [pTooltip]="tooltip"
+  [tooltipPosition]="tooltipPosition"
+  [icon]="'pi pi-' + icon"
+  [iconPos]="iconPosition"
+  [style]="inlineStyle"
+  [disabled]="isDisabled"
+  (click)="onBtnClick($event)"
+  (focus)="onBtnFocus($event)"
+  (blur)="onBtnBlur($event)"
+></button>
