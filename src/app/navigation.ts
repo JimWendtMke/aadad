@@ -23,7 +23,7 @@ export const Navigation: TreeNode[] = [
       {
         label: 'Button',
         type: 'navigation',
-        data: 'components/CuxButtonComponent'
+        data: 'components/GuxButtonComponent'
       },
       {
         label: 'Checkbox',

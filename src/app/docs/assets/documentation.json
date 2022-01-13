@@ -400,7 +400,91 @@
             "type": "injectable"
         }
     ],
-    "guards": [],
+    "guards": [
+        {
+            "name": "CocoaDocsRouteGuardService",
+            "id": "injectable-CocoaDocsRouteGuardService-81140b432c77f134cb0ff8555de9b4437c50e7ccf179e93f388d43a6c5e874b4cca0d373dfec51ec79867e7d75dc090ece6fdcc3c74fd21adedd5d2a6e0b7d2c",
+            "file": "src/app/docs/services/route-guard.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "canActivate",
+                    "args": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';\r\nimport { Observable, of } from 'rxjs';\r\n\r\nimport { CocoaDocsService } from './docs.service';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class CocoaDocsRouteGuardService implements CanActivate {\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private cocoaDocsService: CocoaDocsService\r\n  ) { }\r\n\r\n  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {\r\n\r\n    /**\r\n    * Hard coded route (ie: home, variables)\r\n    */\r\n    if (!route.params && !route.params.target) {\r\n      return of(true);\r\n    }\r\n\r\n    /**\r\n    * Get the URL parameters for testing\r\n    */\r\n    let target: string;\r\n    let type: string;\r\n    if (route.params && route.params.target) {\r\n      target = route.params.target;\r\n    }\r\n    if (route.routeConfig.path.search(/:target/)) {\r\n      type = route.routeConfig.path.split('/')[0];\r\n    }\r\n\r\n    if (this.cocoaDocsService.canNavigate(type, target)) {\r\n      return of(true);\r\n    }\r\n    this.router.navigate(['error404']);\r\n    return of(false);\r\n  }\r\n\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "cocoaDocsService",
+                        "type": "CocoaDocsService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "cocoaDocsService",
+                        "type": "CocoaDocsService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "guard"
+        }
+    ],
     "interceptors": [],
     "classes": [
         {
@@ -793,6 +877,68 @@
             "templateData": "<p>docs works!</p>\n\n<button type=\"button\" (click)=\"sendMessage()\">Show Banner</button>\n"
         },
         {
+            "name": "ErrorPage404Component",
+            "id": "component-ErrorPage404Component-77027ee4bcd243f2474a17260807a1c2a96680bf4e3ad6949a72fb5c807fd26359fa9390078cb998b9c4fee7a850c6b2efa43ab43df22dbb70c4301dd062e1d5",
+            "file": "src/app/docs/components/error-page-404/error-page-404.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "error-page-404",
+            "styleUrls": [
+                "../../assets/styles/base-styles.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./error-page-404.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'error-page-404',\n  templateUrl: './error-page-404.component.html',\n  styleUrls: ['../../assets/styles/base-styles.scss']\n})\nexport class ErrorPage404Component implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".content {\n  font-family: \"Open Sans\";\n  background-color: white;\n  border-radius: 10px 10px 0px 0px;\n  .selector {\n    color: orange;\n  }\n  .arrows {\n    color: #b6b6b6;\n  }\n  .deprecated {\n    font-style: italic;\n    color: red;\n  }\n  .deprecation-message {\n    margin-top: -15px;\n  }\n  table {\n    border-collapse: collapse;\n    width: 100%;\n    td,\n    th {\n      text-align: left;\n    }\n  }\n  .copy-data {\n    color: #343a40;\n    background-color: transparent;\n    font-size: 24px;\n    :hover {\n      color: orange;\n    }\n  }\n}\n\n.selector-wrapper {\n    border: 1px solid #c8c8c8;\n    background: #f4f4f4;\n    padding: 10px;\n    margin-bottom: 5px;\n    border-radius: 3px;\n}\n\n.comp-error-container {\n  padding: 20px;\n  padding-top: 85px;\n  margin-right: 0px;\n  margin-left: 0px;\n  .comp-error-title {\n    margin-bottom: 10px;\n    font-size: 24px;\n    color: orange;\n  }\n  .comp-error-body {\n    padding: 20px;\n    border: 1px solid #acb3b9;\n    border-radius: 10px;\n    .comp-error-header {\n      font-size: 16px;\n      font-weight: bold;\n    }\n    .comp-error-content {\n      margin: 15px 0px;\n      color: #838b92;\n    }\n    .comp-error-footer {\n      color: #838b92;\n      margin-bottom: 30px;\n    }\n  }\n}\n\n.style-url {\n  font-weight: bold;\n  padding-left: 15px;\n  margin-bottom: -15px;\n}\n\n:host ::ng-deep hr {\n  margin-top: 1.2rem;\n  width: 80%;\n  float: left;\n  border-top-color: orange;\n}\n\n:host ::ng-deep .p-grid {\n  margin: 10px 5px;\n  .p-col {\n    padding: 10px;\n  }\n}\n/**\n* Override the github css styles for easier reading\n*/\n:host ::ng-deep .hljs-ln-numbers {\n  width: 25px;\n  border-right: 1px solid #24292e;\n}\n:host ::ng-deep .hljs-ln-code {\n  padding-left: 15px;\n}\n",
+                    "styleUrl": "../../assets/styles/base-styles.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "  <div id=\"content\">\n    <div class=\"comp-error-container row\">\n      <div class=\"col-md-12\">\n        <div class=\"comp-error-title\">\n          The documentation page you navigated to is not currently in CocoaCUX\n        </div>\n        <div class=\"comp-error-body\">\n          <div class=\"comp-error-header\">\n            404 - Not Found\n          </div>\n          <div class=\"comp-error-content\">\n            The page you requested does not exist. You may have typed the address incorrectly, or the link or applicaiton that brought you here may be out of date.\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+        },
+        {
             "name": "GuxButtonComponent",
             "id": "component-GuxButtonComponent-3f29a84b5ecc09d14903def5bd799ba0e539cf01780048c1ee06ebd97a1a8c52767d193191e1b0680869f20ac22e4b38f10b3989682351d46d68a927e1deb720",
             "file": "src/app/gux/components/gux-button/gux-button.component.ts",
@@ -1082,18 +1228,80 @@
                 "OnInit"
             ],
             "templateData": "<button\n  pButton pRipple\n  [type]=\"type\"\n  [label]=\"label\"\n  [class]=\"buttonClass\"\n  [pTooltip]=\"tooltip\"\n  [tooltipPosition]=\"tooltipPosition\"\n  [icon]=\"'pi pi-' + icon\"\n  [iconPos]=\"iconPosition\"\n  [style]=\"inlineStyle\"\n  [disabled]=\"isDisabled\"\n  (click)=\"onBtnClick($event)\"\n  (focus)=\"onBtnFocus($event)\"\n  (blur)=\"onBtnBlur($event)\"\n></button>"
+        },
+        {
+            "name": "GuxComponent",
+            "id": "component-GuxComponent-47993aa78f03f9d6f584c3a042013e790ec360b2bce4d3b671cb8e555fbcbd2cd20da778d8e978c8052d41fd4d18af06ff3c7e229cb594d0aa7577a2130b83ff",
+            "file": "src/app/gux/gux.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-gux",
+            "styleUrls": [
+                "./gux.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./gux.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-gux',\n  templateUrl: './gux.component.html',\n  styleUrls: ['./gux.component.scss']\n})\nexport class GuxComponent implements OnInit {\n\n  constructor( ) { }\n\n  ngOnInit(): void { }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./gux.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>gux works!</p>"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-15e730e9554d469fe1692b4de0140efc80282be6c620559190d6a6c3de15f36049f2bf6406a8d0da829d2b790a5a16857a314dfc6b343e46d7175b740e1d4129",
+            "id": "module-AppModule-4f3244c613b24131800f4ffe3daf8ecc2c158611af78587716a302047a8b559afd9a4cde6c4015e138123b14c22fcebfe2a96751fcb3e67e475f38da75f671f6",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\nimport { BadgeModule } from 'primeng/badge';\nimport { ButtonModule } from 'primeng/button';\nimport { MessageModule } from 'primeng/message';\nimport { MessagesModule } from 'primeng/messages';\nimport { ToastModule } from 'primeng/toast';\nimport { TooltipModule } from \"primeng/tooltip\";\nimport { TreeModule } from 'primeng/tree';\n\nimport { DemosModule } from './demos/demos.module';\nimport { DocsModule } from './docs/docs.module';\nimport { GuxModule } from './gux/gux.module';\n\n@NgModule({\n  declarations: [ AppComponent ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    BrowserModule,\n    BrowserAnimationsModule,\n    BadgeModule,\n    ButtonModule,\n    MessageModule,\n    MessagesModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule,\n    AppRoutingModule,\n    DemosModule,\n    DocsModule,\n    GuxModule\n  ],\n  exports: [ ],\n  providers: [ ],\n  bootstrap: [ AppComponent ]\n})\n\nexport class AppModule {\n  /**\n  constructor(private docsService: docsService) {\n    this.docsService.setDemoComponents({\n      GuxBadgeComponent: {\n        name: 'GuxBadgeDemoComponent',\n        demo: GuxBadgeDemoComponent\n      },\n      GuxBannerComponent: {\n        name: 'GuxBannerDemoComponent',\n        demo: GuxBannerDemoComponent\n      },\n      GuxButtonComponent: {\n        name: 'GuxButtonDemoComponent',\n        demo: GuxButtonDemoComponent\n      },\n      GuxCheckboxComponent: {\n        name: 'GuxCheckboxDemoComponent',\n        demo: GuxCheckboxDemoComponent\n      },\n      GuxInputDirective: {\n        name: 'GuxInputDemoComponent',\n        demo: GuxInputDemoComponent\n      }\n    });\n  }\n  */\n}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\nimport { PrimengModule } from './primeng/primeng.module';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\nimport { DemosModule } from './demos/demos.module';\nimport { DocsModule } from './docs/docs.module';\nimport { GuxModule } from './gux/gux.module';\n\n\n@NgModule({\n  declarations: [ AppComponent ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    BrowserModule,\n    BrowserAnimationsModule,\n    AppRoutingModule,\n\n    PrimengModule,\n\n    DemosModule,\n    DocsModule,\n    GuxModule\n  ],\n  exports: [ PrimengModule ],\n  providers: [ ],\n  bootstrap: [ AppComponent ]\n})\n\nexport class AppModule {\n  /**\n  constructor(private docsService: docsService) {\n    this.docsService.setDemoComponents({\n      GuxBadgeComponent: {\n        name: 'GuxBadgeDemoComponent',\n        demo: GuxBadgeDemoComponent\n      },\n      GuxBannerComponent: {\n        name: 'GuxBannerDemoComponent',\n        demo: GuxBannerDemoComponent\n      },\n      GuxButtonComponent: {\n        name: 'GuxButtonDemoComponent',\n        demo: GuxButtonDemoComponent\n      },\n      GuxCheckboxComponent: {\n        name: 'GuxCheckboxDemoComponent',\n        demo: GuxCheckboxDemoComponent\n      },\n      GuxInputDirective: {\n        name: 'GuxInputDemoComponent',\n        demo: GuxInputDemoComponent\n      }\n    });\n  }\n  */\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1121,12 +1329,19 @@
                         },
                         {
                             "name": "GuxModule"
+                        },
+                        {
+                            "name": "PrimengModule"
                         }
                     ]
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "PrimengModule"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1144,13 +1359,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-b0d5ae6548e02e0d11021766105970feb2d4afd8a996d1c0cc8f7f6a432a002bb416f1b0e6dc30671ae7d42af659bc79a12b8162a5b6c03c41ed39df1f5fe951",
+            "id": "module-AppRoutingModule-b01813f4324106b1fe1994246610a135babb69da9728c369d72370f91cd6c8a6737f5811e688874f5f82afce0628d6bb17eac3dff6eac23668669757d68b8844",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\nimport { DocsComponent } from './docs/docs.component';\nconst routes: Routes = [{\n  path: '',\n  redirectTo: 'docs',\n  pathMatch: 'full'\n}, {\n  path: 'docs',\n  component: DocsComponent\n}];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\nimport { DocsComponentBaseComponent } from './docs/components/component-base/component-base.component';\n\nimport { DocsComponent } from './docs/docs.component';\nconst routes: Routes = [{\n  path: '',\n  redirectTo: 'docs',\n  pathMatch: 'full'\n}, {\n  path: 'docs',\n  component: DocsComponent\n}, {\n  path: 'components/:target',\n  component: DocsComponentBaseComponent\n}];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1216,13 +1431,13 @@
         },
         {
             "name": "DocsModule",
-            "id": "module-DocsModule-592a8d95ee1cce8a4425319044307785677da44042e04fb653791d0d9224931fa92f3b93c3769ca9bd246141182e8bb38abaa1b9892345d0042a2ead29a3a9d0",
+            "id": "module-DocsModule-cc459400141db3d9065652498266c14dc1a3510f29ee6719e54dd82f025114705c6bfcd77e98e4bc53de04689924b59b82106282091120ca33417d9352061868",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/docs/docs.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DocsComponent } from './docs.component';\n\n\n\n@NgModule({\n  declarations: [\n    DocsComponent\n  ],\n  imports: [\n    CommonModule\n  ]\n})\nexport class DocsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ClipboardModule } from '@angular/cdk/clipboard';\nimport { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { DocsComponent } from './docs.component';\nimport { DocsComponentBaseComponent } from './components/component-base/component-base.component';\n\n\n\n@NgModule({\n  declarations: [\n    DocsComponent,\n    DocsComponentBaseComponent\n  ],\n  imports: [\n    CommonModule,\n    PrimengModule,\n    HighlightModule\n  ],\n  providers: [{\n    provide: HIGHLIGHT_OPTIONS,\n    useValue: {\n      coreLibraryLoader: () => import('highlight.js/lib/core'),\n      lineNumbersLoader: () => import('highlightjs-line-numbers.js'),\n      languages: {\n        typescript: () => import('highlight.js/lib/languages/typescript'),\n        css: () => import('highlight.js/lib/languages/css'),\n        scss: () => import('highlight.js/lib/languages/scss'),\n        json: () => import('highlight.js/lib/languages/json'),\n        xml: () => import('highlight.js/lib/languages/xml')\n      }\n    }\n  }]\n})\nexport class DocsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1238,7 +1453,11 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "PrimengModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -1256,13 +1475,13 @@
         },
         {
             "name": "GuxModule",
-            "id": "module-GuxModule-843fe89bdbc30b9392f06d585b02dbf90d6652686e7b9581171ada51f082b8d737ddcd63a7e28d22244dd1b8cc68e49a31d5ada0ca417c76f4224493867d345e",
+            "id": "module-GuxModule-4e30f3ae6e2930f7fed381e39afc32a2ec1ad82e56dd9ede2adfc95a0c662b20436c2fe38b82f8c1ea08e4df1c518e5202bfe3c60e178cd906b7c916ea3a2c06",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/gux/gux.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { BadgeModule } from 'primeng/badge';\nimport { ButtonModule } from 'primeng/button';\nimport { MessageModule } from 'primeng/message';\nimport { MessagesModule } from 'primeng/messages';\nimport { ToastModule } from 'primeng/toast';\nimport { TooltipModule } from \"primeng/tooltip\";\nimport { TreeModule } from 'primeng/tree';\n\nimport { GuxButtonComponent } from './components/gux-button/gux-button.component';\n\n@NgModule({\n  imports: [\n    CommonModule,\n    BadgeModule,\n    ButtonModule,\n    MessageModule,\n    MessagesModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ],\n  declarations: [\n    GuxButtonComponent\n  ],\n  exports: [\n    GuxButtonComponent\n  ]\n})\nexport class GuxModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { GuxButtonComponent } from './components/gux-button/gux-button.component';\n\n@NgModule({\n  imports: [\n    CommonModule,\n    PrimengModule\n  ],\n  declarations: [\n    GuxButtonComponent\n  ],\n  exports: [\n    GuxButtonComponent\n  ]\n})\nexport class GuxModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1278,7 +1497,11 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "PrimengModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -1287,6 +1510,42 @@
                             "name": "GuxButtonComponent"
                         }
                     ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PrimengModule",
+            "id": "module-PrimengModule-44282e35bc9d15e263c9161ef70be881703611c3e3e3891d6d78f1eae03de9eebe344fa4d135448bbe63cd5f986a90ac8d4ee26f0548fa98003f7e35350346e8",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/primeng/primeng.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { AccordionModule } from 'primeng/accordion';\nimport { BadgeModule } from 'primeng/badge';\nimport { ButtonModule } from 'primeng/button';\nimport { DropdownModule } from 'primeng/dropdown';\nimport { MessageModule } from 'primeng/message';\nimport { MessagesModule } from 'primeng/messages';\nimport { TableModule, Table } from 'primeng/table';\nimport { TabViewModule, TabView, TabPanel } from 'primeng/tabview';\nimport { ToastModule } from 'primeng/toast';\nimport { TooltipModule } from \"primeng/tooltip\";\nimport { TreeModule } from 'primeng/tree';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    DropdownModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ],\n  exports: [\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ]\n})\nexport class PrimengModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -1312,6 +1571,56 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "CURD_ACTIONS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/gux/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  deleteError: 'deleteError',\n  delete: 'delete',\n  addError: 'addError',\n  add: 'add',\n}"
+            },
+            {
+                "name": "DefaultPageSize",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/gux/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "number",
+                "defaultValue": "50"
+            },
+            {
+                "name": "DefaultRetainCache",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/gux/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "true"
+            },
+            {
+                "name": "EnumerationColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'value',\n  header: 'Value'\n}]"
+            },
+            {
+                "name": "EnumerationIgnore",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string[]",
+                "defaultValue": "[]"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1332,6 +1641,46 @@
                 "defaultValue": "{\n  production: false\n}"
             },
             {
+                "name": "HostListenersColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+            },
+            {
+                "name": "InputColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+            },
+            {
+                "name": "InterfaceColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'optional',\n  header: 'Optional'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+            },
+            {
+                "name": "MethodsColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+            },
+            {
                 "name": "Navigation",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1339,7 +1688,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TreeNode[]",
-                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/CuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/GuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+            },
+            {
+                "name": "OutputColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+            },
+            {
+                "name": "PropertiesColumns",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "any[]",
+                "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'optional',\n  header: 'Optional'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
             },
             {
                 "name": "require",
@@ -1349,6 +1718,26 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "literal type"
+            },
+            {
+                "name": "TypealiasIgnore",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string[]",
+                "defaultValue": "[]"
+            },
+            {
+                "name": "VariableIgnore",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/docs/constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string[]",
+                "defaultValue": "[\n  'MODAL_DATA',\n  'require',\n  'testCardAddress'\n]"
             }
         ],
         "functions": [],
@@ -1374,6 +1763,140 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type"
+                }
+            ],
+            "src/app/gux/constants.ts": [
+                {
+                    "name": "CURD_ACTIONS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/gux/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  deleteError: 'deleteError',\n  delete: 'delete',\n  addError: 'addError',\n  add: 'add',\n}"
+                },
+                {
+                    "name": "DefaultPageSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/gux/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "defaultValue": "50"
+                },
+                {
+                    "name": "DefaultRetainCache",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/gux/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "true"
+                }
+            ],
+            "src/app/docs/constants.ts": [
+                {
+                    "name": "EnumerationColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'value',\n  header: 'Value'\n}]"
+                },
+                {
+                    "name": "EnumerationIgnore",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string[]",
+                    "defaultValue": "[]"
+                },
+                {
+                    "name": "HostListenersColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "InputColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "InterfaceColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'optional',\n  header: 'Optional'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "MethodsColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "OutputColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "PropertiesColumns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "defaultValue": "[{\n  field: 'name',\n  header: 'Name'\n}, {\n  field: 'type',\n  header: 'Type'\n}, {\n  field: 'defaultValue',\n  header: 'Default Value'\n}, {\n  field: 'optional',\n  header: 'Optional'\n}, {\n  field: 'rawdescription',\n  header: 'Description'\n}]"
+                },
+                {
+                    "name": "TypealiasIgnore",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string[]",
+                    "defaultValue": "[]"
+                },
+                {
+                    "name": "VariableIgnore",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/docs/constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string[]",
+                    "defaultValue": "[\n  'MODAL_DATA',\n  'require',\n  'testCardAddress'\n]"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1409,7 +1932,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TreeNode[]",
-                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/CuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/GuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
                 }
             ]
         },
@@ -1435,6 +1958,10 @@
                     {
                         "path": "docs",
                         "component": "DocsComponent"
+                    },
+                    {
+                        "path": "components/:target",
+                        "component": "DocsComponentBaseComponent"
                     }
                 ],
                 "kind": "module"

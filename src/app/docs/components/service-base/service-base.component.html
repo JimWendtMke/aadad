@@ -1,0 +1,59 @@
+<div class="content">
+  <h1>{{ targetJSON.name }}</h1>
+  <p *ngIf="targetJSON.rawdescription" [innerText]="targetJSON.rawdescription"></p>
+  
+  <h2 *ngIf="deprecated" class="deprecated">Deprecated</h2>
+  <p *ngIf="deprecationMessage" class="deprecation-message">{{ deprecationMessage }}</p>
+
+  <p-tabView>
+
+    <p-tabPanel header="Documentation">
+      <div class="demo-container">
+
+        <!-- PROPERTIES ITEMS TABLE-->
+        <h2 style="margin: 10px 0 0 0;">Properties</h2>
+        <p *ngIf="!propertiesItems.length">None</p>
+        <p-table *ngIf="propertiesItems.length" [value]="propertiesItems">
+          <ng-template pTemplate="header">
+            <tr><th *ngFor="let col of propertiesColumns">{{col.header}}</th></tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr><td *ngFor="let col of propertiesColumns">{{item[col.field]}}</td></tr>
+          </ng-template>
+        </p-table>
+
+        <!-- METHODS ITEMS TABLE-->
+        <h2 style="margin: 10px 0 0 0;">Methods</h2>
+        <p *ngIf="!methodsItems.length">None</p>
+        <p-table *ngIf="methodsItems.length" [value]="methodsItems">
+          <ng-template pTemplate="header">
+            <tr><th *ngFor="let col of methodsColumns">{{col.header}}</th></tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr><td *ngFor="let col of methodsColumns">
+              <span *ngIf="col.field !== 'args'">
+                {{item[col.field]}}
+              </span>
+              <span *ngIf="col.field === 'args' && item[col.field].length">
+                <p-table [value]="item[col.field]">
+                  <ng-template pTemplate="header">
+                    <tr><th>Name</th><th>Type</th></tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-arg>
+                    <tr><td>{{ arg.name }}</td><td>{{ arg.type }}</td></tr>
+                  </ng-template>
+                </p-table>
+              </span>
+            </td></tr>
+          </ng-template>
+        </p-table>
+
+      </div>
+    </p-tabPanel>
+
+    <p-tabPanel header="Source Code">
+      <pre><code [highlight]="sourceCode" [lineNumbers]=true></code></pre>
+    </p-tabPanel>
+
+  </p-tabView>
+

@@ -1,0 +1,101 @@
+.content {
+  font-family: "Open Sans";
+  background-color: white;
+  border-radius: 10px 10px 0px 0px;
+  .selector {
+    color: orange;
+  }
+  .arrows {
+    color: #b6b6b6;
+  }
+  .deprecated {
+    font-style: italic;
+    color: red;
+  }
+  .deprecation-message {
+    margin-top: -15px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    td,
+    th {
+      text-align: left;
+    }
+  }
+  .copy-data {
+    color: #343a40;
+    background-color: transparent;
+    font-size: 24px;
+    :hover {
+      color: orange;
+    }
+  }
+}
+
+.selector-wrapper {
+    border: 1px solid #c8c8c8;
+    background: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+.comp-error-container {
+  padding: 20px;
+  padding-top: 85px;
+  margin-right: 0px;
+  margin-left: 0px;
+  .comp-error-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: orange;
+  }
+  .comp-error-body {
+    padding: 20px;
+    border: 1px solid #acb3b9;
+    border-radius: 10px;
+    .comp-error-header {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .comp-error-content {
+      margin: 15px 0px;
+      color: #838b92;
+    }
+    .comp-error-footer {
+      color: #838b92;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.style-url {
+  font-weight: bold;
+  padding-left: 15px;
+  margin-bottom: -15px;
+}
+
+:host ::ng-deep hr {
+  margin-top: 1.2rem;
+  width: 80%;
+  float: left;
+  border-top-color: orange;
+}
+
+:host ::ng-deep .p-grid {
+  margin: 10px 5px;
+  .p-col {
+    padding: 10px;
+  }
+}
+/**
+* Override the github css styles for easier reading
+*/
+:host ::ng-deep .hljs-ln-numbers {
+  width: 25px;
+  border-right: 1px solid #24292e;
+}
+:host ::ng-deep .hljs-ln-code {
+  padding-left: 15px;
+}
