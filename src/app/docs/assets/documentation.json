@@ -2,6 +2,47 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "City",
+            "id": "interface-City-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
+            "file": "src/app/app.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "properties": [
+                {
+                    "name": "code",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
             "name": "GlobalMessageType",
             "id": "interface-GlobalMessageType-a8939a905f93a03e88afcbfc851d476bdcb2770e95cc1f6a426e85d2c9f292d76f166cf434c394da5180458fb0941930e9219e256b0e6fee695b8fb854e78296",
             "file": "src/app/interfaces/global-message-type.ts",
@@ -125,18 +166,18 @@
         },
         {
             "name": "GuxButtonType",
-            "id": "interface-GuxButtonType-918dc6d03ea6843d467fbf234a5c3385839e67e9ba117ca555d867840f92ab934a5641a4f9ac133726d465dd23032887c5eafa1f41bfb4a69dc9d1f60d86a131",
+            "id": "interface-GuxButtonType-8415011beb811c8b6f34a8ffc07f493ecd16594221b89e6880522cc78fa2183728e6c13952bbdf7ced2cbe8a5b01cb17803fadd0d9fc44ac61a957a95bf7a2ee",
             "file": "src/app/gux/interfaces/gux-button.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface GuxButtonType {\n  /**\n  * Type of the button\n  */\n  type?: '' | 'button' | 'submit' | 'reset';\n  /**\n  * When present, it specifies the text of the button\n  */\n  label?: string;\n  /**\n  * Style of the button color\n  */\n  buttonMode?: '' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger';\n  /**\n  * Size of the button\n  */\n  buttonSize?: '' | 'sm' | 'lg';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  icon?: string;\n  /**\n  * Position of the icon displayed in the button\n  */\n  iconPosition?: '' | 'left' | 'right';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  tooltipPosition?: '' | 'top' | 'left' | 'bottom' | 'right';\n  /**\n  * When present and true, it specifies that the button should be disabled\n  */\n  isDisabled?: boolean;\n  /**\n  * When present and true, it specifies that the button should be raised\n  */\n  isRaised?: boolean;\n  /**\n  * When present and true, it specifies that the button should be rounded\n  */\n  isRounded?: boolean;\n  /**\n  * When present and true, it specifies that the button should be outlined\n  */\n  isOutlined?: boolean;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  inlineStyle?: string;\n  /**\n  * Callback to execute when button is clicked\n  */\n  (clicked?: string): void;\n  /**\n  * Callback to execute when button is focused\n  */\n  (focused?: string): void;\n  /**\n  * Callback to execute when button loses focus\n  */\n  (blurred?: string): void;\n}\n",
+            "sourceCode": "export interface GuxButtonType {\n  /**\n  * Type of the button\n  */\n  type?: undefined | 'button' | 'submit' | 'reset';\n  /**\n  * When present, it specifies the text of the button\n  */\n  label?: string;\n  /**\n  * Style of the button color\n  */\n  buttonMode?: undefined | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger';\n  /**\n  * Size of the button\n  */\n  buttonSize?: undefined | 'sm' | 'lg';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  icon?: string;\n  /**\n  * Position of the icon displayed in the button\n  */\n  iconPosition?: undefined | 'left' | 'right';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  tooltipPosition?: undefined | 'top' | 'left' | 'bottom' | 'right';\n  /**\n  * When present and true, it specifies that the button should be disabled\n  */\n  isDisabled?: boolean;\n  /**\n  * When present and true, it specifies that the button should be text only\n  */\n  isTextOnly?: boolean;\n  /**\n  * When present and true, it specifies that the button should be raised\n  */\n  isRaised?: boolean;\n  /**\n  * When present and true, it specifies that the button should be rounded\n  */\n  isRounded?: boolean;\n  /**\n  * When present and true, it specifies that the button should be outlined\n  */\n  isOutlined?: boolean;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  inlineStyle?: string;\n}\n",
             "properties": [
                 {
                     "name": "buttonMode",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"help\" | \"danger\"",
+                    "type": "undefined | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"help\" | \"danger\"",
                     "optional": true,
                     "description": "<p>Style of the button color</p>\n",
                     "line": 13,
@@ -146,7 +187,7 @@
                     "name": "buttonSize",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string | \"sm\" | \"lg\"",
+                    "type": "undefined | \"sm\" | \"lg\"",
                     "optional": true,
                     "description": "<p>Size of the button</p>\n",
                     "line": 17,
@@ -166,7 +207,7 @@
                     "name": "iconPosition",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string | \"left\" | \"right\"",
+                    "type": "undefined | \"left\" | \"right\"",
                     "optional": true,
                     "description": "<p>Position of the icon displayed in the button</p>\n",
                     "line": 25,
@@ -179,7 +220,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "<p>When present, it specifies that the inline style to apply to the button</p>\n",
-                    "line": 53,
+                    "line": 57,
                     "rawdescription": "\n\nWhen present, it specifies that the inline style to apply to the button\n"
                 },
                 {
@@ -199,7 +240,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "<p>When present and true, it specifies that the button should be outlined</p>\n",
-                    "line": 49,
+                    "line": 53,
                     "rawdescription": "\n\nWhen present and true, it specifies that the button should be outlined\n"
                 },
                 {
@@ -209,7 +250,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "<p>When present and true, it specifies that the button should be raised</p>\n",
-                    "line": 41,
+                    "line": 45,
                     "rawdescription": "\n\nWhen present and true, it specifies that the button should be raised\n"
                 },
                 {
@@ -219,8 +260,18 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "<p>When present and true, it specifies that the button should be rounded</p>\n",
-                    "line": 45,
+                    "line": 49,
                     "rawdescription": "\n\nWhen present and true, it specifies that the button should be rounded\n"
+                },
+                {
+                    "name": "isTextOnly",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When present and true, it specifies that the button should be text only</p>\n",
+                    "line": 41,
+                    "rawdescription": "\n\nWhen present and true, it specifies that the button should be text only\n"
                 },
                 {
                     "name": "label",
@@ -246,7 +297,7 @@
                     "name": "tooltipPosition",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string | \"top\" | \"left\" | \"bottom\" | \"right\"",
+                    "type": "undefined | \"top\" | \"left\" | \"bottom\" | \"right\"",
                     "optional": true,
                     "description": "<p>Position of the tooltip displayed for the button</p>\n",
                     "line": 33,
@@ -256,69 +307,233 @@
                     "name": "type",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string | \"button\" | \"submit\" | \"reset\"",
+                    "type": "undefined | \"button\" | \"submit\" | \"reset\"",
                     "optional": true,
                     "description": "<p>Type of the button</p>\n",
                     "line": 5,
                     "rawdescription": "\n\nType of the button\n"
-                },
-                {
-                    "id": "call-declaration-918dc6d03ea6843d467fbf234a5c3385839e67e9ba117ca555d867840f92ab934a5641a4f9ac133726d465dd23032887c5eafa1f41bfb4a69dc9d1f60d86a131",
-                    "args": [
-                        {
-                            "name": "clicked",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "optional": true
-                        }
-                    ],
-                    "returnType": "void",
-                    "line": 53,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nCallback to execute when button is clicked\n",
-                    "description": "<p>Callback to execute when button is clicked</p>\n"
-                },
-                {
-                    "id": "call-declaration-918dc6d03ea6843d467fbf234a5c3385839e67e9ba117ca555d867840f92ab934a5641a4f9ac133726d465dd23032887c5eafa1f41bfb4a69dc9d1f60d86a131",
-                    "args": [
-                        {
-                            "name": "focused",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "optional": true
-                        }
-                    ],
-                    "returnType": "void",
-                    "line": 57,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nCallback to execute when button is focused\n",
-                    "description": "<p>Callback to execute when button is focused</p>\n"
-                },
-                {
-                    "id": "call-declaration-918dc6d03ea6843d467fbf234a5c3385839e67e9ba117ca555d867840f92ab934a5641a4f9ac133726d465dd23032887c5eafa1f41bfb4a69dc9d1f60d86a131",
-                    "args": [
-                        {
-                            "name": "blurred",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "optional": true
-                        }
-                    ],
-                    "returnType": "void",
-                    "line": 61,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nCallback to execute when button loses focus\n",
-                    "description": "<p>Callback to execute when button loses focus</p>\n"
                 }
             ],
             "indexSignatures": [],
-            "kind": 173,
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "GuxDropdownOptionType",
+            "id": "interface-GuxDropdownOptionType-7f0c539f6928f74ffe3a66fda0c7614e536ba05543ba0796a1eebfa8735ad9b39b60fa1558e5d145b548bb773623c212efc3641356d49f5407df0620a791ab1f",
+            "file": "src/app/gux/interfaces/gux-dropdown-option.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface GuxDropdownOptionType {\n  /**\n  * Label for this option\n  */\n  label: string;\n  /**\n  * Value for this option\n  */\n  value: string;\n  /**\n  * When present, it specifies that this option should be disabled\n  */\n  disabled?: boolean;\n}",
+            "properties": [
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When present, it specifies that this option should be disabled</p>\n",
+                    "line": 13,
+                    "rawdescription": "\n\nWhen present, it specifies that this option should be disabled\n"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Label for this option</p>\n",
+                    "line": 5,
+                    "rawdescription": "\n\nLabel for this option\n"
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Value for this option</p>\n",
+                    "line": 9,
+                    "rawdescription": "\n\nValue for this option\n"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "GuxDropdownType",
+            "id": "interface-GuxDropdownType-cbfccadf366ce1426e1569a1cd94915f6d8b584212eca613fa62447d6daeb97ce43d4bdbf604a35f39e28bd7ecd29f40f2f7517c44a2a97aaa389c363657fbcb",
+            "file": "src/app/gux/interfaces/gux-dropdown.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { GuxDropdownOptionType } from \"./gux-dropdown-option.interface\";\n\nexport interface GuxDropdownType {\n  /**\n  * Items to be displayed in the dropdown\n  */\n  options: GuxDropdownOptionType[];\n  /**\n  * Name of the label field of an option\n  */\n  optionLabel?: string;\n  /**\n  * Name of the value field of an option\n  */\n  optionValue?: string;\n  /**\n  * Name of the disabled field of an option\n  */\n  optionDisabled?: string;\n  /**\n  * Name of the input element\n  */\n  name?: string;\n  /**\n  * Value of the label to be displayed\n  */\n  label?: string;\n  /**\n  * Position of the label, valid values are top, left and float\n  */\n  labelPosition?: string;\n  /**\n  * When present, it specifies that an input field must be filled out before submitting the form\n  */\n  required?: boolean;\n  /**\n  * Error information to display if the dropdown is required and none selected\n  */\n  requiredError?: string;\n  /**\n  * When present, it specifies that the component should be disabled\n  */\n  isDisabled?: boolean;\n  /**\n  * Default text to display when no option is selected\n  */\n  placeholder?: string;\n  /**\n  * Icon class of the dropdown icon\n  */\n  dropdownIcon?: string;\n  /**\n  * When enabled, a clear icon is displayed to clear the value\n  */\n  showClear?: boolean;\n  /**\n  * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value\n  */\n  scrollHeight?: string;\n  /**\n  * Advisory information to display in a tooltip on hover\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip, valid values are right, left, top and bottom\n  */\n  tooltipPosition?: string;\n}",
+            "properties": [
+                {
+                    "name": "dropdownIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Icon class of the dropdown icon</p>\n",
+                    "line": 51,
+                    "rawdescription": "\n\nIcon class of the dropdown icon\n"
+                },
+                {
+                    "name": "isDisabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When present, it specifies that the component should be disabled</p>\n",
+                    "line": 43,
+                    "rawdescription": "\n\nWhen present, it specifies that the component should be disabled\n"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Value of the label to be displayed</p>\n",
+                    "line": 27,
+                    "rawdescription": "\n\nValue of the label to be displayed\n"
+                },
+                {
+                    "name": "labelPosition",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Position of the label, valid values are top, left and float</p>\n",
+                    "line": 31,
+                    "rawdescription": "\n\nPosition of the label, valid values are top, left and float\n"
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Name of the input element</p>\n",
+                    "line": 23,
+                    "rawdescription": "\n\nName of the input element\n"
+                },
+                {
+                    "name": "optionDisabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Name of the disabled field of an option</p>\n",
+                    "line": 19,
+                    "rawdescription": "\n\nName of the disabled field of an option\n"
+                },
+                {
+                    "name": "optionLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Name of the label field of an option</p>\n",
+                    "line": 11,
+                    "rawdescription": "\n\nName of the label field of an option\n"
+                },
+                {
+                    "name": "options",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "GuxDropdownOptionType[]",
+                    "optional": false,
+                    "description": "<p>Items to be displayed in the dropdown</p>\n",
+                    "line": 7,
+                    "rawdescription": "\n\nItems to be displayed in the dropdown\n"
+                },
+                {
+                    "name": "optionValue",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Name of the value field of an option</p>\n",
+                    "line": 15,
+                    "rawdescription": "\n\nName of the value field of an option\n"
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Default text to display when no option is selected</p>\n",
+                    "line": 47,
+                    "rawdescription": "\n\nDefault text to display when no option is selected\n"
+                },
+                {
+                    "name": "required",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When present, it specifies that an input field must be filled out before submitting the form</p>\n",
+                    "line": 35,
+                    "rawdescription": "\n\nWhen present, it specifies that an input field must be filled out before submitting the form\n"
+                },
+                {
+                    "name": "requiredError",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Error information to display if the dropdown is required and none selected</p>\n",
+                    "line": 39,
+                    "rawdescription": "\n\nError information to display if the dropdown is required and none selected\n"
+                },
+                {
+                    "name": "scrollHeight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value</p>\n",
+                    "line": 59,
+                    "rawdescription": "\n\nHeight of the viewport in pixels, a scrollbar is defined if height of list exceeds this value\n"
+                },
+                {
+                    "name": "showClear",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When enabled, a clear icon is displayed to clear the value</p>\n",
+                    "line": 55,
+                    "rawdescription": "\n\nWhen enabled, a clear icon is displayed to clear the value\n"
+                },
+                {
+                    "name": "tooltip",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Advisory information to display in a tooltip on hover</p>\n",
+                    "line": 63,
+                    "rawdescription": "\n\nAdvisory information to display in a tooltip on hover\n"
+                },
+                {
+                    "name": "tooltipPosition",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Position of the tooltip, valid values are right, left, top and bottom</p>\n",
+                    "line": 67,
+                    "rawdescription": "\n\nPosition of the tooltip, valid values are right, left, top and bottom\n"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
             "methods": []
         }
     ],
@@ -529,7 +744,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-05291ecf4a84936ac5ec230c7ff42ed586d6e5142a9bf4b433569d8a25b87b7ba35802885118f0b022025151fef46463c23bed820c2d80ba91f874d811c94cc4",
+            "id": "component-AppComponent-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -556,6 +771,15 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "cities",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "City[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 34
+                },
+                {
                     "name": "messages",
                     "defaultValue": "[]",
                     "deprecated": false,
@@ -563,7 +787,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 30
                 },
                 {
                     "name": "navigation",
@@ -572,7 +796,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 29
                 },
                 {
                     "name": "primeMessageService",
@@ -581,10 +805,29 @@
                     "type": "PrimeMessageService",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 42,
                     "modifierKind": [
                         123
                     ]
+                },
+                {
+                    "name": "selectedCity",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "City",
+                    "optional": false,
+                    "description": "",
+                    "line": 35
+                },
+                {
+                    "name": "sourceCode",
+                    "defaultValue": "\"\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
                 },
                 {
                     "name": "subscription",
@@ -593,7 +836,7 @@
                     "type": "Subscription",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 31
                 },
                 {
                     "name": "title",
@@ -603,7 +846,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 28
                 }
             ],
             "methodsClass": [
@@ -613,7 +856,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -623,7 +866,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 71,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -633,7 +876,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 66,
+                    "line": 92,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -650,7 +893,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -684,7 +927,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 83,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -716,11 +959,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe(message => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"~primeng/resources/themes/bootstrap4-light-blue/theme.css\";\n\nbody {\n    height: 100%;\n    width: 100%;\n}\n\n.banner {\n    position: fixed;\n    top: 0px;\n    left: 50%;\n    z-index: 1001;\n    margin-left: -300px;\n    width: 600px;\n}\n\n.content-wrapper {\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    bottom: 0px;\n    width: 100%;\n    font-family: 'Open Sans', sans-serif;\n    display: flex;\n    margin-left: -10px;\n    .left {\n        background-color: #ffffff;\n        width: 300px;\n        min-width: 300px;\n        max-width: 300px;\n        box-shadow: -6px 10px 4px 8px #c8c8c8;\n        .button-wrapper {\n            margin: 35px;\n            text-align: center;\n        }\n    }\n    .right {\n        width: calc(100% - #{300px});\n        .demo-header {\n            z-index: 1000;\n            background-image: linear-gradient(197.37deg,rgba(0,120,227,.07) -.38%,rgba(165,72,181,0) 101.89%),linear-gradient(115.93deg,rgba(62,136,246,.15) 4.86%,rgba(62,180,246,.0495) 38.05%,rgba(62,235,246,0) 74.14%),radial-gradient(56.47% 76.87% at 6.92% 7.55%,rgba(62,136,246,.05) 0%,rgba(62,158,246,.013) 52.16%,rgba(62,246,246,0) 100%),linear-gradient(306.53deg,rgba(163,171,217,.1) 19.83%,rgba(163,171,217,0) 97.33%);\n            margin-bottom: 0px;\n            padding: 15px;\n            text-align: center;\n            border-bottom: 1px solid #dee2e6;\n            h1 {\n                color: #007bff;\n                font-size: 40px;\n                font-weight: 200;\n                margin-top: 22px;\n            }\n        }\n        .content {\n            padding: 50px;\n        }\n    }\n}\n\n:host ::ng-deep .p-tree {\n    border-color: transparent;\n}",
+                    "data": "body {\n    height: 100%;\n    width: 100%;\n}\n\n.banner {\n    position: fixed;\n    top: 0px;\n    left: 50%;\n    z-index: 1001;\n    margin-left: -300px;\n    width: 600px;\n}\n\n\n.minWidth {\n\n}\n.content-wrapper {\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    bottom: 0px;\n    width: 100%;\n    font-family: 'Open Sans', sans-serif;\n    display: flex;\n    margin-left: -10px;\n    .left {\n        background-color: #ffffff;\n        width: 300px;\n        min-width: 300px;\n        max-width: 300px;\n        box-shadow: -6px 10px 4px 8px #c8c8c8;\n        .button-wrapper {\n            margin: 35px;\n            text-align: center;\n        }\n    }\n    .right {\n        width: calc(100% - #{300px});\n        .demo-header {\n            z-index: 1000;\n            background-image: linear-gradient(197.37deg,rgba(0,120,227,.07) -.38%,rgba(165,72,181,0) 101.89%),linear-gradient(115.93deg,rgba(62,136,246,.15) 4.86%,rgba(62,180,246,.0495) 38.05%,rgba(62,235,246,0) 74.14%),radial-gradient(56.47% 76.87% at 6.92% 7.55%,rgba(62,136,246,.05) 0%,rgba(62,158,246,.013) 52.16%,rgba(62,246,246,0) 100%),linear-gradient(306.53deg,rgba(163,171,217,.1) 19.83%,rgba(163,171,217,0) 97.33%);\n            margin-bottom: 0px;\n            padding: 15px;\n            text-align: center;\n            border-bottom: 1px solid #dee2e6;\n            h1 {\n                color: #007bff;\n                font-size: 40px;\n                font-weight: 200;\n                margin-top: 22px;\n            }\n        }\n        .content {\n            padding: 50px;\n        }\n    }\n}\n\n:host ::ng-deep .p-tree {\n    border-color: transparent;\n}\n\n:host ::ng-deep .p-dropdown {\n    width: auto;\n    min-width: 300px;\n}",
                     "styleUrl": "./app.component.scss"
                 }
             ],
@@ -750,7 +993,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 25,
+                "line": 38,
                 "jsdoctags": [
                     {
                         "name": "router",
@@ -784,7 +1027,7 @@
             "implements": [
                 "OnDestroy"
             ],
-            "templateData": "<div class=\"banner\">\n  <p-messages [(value)]=\"messages\"></p-messages>\n</div>\n<p-toast></p-toast>\n\n<!--\n<gux-banner></gux-banner>\n-->\n\n<div class=\"content-wrapper\">\n  <span class=\"left\">\n    <!--\n\n    <div>\n      <span class=\"icon\"></span>\n    </div>\n    -->\n\n    <div class=\"button-wrapper\">\n      <gux-button\n        icon=\"angle-double-right\"\n        isRounded=\"true\"\n        isRaised=\"true\"\n        pTooltip=\"Expand All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"expandAll()\"\n        inlineStyle=\"margin-right:.5rem\"\n      ></gux-button>\n      <gux-button\n        isRounded=\"true\"\n        isRaised=\"true\"\n        icon=\"angle-double-up\"\n        pTooltip=\"Collapse All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"collapseAll()\"\n      ></gux-button>\n    </div>\n\n    <p-tree\n        class=\"navTree\"\n        [value]=\"navigation\"\n        selectionMode=\"single\"\n        (onNodeSelect)=\"nodeSelect($event)\"\n    ></p-tree>\n  </span>\n\n  <div class=\"right\" style=\"overflow-y:auto\">\n    <div class=\"demo-header\">\n      <h1><u>A</u>utomated <u>A</u>ngular <u>D</u>ocumentation <u>a</u>nd <u>D</u>emo Library</h1>\n    </div>\n\n    <gux-button\n      label=\"large\"\n      buttonSize=\"lg\"\n      buttonMode=\"help\"\n      icon=\"check\"\n      iconPosition=\"left\"\n      disabled=\"false\"\n      isOutlined=true \n    ></gux-button>\n\n    <gux-button\n      label=\"normal\"\n      buttonMode=\"warning\"\n      isRounded=true\n      isOutlined=true\n    ></gux-button>\n\n    <gux-button\n      label=\"small\"\n      buttonSize=\"sm\"\n      icon=\"check\"\n      iconPosition=\"right\"\n      buttonMode=\"info\"\n      tooltip=\"hello\"\n      tooltipPosition=\"bottom\"\n      isRaised=true\n    ></gux-button>\n\n    <div class=\"content\">\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n\n</div>"
+            "templateData": "\n<div class=\"banner\">\n  <p-messages [(value)]=\"messages\"></p-messages>\n</div>\n<p-toast></p-toast>\n\n<!--\n<gux-banner></gux-banner>\n-->\n\n<div class=\"content-wrapper\">\n  <span class=\"left\">\n    <!--\n    <div>\n      <span class=\"icon\"></span>\n    </div>\n    -->\n\n    <div class=\"button-wrapper\">\n      <gux-button\n        icon=\"angle-double-right\"\n        isRounded=\"true\"\n        isRaised=\"true\"\n        pTooltip=\"Expand All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"expandAll()\"\n        inlineStyle=\"margin-right:.5rem\"\n      ></gux-button>\n      <gux-button\n        isRounded=\"true\"\n        isRaised=\"true\"\n        icon=\"angle-double-up\"\n        pTooltip=\"Collapse All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"collapseAll()\"\n      ></gux-button>\n    </div>\n\n    <p-tree\n        class=\"navTree\"\n        [value]=\"navigation\"\n        selectionMode=\"single\"\n        (onNodeSelect)=\"nodeSelect($event)\"\n    ></p-tree>\n  </span>\n\n  <div class=\"right\" style=\"overflow-y:auto\">\n    <div class=\"demo-header\">\n      <h1><u>A</u>utomated <u>A</u>ngular <u>D</u>ocumentation <u>a</u>nd <u>D</u>emo Library</h1>\n    </div>\n    <div class=\"content\">\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n\n</div>"
         },
         {
             "name": "DocsComponent",
@@ -874,7 +1117,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>docs works!</p>\n\n<button type=\"button\" (click)=\"sendMessage()\">Show Banner</button>\n"
+            "templateData": "<p>docs works!</p>\n"
         },
         {
             "name": "ErrorPage404Component",
@@ -940,7 +1183,7 @@
         },
         {
             "name": "GuxButtonComponent",
-            "id": "component-GuxButtonComponent-3f29a84b5ecc09d14903def5bd799ba0e539cf01780048c1ee06ebd97a1a8c52767d193191e1b0680869f20ac22e4b38f10b3989682351d46d68a927e1deb720",
+            "id": "component-GuxButtonComponent-6ca854488618f7616626801c913d480769db2d39a5cfafb63efe6c77366633b86bd32ca8bf2278a3aa347fa57742b26722f5fde7c45acb2b750f3f4fc531fd73",
             "file": "src/app/gux/components/gux-button/gux-button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -964,8 +1207,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nStyle of the button color\n",
                     "description": "<p>Style of the button color</p>\n",
-                    "line": 22,
-                    "type": "",
+                    "line": 23,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -975,8 +1218,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nSize of the button\n",
                     "description": "<p>Size of the button</p>\n",
-                    "line": 26,
-                    "type": "",
+                    "line": 27,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -986,8 +1229,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies the icon to be displayed in the button\n",
                     "description": "<p>When present, it specifies the icon to be displayed in the button</p>\n",
-                    "line": 30,
-                    "type": "",
+                    "line": 31,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -997,8 +1240,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nPosition of the icon displayed in the button\n",
                     "description": "<p>Position of the icon displayed in the button</p>\n",
-                    "line": 34,
-                    "type": "",
+                    "line": 35,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -1008,8 +1251,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies that the inline style to apply to the button\n",
                     "description": "<p>When present, it specifies that the inline style to apply to the button</p>\n",
-                    "line": 62,
-                    "type": "",
+                    "line": 67,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -1019,8 +1262,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies that the button should be disabled\n",
                     "description": "<p>When present, it specifies that the button should be disabled</p>\n",
-                    "line": 46,
-                    "type": "",
+                    "line": 47,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1030,8 +1273,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies that the button should be outlined\n",
                     "description": "<p>When present, it specifies that the button should be outlined</p>\n",
-                    "line": 58,
-                    "type": "",
+                    "line": 63,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1041,8 +1284,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies that the button should be raised\n",
                     "description": "<p>When present, it specifies that the button should be raised</p>\n",
-                    "line": 50,
-                    "type": "",
+                    "line": 55,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1052,8 +1295,19 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies that the button should be rounded\n",
                     "description": "<p>When present, it specifies that the button should be rounded</p>\n",
-                    "line": 54,
-                    "type": "",
+                    "line": 59,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isTextOnly",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhen present and true, it specifies that the button should be text only\n",
+                    "description": "<p>When present and true, it specifies that the button should be text only</p>\n",
+                    "line": 51,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1063,8 +1317,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies the text of the button\n",
                     "description": "<p>When present, it specifies the text of the button</p>\n",
-                    "line": 18,
-                    "type": "",
+                    "line": 19,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -1074,8 +1328,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nWhen present, it specifies the tooltip text for the button\n",
                     "description": "<p>When present, it specifies the tooltip text for the button</p>\n",
-                    "line": 38,
-                    "type": "",
+                    "line": 39,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -1085,8 +1339,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nPosition of the tooltip displayed for the button\n",
                     "description": "<p>Position of the tooltip displayed for the button</p>\n",
-                    "line": 42,
-                    "type": "",
+                    "line": 43,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -1096,8 +1350,8 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nType of the button\n",
                     "description": "<p>Type of the button</p>\n",
-                    "line": 14,
-                    "type": "",
+                    "line": 15,
+                    "type": "string",
                     "decorators": []
                 }
             ],
@@ -1107,7 +1361,9 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 66,
+                    "rawdescription": "\n\nEvent to emit when the button loses focus\n",
+                    "description": "<p>Event to emit when the button loses focus</p>\n",
+                    "line": 79,
                     "type": "EventEmitter"
                 },
                 {
@@ -1115,7 +1371,9 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 64,
+                    "rawdescription": "\n\nEvent to emit when the button is clicked\n",
+                    "description": "<p>Event to emit when the button is clicked</p>\n",
+                    "line": 71,
                     "type": "EventEmitter"
                 },
                 {
@@ -1123,7 +1381,9 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 65,
+                    "rawdescription": "\n\nEvent to emit when the button is focused\n",
+                    "description": "<p>Event to emit when the button is focused</p>\n",
+                    "line": 75,
                     "type": "EventEmitter"
                 }
             ],
@@ -1135,8 +1395,9 @@
                     "deprecationMessage": "",
                     "type": "string",
                     "optional": false,
-                    "description": "",
-                    "line": 68
+                    "description": "<p>Contains the button class string</p>\n",
+                    "line": 84,
+                    "rawdescription": "\n\nContains the button class string\n"
                 },
                 {
                     "name": "onBtnBlur",
@@ -1145,8 +1406,9 @@
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "",
-                    "line": 104,
+                    "description": "<p>Handles the button blur and emits the onBlur event</p>\n",
+                    "line": 133,
+                    "rawdescription": "\n\nHandles the button blur and emits the onBlur event\n",
                     "modifierKind": [
                         123
                     ]
@@ -1158,8 +1420,9 @@
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "",
-                    "line": 94,
+                    "description": "<p>Handles the button click and emits the onClick event</p>\n",
+                    "line": 119,
+                    "rawdescription": "\n\nHandles the button click and emits the onClick event\n",
                     "modifierKind": [
                         123
                     ]
@@ -1171,8 +1434,9 @@
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "",
-                    "line": 99,
+                    "description": "<p>Handles the button focus and emits the onFocus event</p>\n",
+                    "line": 126,
+                    "rawdescription": "\n\nHandles the button focus and emits the onFocus event\n",
                     "modifierKind": [
                         123
                     ]
@@ -1185,9 +1449,11 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 76,
+                    "line": 95,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nBuilds the logic to create the button class string\n",
+                    "description": "<p>Builds the logic to create the button class string</p>\n"
                 },
                 {
                     "name": "ngOnInit",
@@ -1195,7 +1461,128 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 72,
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Presents variations of the PrimeFaces button component</p>\n",
+            "rawdescription": "\n\nPresents variations of the PrimeFaces button component\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\n\n/**\n* Presents variations of the PrimeFaces button component\n*/\n@Component({\n  selector: 'gux-button',\n  templateUrl: './gux-button.component.html',\n  styleUrls: ['./gux-button.component.scss'],\n})\nexport class GuxButtonComponent implements OnInit {\n  /**\n  * Type of the button\n  */\n  @Input() type: string = 'button';\n  /**\n  * When present, it specifies the text of the button\n  */\n  @Input() label: string = '';\n  /**\n  * Style of the button color\n  */\n  @Input() buttonMode: string = 'primary';\n  /**\n  * Size of the button\n  */\n  @Input() buttonSize: string = '';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  @Input() icon: string = '';\n  /**\n  * Position of the icon displayed in the button\n  */\n  @Input() iconPosition: string = '';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  @Input() tooltip: string = '';\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  @Input() tooltipPosition: string = '';\n  /**\n  * When present, it specifies that the button should be disabled\n  */\n  @Input() isDisabled: boolean = false;\n  /**\n  * When present and true, it specifies that the button should be text only\n  */\n  @Input() isTextOnly?: boolean = false;\n  /**\n  * When present, it specifies that the button should be raised\n  */\n  @Input() isRaised: boolean = false;\n  /**\n  * When present, it specifies that the button should be rounded\n  */\n  @Input() isRounded: boolean = false;\n  /**\n  * When present, it specifies that the button should be outlined\n  */\n  @Input() isOutlined: boolean = false;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  @Input() inlineStyle: string = '';\n  /**\n  * Event to emit when the button is clicked\n  */\n  @Output() onClick = new EventEmitter();\n  /**\n  * Event to emit when the button is focused\n  */\n  @Output() onFocus = new EventEmitter();\n  /**\n  * Event to emit when the button loses focus\n  */\n  @Output() onBlur = new EventEmitter();\n\n  /**\n  * Contains the button class string\n  */\n  buttonClass: string = 'p-button ';\n\n  constructor() {}\n\n  ngOnInit() {\n    this.buildButtonConfig();\n  }\n\n  /**\n  * Builds the logic to create the button class string\n  */\n  buildButtonConfig() {\n    if (this.buttonSize) {\n      this.buttonClass = 'p-button-' + this.buttonSize + ' ';    \n    }\n    if (this.buttonMode) {\n      this.buttonClass += 'p-button-' + this.buttonMode + ' ';\n    }\n    if (this.isTextOnly) {\n      this.buttonClass += 'p-button-text ';\n    }\n    if (!!this.isRaised) {\n      this.buttonClass += 'p-button-raised ';\n    }\n    if (!!this.isRounded) {\n      this.buttonClass += 'p-button-rounded ';\n    }\n    if (!!this.isOutlined) {\n      this.buttonClass += 'p-button-outlined ';\n    }\n  }\n\n  /**\n  * Handles the button click and emits the onClick event\n  */\n  public onBtnClick = ($event) => {\n    this.onClick.emit({ event: $event });\n  }\n\n  /**\n  * Handles the button focus and emits the onFocus event\n  */\n  public onBtnFocus = ($event) => {\n    this.onFocus.emit({ event: $event });\n  }\n\n  /**\n  * Handles the button blur and emits the onBlur event\n  */\n  public onBtnBlur = ($event) => {\n    this.onBlur.emit({ event: $event });\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "h1 {\n  font-size: 26px;\n}\nh2 {\n  font-size: 22px;\n}\nh3 {\n  font-size: 20px;\n  font-weight: bold;\n}\nh4, h5 {\n  font-size: 18px;\n}\nh6 {\n  font-size: 16px;\n}\n\n.comment {\n  margin: 15px 0;\n}\n",
+                    "styleUrl": "./gux-button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 84
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<button\n  pButton pRipple\n  [type]=\"type\"\n  [label]=\"label\"\n  [class]=\"buttonClass\"\n  [pTooltip]=\"tooltip\"\n  [tooltipPosition]=\"tooltipPosition\"\n  [icon]=\"'pi pi-' + icon\"\n  [iconPos]=\"iconPosition\"\n  [style]=\"inlineStyle\"\n  [disabled]=\"isDisabled\"\n  (click)=\"onBtnClick($event)\"\n  (focus)=\"onBtnFocus($event)\"\n  (blur)=\"onBtnBlur($event)\"\n></button>"
+        },
+        {
+            "name": "GuxButtonDemoComponent",
+            "id": "component-GuxButtonDemoComponent-1a902d9b195648511e4c3c7af4735a51bfd81d9bfa93724a46384c15cfeee1ede8f4e4211769ab1c39d701133a8efeef4f7df0e96b7e05bca6107092ccd81f6e",
+            "file": "src/app/demos/button/button.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "button-demo",
+            "styleUrls": [
+                "./button.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "btnClicked",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>This method displays handling the button click event both as an event\nand by sending the data to the Global Message Service</p>\n",
+                    "line": 41,
+                    "rawdescription": "\n\nThis method displays handling the button click event both as an event\nand by sending the data to the Global Message Service\n",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "btnClickedMsg",
+                    "defaultValue": "'Click a button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "dropdownItems",
+                    "defaultValue": "DropdownItems",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)</p>\n",
+                    "line": 19,
+                    "rawdescription": "\n\nSetup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n"
+                },
+                {
+                    "name": "example",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "GuxButtonType[]",
+                    "optional": false,
+                    "description": "<p>Setup demo (REQUIRED)</p>\n",
+                    "line": 25,
+                    "rawdescription": "\n\nSetup demo (REQUIRED)\n"
+                },
+                {
+                    "name": "examples",
+                    "defaultValue": "Examples",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1207,12 +1594,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\n\nimport { GuxButtonType } from '../../interfaces/gux-button.interface';\n\n@Component({\n  selector: 'gux-button',\n  templateUrl: './gux-button.component.html',\n  styleUrls: ['./gux-button.component.scss'],\n})\nexport class GuxButtonComponent implements OnInit {\n  /**\n  * Type of the button\n  */\n  @Input() type: GuxButtonType['type'] = 'button';\n  /**\n  * When present, it specifies the text of the button\n  */\n  @Input() label: GuxButtonType['label'] = '';\n  /**\n  * Style of the button color\n  */\n  @Input() buttonMode: GuxButtonType['buttonMode'] = 'primary';\n  /**\n  * Size of the button\n  */\n  @Input() buttonSize: GuxButtonType['buttonSize'] = '';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  @Input() icon: GuxButtonType['icon'] = '';\n  /**\n  * Position of the icon displayed in the button\n  */\n  @Input() iconPosition: GuxButtonType['iconPosition'] = '';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  @Input() tooltip: GuxButtonType['tooltip'] = '';\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  @Input() tooltipPosition: GuxButtonType['tooltipPosition'] = '';\n  /**\n  * When present, it specifies that the button should be disabled\n  */\n  @Input() isDisabled: GuxButtonType['isDisabled'] = false;\n  /**\n  * When present, it specifies that the button should be raised\n  */\n  @Input() isRaised: GuxButtonType['isRaised'] = false;\n  /**\n  * When present, it specifies that the button should be rounded\n  */\n  @Input() isRounded: GuxButtonType['isRounded'] = false;\n  /**\n  * When present, it specifies that the button should be outlined\n  */\n  @Input() isOutlined: GuxButtonType['isOutlined'] = false;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  @Input() inlineStyle: GuxButtonType['inlineStyle'] = '';\n\n  @Output() onClick = new EventEmitter();\n  @Output() onFocus = new EventEmitter();\n  @Output() onBlur = new EventEmitter();\n\n  buttonClass: string = 'p-button ';\n\n  constructor() {}\n\n  ngOnInit() {\n    this.buildButtonConfig();\n  }\n\n  buildButtonConfig() {\n    if (this.buttonSize) {\n      this.buttonClass = 'p-button-' + this.buttonSize + ' ';    \n    }\n    if (this.buttonMode) {\n      this.buttonClass += 'p-button-' + this.buttonMode + ' ';\n    }\n    if (!!this.isRaised) {\n      this.buttonClass += 'p-button-raised ';\n    }\n    if (!!this.isRounded) {\n      this.buttonClass += 'p-button-rounded ';\n    }\n    if (!!this.isOutlined) {\n      this.buttonClass += 'p-button-outlined ';\n    }\n  }\n\n  public onBtnClick = ($event) => {\n    console.log('Clicked');\n    this.onClick.emit({ event: $event });\n  }\n\n  public onBtnFocus = ($event) => {\n    console.log('Focused');\n    this.onFocus.emit({ event: $event });\n  }\n\n  public onBtnBlur = ($event) => {\n    console.log('Blurred');\n    this.onBlur.emit({ event: $event });\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\nimport { GlobalMessageService } from 'src/app/services/global-message.service';\nimport { GlobalMessageType } from 'src/app/interfaces/global-message-type';\n\nimport { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';\nimport { DropdownItems, Examples } from './button.data';\n\n@Component({\n  selector: 'button-demo',\n  templateUrl: './button.html',\n  styleUrls: ['./button.scss']\n})\nexport class GuxButtonDemoComponent implements OnInit {\n\n  /**\n  * Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n  */\n  dropdownItems = DropdownItems;\n  examples = Examples;\n   \n  /**\n  * Setup demo (REQUIRED)\n  */\n  example: GuxButtonType[];\n    \n  public btnClickedMsg: string = 'Click a button';\n\n  constructor(\n    private globalMessageService: GlobalMessageService\n  ) { }\n\n  ngOnInit() {\n    this.example = this.examples[0];\n  }\n\n  /**\n  * This method displays handling the button click event both as an event\n  * and by sending the data to the Global Message Service\n  */\n  public btnClicked = ($event, btnLabel) => {\n    const msg = 'Clicked ' + btnLabel + ' button';\n    this.btnClickedMsg = msg;\n    const messagePacket: GlobalMessageType = {\n      severity: 'warn',\n      summary: 'This is the message summary',\n      detail: 'This is the message detail',\n      id: 0,\n      key: 'gux-banner',\n      life: 30,\n      sticky: true,\n      closable: true,\n      data: {\n        field1: '1',\n        field2: '2'\n      },\n      icon: 'warning',\n      contentStyleClass: '',\n      styleClass: ''\n    }\n    this.globalMessageService.sendMessage(messagePacket);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
-                    "styleUrl": "./gux-button.component.scss"
+                    "data": ".button-demo-container {\n  border: 1px solid white;\n  border-radius: 10px;\n  .button-container {\n    background-color: white;\n    display: flex;\n    justify-content: space-evenly;\n    border: 1px solid white;\n    border-radius: 10px 10px 0px 0px;\n    .button-wrapper {\n      margin: 20px 0px;\n    }\n  }\n  .click-message {\n    display: flex;\n    justify-content: center;\n    padding: 50px;\n    border-radius: 10px 0px 10px 10px;\n    font-size: 20px;\n    align-items: center;\n  }\n}\n",
+                    "styleUrl": "./button.scss"
                 }
             ],
             "stylesData": "",
@@ -1221,13 +1608,31 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 68
+                "args": [
+                    {
+                        "name": "globalMessageService",
+                        "type": "GlobalMessageService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "globalMessageService",
+                        "type": "GlobalMessageService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button\n  pButton pRipple\n  [type]=\"type\"\n  [label]=\"label\"\n  [class]=\"buttonClass\"\n  [pTooltip]=\"tooltip\"\n  [tooltipPosition]=\"tooltipPosition\"\n  [icon]=\"'pi pi-' + icon\"\n  [iconPos]=\"iconPosition\"\n  [style]=\"inlineStyle\"\n  [disabled]=\"isDisabled\"\n  (click)=\"onBtnClick($event)\"\n  (focus)=\"onBtnFocus($event)\"\n  (blur)=\"onBtnBlur($event)\"\n></button>"
+            "templateData": "<div class=\"button-demo-container\">\n  <div class=\"button-container\">\n    <div class=\"p-mr-2 p-mb-2\" *ngFor=\"let item of example\">\n      <gux-button\n        [label]=\"item.label\"\n        [buttonMode]=\"item.buttonMode\"\n        [buttonSize]=\"item.buttonSize\"\n        [icon]=\"item.icon\"\n        [iconPosition]=\"item.iconPosition\"\n        [tooltip]=\"item.tooltip\"\n        [tooltipPosition]=\"item.tooltipPosition\"\n        [isDisabled]=\"item.isDisabled\"\n        [isTextOnly]=\"item.isTextOnly\"\n        [isRaised]=\"item.isRaised\"\n        [isOutlined]=\"item.isOutlined\"\n        [isRounded]=\"item.isRounded\"\n        (onClick)=\"btnClicked($event, item.label)\"\n      ></gux-button>\n    </div>\n  </div>\n\n  <div class=\"click-message\">Click result handled by event: {{ btnClickedMsg }}</div>\n</div>\n"
         },
         {
             "name": "GuxComponent",
@@ -1290,18 +1695,677 @@
                 "OnInit"
             ],
             "templateData": "<p>gux works!</p>"
+        },
+        {
+            "name": "GuxDropdownComponent",
+            "id": "component-GuxDropdownComponent-205516db8f93e7831fec148b1fb8c6e9dd9a233018c6648d07f718b983c04be8102257b6adeaafbd82ec0e3f84e18c33c402fd3469dcab7b685cf854c884b7e6",
+            "file": "src/app/gux/components/gux-dropdown/gux-dropdown.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => GuxDropdownComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "gux-dropdown",
+            "styleUrls": [
+                "./gux-dropdown.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./gux-dropdown.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "isDisabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhen present, it specifies that the component should be disabled\n",
+                    "description": "<p>When present, it specifies that the component should be disabled</p>\n",
+                    "line": 90,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nValue of the label to be displayed\n",
+                    "description": "<p>Value of the label to be displayed</p>\n",
+                    "line": 74,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelPosition",
+                    "defaultValue": "'top'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nPosition of the label, valid values are top and left\n",
+                    "description": "<p>Position of the label, valid values are top and left</p>\n",
+                    "line": 78,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nName of the input element\n",
+                    "description": "<p>Name of the input element</p>\n",
+                    "line": 70,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "optionDisabled",
+                    "defaultValue": "'disabled'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nName of the disabled field of an option\n",
+                    "description": "<p>Name of the disabled field of an option</p>\n",
+                    "line": 66,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "optionLabel",
+                    "defaultValue": "'label'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nName of the label field of an option\n",
+                    "description": "<p>Name of the label field of an option</p>\n",
+                    "line": 58,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nItems to be displayed in the dropdown\n",
+                    "description": "<p>Items to be displayed in the dropdown</p>\n",
+                    "line": 54,
+                    "type": "GuxDropdownOptionType[]",
+                    "decorators": []
+                },
+                {
+                    "name": "optionValue",
+                    "defaultValue": "'value'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nName of the value field of an option\n",
+                    "description": "<p>Name of the value field of an option</p>\n",
+                    "line": 62,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhen present, it specifies that an input field must be filled out before submitting the form\n",
+                    "description": "<p>When present, it specifies that an input field must be filled out before submitting the form</p>\n",
+                    "line": 82,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "requiredError",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nError information to display if the dropdown is required and none selected\n",
+                    "description": "<p>Error information to display if the dropdown is required and none selected</p>\n",
+                    "line": 86,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "selectedItem",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "GuxDropdownOptionType",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onBlur",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown loses focus\n",
+                    "description": "<p>Event to emit when the dropdown loses focus</p>\n",
+                    "line": 106,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown changes value\n",
+                    "description": "<p>Event to emit when the dropdown changes value</p>\n",
+                    "line": 98,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown is clicked\n",
+                    "description": "<p>Event to emit when the dropdown is clicked</p>\n",
+                    "line": 94,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onFocus",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown is focused\n",
+                    "description": "<p>Event to emit when the dropdown is focused</p>\n",
+                    "line": 102,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onHide",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown is hidden\n",
+                    "description": "<p>Event to emit when the dropdown is hidden</p>\n",
+                    "line": 114,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onShow",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nEvent to emit when the dropdown is shown\n",
+                    "description": "<p>Event to emit when the dropdown is shown</p>\n",
+                    "line": 110,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "dropdownIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Icon class of the dropdown icon</p>\n",
+                    "line": 30,
+                    "rawdescription": "\n\nIcon class of the dropdown icon\n"
+                },
+                {
+                    "name": "guxDropdownElement",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 121,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'guxDropdownElement', {static: false}"
+                        }
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "Function.prototype",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 118,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Default text to display when no option is selected</p>\n",
+                    "line": 26,
+                    "rawdescription": "\n\nDefault text to display when no option is selected\n"
+                },
+                {
+                    "name": "propagateChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 147,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "scrollHeight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value</p>\n",
+                    "line": 38,
+                    "rawdescription": "\n\nHeight of the viewport in pixels, a scrollbar is defined if height of list exceeds this value\n"
+                },
+                {
+                    "name": "showClear",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "<p>When enabled, a clear icon is displayed to clear the value</p>\n",
+                    "line": 34,
+                    "rawdescription": "\n\nWhen enabled, a clear icon is displayed to clear the value\n"
+                },
+                {
+                    "name": "tooltip",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Advisory information to display in a tooltip on hover</p>\n",
+                    "line": 42,
+                    "rawdescription": "\n\nAdvisory information to display in a tooltip on hover\n"
+                },
+                {
+                    "name": "tooltipPosition",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "<p>Position of the tooltip, valid values are right, left, top and bottom</p>\n",
+                    "line": 46,
+                    "rawdescription": "\n\nPosition of the tooltip, valid values are right, left, top and bottom\n"
+                },
+                {
+                    "name": "viewLoaded",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 116
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "blur",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 161,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "change",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 153,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "click",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 149,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "focus",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 157,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "hide",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 168,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 127,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 125,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 137,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": []
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 142,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "show",
+                    "args": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 164,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "$event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "val",
+                            "type": "GuxDropdownOptionType",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 131,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "val",
+                            "type": "GuxDropdownOptionType",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Presents variations of the PrimeFaces button component</p>\n",
+            "rawdescription": "\n\nPresents variations of the PrimeFaces button component\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, Renderer2, AfterViewInit, ViewEncapsulation,\n  forwardRef } from '@angular/core';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n\nimport { GuxDropdownOptionType } from '../../interfaces/gux-dropdown-option.interface';\n\n/**\n* Presents variations of the PrimeFaces button component\n*/\n@Component({\n  selector: 'gux-dropdown',\n  encapsulation: ViewEncapsulation.None,\n  templateUrl: './gux-dropdown.component.html',\n  styleUrls: ['./gux-dropdown.component.scss'],\n  providers: [{\n    provide: NG_VALUE_ACCESSOR,\n    useExisting: forwardRef(() => GuxDropdownComponent),\n    multi: true\n  }]\n})\nexport class GuxDropdownComponent implements OnInit, AfterViewInit, ControlValueAccessor {\n  /**\n  * Default text to display when no option is selected\n  */\n  placeholder?: string;\n  /**\n  * Icon class of the dropdown icon\n  */\n  dropdownIcon?: string;\n  /**\n  * When enabled, a clear icon is displayed to clear the value\n  */\n  showClear?: boolean;\n  /**\n  * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value\n  */\n  scrollHeight?: string;\n  /**\n  * Advisory information to display in a tooltip on hover\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip, valid values are right, left, top and bottom\n  */\n  tooltipPosition?: string;\n\n\n  @Input() selectedItem: GuxDropdownOptionType;\n\n  /**\n  * Items to be displayed in the dropdown\n  */\n  @Input() options: GuxDropdownOptionType[];\n  /**\n  * Name of the label field of an option\n  */\n  @Input() optionLabel: string = 'label';\n  /**\n  * Name of the value field of an option\n  */\n  @Input() optionValue: string= 'value';\n  /**\n  * Name of the disabled field of an option\n  */\n  @Input() optionDisabled: string = 'disabled';\n  /**\n  * Name of the input element\n  */\n  @Input() name: string = '';\n  /**\n  * Value of the label to be displayed\n  */\n  @Input() label: string = '';\n  /**\n  * Position of the label, valid values are top and left\n  */\n  @Input() labelPosition: string = 'top';\n  /**\n  * When present, it specifies that an input field must be filled out before submitting the form\n  */\n  @Input() required: boolean;\n  /**\n  * Error information to display if the dropdown is required and none selected\n  */\n  @Input() requiredError: string = '';\n  /**\n  * When present, it specifies that the component should be disabled\n  */\n  @Input() isDisabled: boolean;\n  /**\n  * Event to emit when the dropdown is clicked\n  */\n  @Output() onClick = new EventEmitter();\n  /**\n  * Event to emit when the dropdown changes value\n  */\n  @Output() onChange = new EventEmitter();\n  /**\n  * Event to emit when the dropdown is focused\n  */\n  @Output() onFocus = new EventEmitter();\n  /**\n  * Event to emit when the dropdown loses focus\n  */\n  @Output() onBlur = new EventEmitter();\n  /**\n  * Event to emit when the dropdown is shown\n  */\n  @Output() onShow = new EventEmitter();\n  /**\n  * Event to emit when the dropdown is hidden\n  */\n  @Output() onHide = new EventEmitter();\n\n  viewLoaded = false;\n\n  public onTouched: any = Function.prototype; // Trascent the onTouch event\n\n  @ViewChild('guxDropdownElement', { static: false })\n  guxDropdownElement: ElementRef;\n\n  constructor(private renderer: Renderer2) { }\n\n  ngOnInit() { }\n\n  ngAfterViewInit() {\n    this.viewLoaded = true;\n  }\n\n  writeValue(val: GuxDropdownOptionType) {\n    this.selectedItem = val;\n  }\n\n  // registers 'fn' that will be fired when changes are made\n  // this is how we emit the changes back to the form\n  public registerOnChange(fn: any) {\n    this.propagateChange = fn;\n  }\n\n  // not used, used for touch input\n  public registerOnTouched(fn: () => {}): void {\n    this.onTouched = fn;\n  }\n\n  // the method set in registerOnChange to emit changes back to the form\n  public propagateChange = (_: any) => { };\n\n  click($event) {\n    this.onClick.emit($event);\n  }\n\n  change($event) {\n    this.onChange.emit($event);\n  }\n\n  focus($event) {\n    this.onFocus.emit($event);\n  }\n\n  blur($event) {\n    this.onBlur.emit($event);\n  }\n  show($event) {\n    this.onShow.emit($event);\n  }\n\n  hide($event) {\n    this.onHide.emit($event);\n  }\n\n  /* load error message in the component */\n  get error() {\n    if (this.viewLoaded) {\n      if (this.requiredError) {\n        this.renderer.addClass(\n          this.guxDropdownElement.nativeElement.getElementsByClassName('p-dropdown')[0],\n          'p-dropdown-error'\n        );\n        return this.requiredError;\n      } else {\n        this.renderer.removeClass(\n          this.guxDropdownElement.nativeElement.getElementsByClassName('p-dropdown')[0],\n          'p-dropdown-error'\n        );\n        return '';\n      }\n    }\n    return '';\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./gux-dropdown.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 121,
+                "jsdoctags": [
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "AfterViewInit",
+                "ControlValueAccessor"
+            ],
+            "accessors": {
+                "error": {
+                    "name": "error",
+                    "getSignature": {
+                        "name": "error",
+                        "type": "",
+                        "returnType": "",
+                        "line": 173
+                    }
+                }
+            },
+            "templateData": "<span #guxDropdownElement class=\"dropdownWrap\">\n  <span class=\"inner-label\" *ngIf=\"label\"> {{ label }}</span>\n  <p-dropdown\n    styleClass=\"gux-dropdown\"\n    [options]=\"options\"\n    (onClick)=\"click($event)\"\n    (onChange)=\"change($event)\"\n    (onFocus)=\"focus($event)\"\n    (onBlur)=\"blur($event)\"\n    (onShow)=\"show($event)\"\n    (onHide)=\"hide($event)\"\n    [placeholder]=\"placeholder\"\n  ></p-dropdown>\n</span>\n\n\n<span *ngIf=\"label && labelPosition == 'float'\" class=\"p-float-label\">\n  <p-dropdown\n    inputId=\"dropdown\"\n    [options]=\"options\"\n    [autoDisplayFirst]=\"false\"\n    optionLabel=\"name\"\n  ></p-dropdown>\n  <label for=\"dropdown\">Dropdown</label>\n</span>\n\n<!--\n<span>\n  <label *ngIf=\"label && labelPosition == 'top'\"> {{ label }}</label>\n  <ng-template *ngIf=\"selectedItemIcon\" let-item pTemplate=\"selectedItem\">\n    <img src=\"{{ selectedItemIcon }}\" class=\"selectedItemIcon\" />\n    <span>{{ item.label }}</span>\n  </ng-template>\n</span>\n-->\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-4f3244c613b24131800f4ffe3daf8ecc2c158611af78587716a302047a8b559afd9a4cde6c4015e138123b14c22fcebfe2a96751fcb3e67e475f38da75f671f6",
+            "id": "module-AppModule-606bba3b789d3dc99b7b13dd1466115c94dd83036617fef14dac8d5272f0532df2eebe4fb91f3c4d23c706e7d0052d065648601986de5da6bf2019389bb7b94e",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\nimport { PrimengModule } from './primeng/primeng.module';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\nimport { DemosModule } from './demos/demos.module';\nimport { DocsModule } from './docs/docs.module';\nimport { GuxModule } from './gux/gux.module';\n\n\n@NgModule({\n  declarations: [ AppComponent ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    BrowserModule,\n    BrowserAnimationsModule,\n    AppRoutingModule,\n\n    PrimengModule,\n\n    DemosModule,\n    DocsModule,\n    GuxModule\n  ],\n  exports: [ PrimengModule ],\n  providers: [ ],\n  bootstrap: [ AppComponent ]\n})\n\nexport class AppModule {\n  /**\n  constructor(private docsService: docsService) {\n    this.docsService.setDemoComponents({\n      GuxBadgeComponent: {\n        name: 'GuxBadgeDemoComponent',\n        demo: GuxBadgeDemoComponent\n      },\n      GuxBannerComponent: {\n        name: 'GuxBannerDemoComponent',\n        demo: GuxBannerDemoComponent\n      },\n      GuxButtonComponent: {\n        name: 'GuxButtonDemoComponent',\n        demo: GuxButtonDemoComponent\n      },\n      GuxCheckboxComponent: {\n        name: 'GuxCheckboxDemoComponent',\n        demo: GuxCheckboxDemoComponent\n      },\n      GuxInputDirective: {\n        name: 'GuxInputDemoComponent',\n        demo: GuxInputDemoComponent\n      }\n    });\n  }\n  */\n}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\nimport { PrimengModule } from './primeng/primeng.module';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n\nimport { DemosModule } from './demos/demos.module';\nimport { DocsModule } from './docs/docs.module';\nimport { GuxModule } from './gux/gux.module';\n\n@NgModule({\n  declarations: [ AppComponent ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    BrowserModule,\n    BrowserAnimationsModule,\n    AppRoutingModule,\n\n    PrimengModule,\n\n    DemosModule,\n    DocsModule,\n    GuxModule\n  ],\n  exports: [ PrimengModule ],\n  providers: [ ],\n  bootstrap: [ AppComponent ]\n})\n\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1359,13 +2423,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-b01813f4324106b1fe1994246610a135babb69da9728c369d72370f91cd6c8a6737f5811e688874f5f82afce0628d6bb17eac3dff6eac23668669757d68b8844",
+            "id": "module-AppRoutingModule-ed62314d71493d9b22dcd42aa0a0b30dc4c902219c2165a3b9eb5c925cc277a78eda5e686343fcdc549ec3e563c1933a9a809a2a3e3ef075330614f381f6cbfc",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\nimport { DocsComponentBaseComponent } from './docs/components/component-base/component-base.component';\n\nimport { DocsComponent } from './docs/docs.component';\nconst routes: Routes = [{\n  path: '',\n  redirectTo: 'docs',\n  pathMatch: 'full'\n}, {\n  path: 'docs',\n  component: DocsComponent\n}, {\n  path: 'components/:target',\n  component: DocsComponentBaseComponent\n}];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\nimport { DocsComponentBaseComponent } from './docs/components/component-base/component-base.component';\nimport { DocsInterfaceBaseComponent } from './docs/components/interface-base/interface-base.component';\n\nimport { DocsComponent } from './docs/docs.component';\nconst routes: Routes = [{\n  path: '',\n  redirectTo: 'docs',\n  pathMatch: 'full'\n}, {\n  path: 'docs',\n  component: DocsComponent\n}, {\n  path: 'components/:target',\n  component: DocsComponentBaseComponent\n}, {\n  path: 'interfaces/:target',\n  component: DocsInterfaceBaseComponent\n}];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1395,13 +2459,13 @@
         },
         {
             "name": "DemosModule",
-            "id": "module-DemosModule-089b684a5ed4907274fd39469ea04fa624af73c73f47b1308a36d502af10b75b43b22fa4e390d47b57fa8546cbc9169605473ef514a6fd32a3e8a466675bd6ae",
+            "id": "module-DemosModule-0458c0de078a187fd2780f0c6bf541c34ca19783847a59771378b3b374848e7f81ea3d986eaf52f23e9224deadd41ff2f165de1f982137787d3be4c495fe3c9c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/demos/demos.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class DemosModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { GuxModule } from '../gux/gux.module';\n\nimport { GuxButtonDemoComponent } from './button/button'\n\n@NgModule({\n  declarations: [\n    GuxButtonDemoComponent\n  ],\n  imports: [\n    CommonModule,\n    GuxModule\n  ]\n})\nexport class DemosModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1409,11 +2473,19 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "GuxButtonDemoComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "GuxModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -1431,13 +2503,13 @@
         },
         {
             "name": "DocsModule",
-            "id": "module-DocsModule-cc459400141db3d9065652498266c14dc1a3510f29ee6719e54dd82f025114705c6bfcd77e98e4bc53de04689924b59b82106282091120ca33417d9352061868",
+            "id": "module-DocsModule-6c7bdba89030beb389841a5252294c25f8d4a39c771a2aa533633eea627fc112c4c5d0e6e438daf6c14cfff20c8c8a33674cb909fe21335ee08963d0aaf5cb89",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/docs/docs.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ClipboardModule } from '@angular/cdk/clipboard';\nimport { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { DocsComponent } from './docs.component';\nimport { DocsComponentBaseComponent } from './components/component-base/component-base.component';\n\n\n\n@NgModule({\n  declarations: [\n    DocsComponent,\n    DocsComponentBaseComponent\n  ],\n  imports: [\n    CommonModule,\n    PrimengModule,\n    HighlightModule\n  ],\n  providers: [{\n    provide: HIGHLIGHT_OPTIONS,\n    useValue: {\n      coreLibraryLoader: () => import('highlight.js/lib/core'),\n      lineNumbersLoader: () => import('highlightjs-line-numbers.js'),\n      languages: {\n        typescript: () => import('highlight.js/lib/languages/typescript'),\n        css: () => import('highlight.js/lib/languages/css'),\n        scss: () => import('highlight.js/lib/languages/scss'),\n        json: () => import('highlight.js/lib/languages/json'),\n        xml: () => import('highlight.js/lib/languages/xml')\n      }\n    }\n  }]\n})\nexport class DocsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Router } from '@angular/router';\n\nimport { ClipboardModule } from '@angular/cdk/clipboard';\nimport { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { DocsComponent } from './docs.component';\nimport { DocsComponentBaseComponent } from './components/component-base/component-base.component';\nimport { DocsInterfaceBaseComponent } from './components/interface-base/interface-base.component';\n\nimport { DocsService } from './services/docs.service';\n\nimport { GuxButtonDemoComponent } from '../demos/button/button';\n\n\n\n@NgModule({\n  declarations: [\n    DocsComponent,\n    DocsComponentBaseComponent,\n    DocsInterfaceBaseComponent\n  ],\n  imports: [\n    CommonModule,\n    PrimengModule,\n    ClipboardModule,\n    HighlightModule\n  ],\n  providers: [{\n    provide: HIGHLIGHT_OPTIONS,\n    useValue: {\n      coreLibraryLoader: () => import('highlight.js/lib/core'),\n      lineNumbersLoader: () => import('highlightjs-line-numbers.js'),\n      languages: {\n        typescript: () => import('highlight.js/lib/languages/typescript'),\n        css: () => import('highlight.js/lib/languages/css'),\n        scss: () => import('highlight.js/lib/languages/scss'),\n        json: () => import('highlight.js/lib/languages/json'),\n        xml: () => import('highlight.js/lib/languages/xml')\n      }\n    }\n  }]\n})\nexport class DocsModule {\n  constructor(\n    private router: Router,\n    private docsService: DocsService\n  ) {\n    this.docsService.getDocumentation();\n    this.docsService.setDemoComponents({\n      GuxButtonComponent: {\n        name: 'GuxButtonDemoComponent',\n        demo: GuxButtonDemoComponent\n      }\n    });\n    this.router.routeReuseStrategy.shouldReuseRoute = function () {\n      return false;\n    };\n  }\n }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1475,13 +2547,13 @@
         },
         {
             "name": "GuxModule",
-            "id": "module-GuxModule-4e30f3ae6e2930f7fed381e39afc32a2ec1ad82e56dd9ede2adfc95a0c662b20436c2fe38b82f8c1ea08e4df1c518e5202bfe3c60e178cd906b7c916ea3a2c06",
+            "id": "module-GuxModule-bca7f5770b3e27d228d7053310097ecd1953d90cdb2f09b510b96e61dbf4675e4ef9b943a99a024c20d5a2276b25dd766dbae4b3ba80df9da940cea7c0b77a9a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/gux/gux.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { GuxButtonComponent } from './components/gux-button/gux-button.component';\n\n@NgModule({\n  imports: [\n    CommonModule,\n    PrimengModule\n  ],\n  declarations: [\n    GuxButtonComponent\n  ],\n  exports: [\n    GuxButtonComponent\n  ]\n})\nexport class GuxModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\n\nimport { PrimengModule } from '../primeng/primeng.module';\n\nimport { GuxButtonComponent } from './components/gux-button/gux-button.component';\nimport { GuxDropdownComponent } from './components/gux-dropdown/gux-dropdown.component'\n\n@NgModule({\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    PrimengModule\n  ],\n  declarations: [\n    GuxButtonComponent,\n    GuxDropdownComponent\n  ],\n  exports: [\n    GuxButtonComponent,\n    GuxDropdownComponent\n  ]\n})\nexport class GuxModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1492,6 +2564,9 @@
                     "elements": [
                         {
                             "name": "GuxButtonComponent"
+                        },
+                        {
+                            "name": "GuxDropdownComponent"
                         }
                     ]
                 },
@@ -1508,6 +2583,9 @@
                     "elements": [
                         {
                             "name": "GuxButtonComponent"
+                        },
+                        {
+                            "name": "GuxDropdownComponent"
                         }
                     ]
                 },
@@ -1523,13 +2601,13 @@
         },
         {
             "name": "PrimengModule",
-            "id": "module-PrimengModule-44282e35bc9d15e263c9161ef70be881703611c3e3e3891d6d78f1eae03de9eebe344fa4d135448bbe63cd5f986a90ac8d4ee26f0548fa98003f7e35350346e8",
+            "id": "module-PrimengModule-5f73461613a5ba5103ad408b448f08c92232ca5c1030ba3f970a1601d22f9b4ebd7d871b3bca5104eee6d33913caf719e90a83f98031a146aa0d5a7e4ad95411",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/primeng/primeng.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { AccordionModule } from 'primeng/accordion';\nimport { BadgeModule } from 'primeng/badge';\nimport { ButtonModule } from 'primeng/button';\nimport { DropdownModule } from 'primeng/dropdown';\nimport { MessageModule } from 'primeng/message';\nimport { MessagesModule } from 'primeng/messages';\nimport { TableModule, Table } from 'primeng/table';\nimport { TabViewModule, TabView, TabPanel } from 'primeng/tabview';\nimport { ToastModule } from 'primeng/toast';\nimport { TooltipModule } from \"primeng/tooltip\";\nimport { TreeModule } from 'primeng/tree';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    DropdownModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ],\n  exports: [\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ]\n})\nexport class PrimengModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { AccordionModule } from 'primeng/accordion';\nimport { BadgeModule } from 'primeng/badge';\nimport { ButtonModule } from 'primeng/button';\nimport { DropdownModule } from 'primeng/dropdown';\nimport { MessageModule } from 'primeng/message';\nimport { MessagesModule } from 'primeng/messages';\nimport { TableModule, Table } from 'primeng/table';\nimport { TabViewModule, TabView, TabPanel } from 'primeng/tabview';\nimport { ToastModule } from 'primeng/toast';\nimport { TooltipModule } from \"primeng/tooltip\";\nimport { TreeModule } from 'primeng/tree';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    DropdownModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ],\n  \n  exports: [\n    AccordionModule,\n    BadgeModule,\n    ButtonModule,\n    DropdownModule,\n    MessageModule,\n    MessagesModule,\n    TableModule,\n    TabViewModule,\n    ToastModule,\n    TooltipModule,\n    TreeModule\n  ]\n})\nexport class PrimengModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1624,21 +2702,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: true\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "HostListenersColumns",
@@ -1688,7 +2766,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TreeNode[]",
-                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/GuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'components/GuxButtonComponent'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'components/GuxDropdownComponent'\n    }]\n  }, {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [{\n      label: 'Success Message',\n      type: 'navigation',\n      data: 'services/SuccessMessageService'\n    }]\n  }, {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'interfaces/GuxButtonType'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownType'\n    }, {\n      label: 'Dropdown Option',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownOptionType'\n    }]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
             },
             {
                 "name": "OutputColumns",
@@ -1899,18 +2977,6 @@
                     "defaultValue": "[\n  'MODAL_DATA',\n  'require',\n  'testCardAddress'\n]"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -1923,6 +2989,18 @@
                     "defaultValue": "{\n  production: false\n}"
                 }
             ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
             "src/app/navigation.ts": [
                 {
                     "name": "Navigation",
@@ -1932,7 +3010,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TreeNode[]",
-                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'components/CuxBadgeComponent'\n      },\n      {\n        label: 'Banner',\n        type: 'navigation',\n        data: 'components/CuxBannerComponent'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'components/GuxButtonComponent'\n      },\n      {\n        label: 'Checkbox',\n        type: 'navigation',\n        data: 'components/CuxCheckboxComponent'\n      },\n      {\n        label: 'Dropdown',\n        type: 'navigation',\n        data: 'components/CuxDropdownComponent'\n      },\n    ],\n  },\n  {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [\n      {\n        label: 'Success Message',\n        type: 'navigation',\n        data: 'services/SuccessMessageService'\n      },\n    ],\n  },\n  {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [\n      {\n        label: 'Accordion Item',\n        type: 'navigation',\n        data: 'interfaces/AccordionItem'\n      },\n      {\n        label: 'Accordion Items',\n        type: 'navigation',\n        data: 'interfaces/AccordionItems'\n      },\n      {\n        label: 'Accordion Title',\n        type: 'navigation',\n        data: 'interfaces/AccordionTitle'\n      },\n      {\n        label: 'Badge',\n        type: 'navigation',\n        data: 'interfaces/CuxBadgeModel'\n      },\n      {\n        label: 'Breadcrumb',\n        type: 'navigation',\n        data: 'interfaces/Breadcrumb'\n      },\n      {\n        label: 'Button',\n        type: 'navigation',\n        data: 'interfaces/Button'\n      },\n      {\n        label: '360 Summary Card',\n        type: 'navigation',\n        data: 'interfaces/CuxCard360SummaryCard'\n      },\n      {\n        label: 'Check Box',\n        type: 'navigation',\n        data: 'interfaces/CheckBoxItem'\n      },\n      {\n        label: 'Dropdown Item',\n        type: 'navigation',\n        data: 'interfaces/CuxDropdownItem'\n      },\n      {\n        label: 'Dropdown Item Value',\n        type: 'navigation',\n        data: 'interfaces/CuxDropDownItemValue'\n      },\n      {\n        label: 'Footer Button',\n        type: 'navigation',\n        data: 'interfaces/FooterButton',\n      },\n      {\n        label: 'Radio Button',\n        type: 'navigation',\n        data: 'interfaces/RadioButtonItem',\n      },\n      {\n        label: 'Selection Change',\n        type: 'navigation',\n        data: 'interfaces/SelectionChange'\n      },\n      {\n        label: 'Sidebar Data',\n        type: 'navigation',\n        data: 'interfaces/SideBarData'\n      },\n      {\n        label: 'Stepper Item',\n        type: 'navigation',\n        data: 'interfaces/StepperItem'\n      }\n    ]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'components/GuxButtonComponent'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'components/GuxDropdownComponent'\n    }]\n  }, {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [{\n      label: 'Success Message',\n      type: 'navigation',\n      data: 'services/SuccessMessageService'\n    }]\n  }, {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'interfaces/GuxButtonType'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownType'\n    }, {\n      label: 'Dropdown Option',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownOptionType'\n    }]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
                 }
             ]
         },
@@ -1962,6 +3040,10 @@
                     {
                         "path": "components/:target",
                         "component": "DocsComponentBaseComponent"
+                    },
+                    {
+                        "path": "interfaces/:target",
+                        "component": "DocsInterfaceBaseComponent"
                     }
                 ],
                 "kind": "module"

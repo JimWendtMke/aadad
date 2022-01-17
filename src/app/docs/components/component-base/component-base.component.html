@@ -12,15 +12,17 @@
         <p *ngIf="!targetDemoComponent">NO EXAMPLE AVAILABLE</p>
         <ng-template #demoTab></ng-template>
         <div *ngIf="dropdownItems && dropdownItems.length" class="selector-wrapper">
-          <!--
-          <echo-select
+          <p-dropdown
             #exampleSelect
-            style="width:300px;"
-            (echoChange)=changeExampleData($event)
-            placeholder="Select example to display">
-              <echo-select-option *ngFor="let item of dropdownItems" value="{{ item.value }}">{{ item.label }}</echo-select-option>
-          </echo-select>
-          -->
+            [options]="dropdownItems"
+            scrollHeight="300px"
+            optionLabel="label"
+            optionValue="value"
+            optionDisabled="disabled"
+            tooltip="Select example to display"
+            tooltipPosition="bottom"
+            (onChange)="changeExampleData($event)"
+        ></p-dropdown>
         </div>
     </div>
     </p-tabPanel>
@@ -29,15 +31,16 @@
       <h1>Example {{ selectedItem.value + 1 }}: {{ selectedItem.label }}
         <button class="copy-data" (click)="copyToClipboard(targetDemoData)" title="Copy data to clipboard"><span class="pi pi-copy"></span></button>
       </h1>
-      <pre><code [highlight]="targetDemoData" [lineNumbers]=true></code></pre>
+      <pre><code [highlight]="targetDemoData" [languages]="['typescript']" [lineNumbers]=true></code></pre>
     </p-tabPanel>
 
     <p-tabPanel *ngIf="targetDemoComponent" header="Examples Source">
-      <pre><code [highlight]="targetDemoSource" [lineNumbers]=true></code></pre>
+      <pre><code [highlight]="targetDemoSource" [languages]="['typescript']" [lineNumbers]=true></code></pre>
     </p-tabPanel>
 
     <p-tabPanel *ngIf="targetDemoComponent" header="Examples Template">
-      <pre><code [highlight]="targetDemoTemplate" [lineNumbers]=true></code></pre>
+      <pre><code [highlight]="targetDemoTemplate" [languages]="['typescript']" [lineNumbers]=true></code></pre>
+      
     </p-tabPanel>
 
     <p-tabPanel header="Documentation">
@@ -102,13 +105,13 @@
     </p-tabPanel>
 
     <p-tabPanel header="Source Code">
-      <pre><code [highlight]="sourceCode" [lineNumbers]=true></code></pre>
+      <pre><code [highlight]="sourceCode" [languages]="['typescript']" [lineNumbers]=true></code></pre>
     </p-tabPanel>
 
     <p-tabPanel header="Styles [{{ styleUrlsData.length}}]">
       <div *ngFor="let item of styleUrlsData">
         <p class="style-url">{{ item.styleUrl }}</p>
-        <pre><code [highlight]="item.data" [lineNumbers]=true></code></pre>
+        <pre><code [highlight]="item.data" [languages]="['css']" [lineNumbers]=true></code></pre>
       </div>
     </p-tabPanel>
 

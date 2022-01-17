@@ -17,7 +17,6 @@ import { TreeModule } from 'primeng/tree';
   declarations: [],
   imports: [
     CommonModule,
-
     AccordionModule,
     BadgeModule,
     ButtonModule,
@@ -30,10 +29,12 @@ import { TreeModule } from 'primeng/tree';
     TooltipModule,
     TreeModule
   ],
+  
   exports: [
     AccordionModule,
     BadgeModule,
     ButtonModule,
+    DropdownModule,
     MessageModule,
     MessagesModule,
     TableModule,

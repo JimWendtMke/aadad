@@ -156,7 +156,7 @@ export class DocsComponentBaseComponent implements OnInit, OnDestroy {
   }
 
   changeExampleData($event) {
-    const selected = parseInt($event.detail.value, 10);
+    const selected = parseInt($event.value, 10);
     this.selectedItem = this.targetDemoInstance.instance.dropdownItems[selected];
     this.targetDemoInstance.instance.example = this.targetDemoInstance.instance.examples[selected];
     this.targetDemoData = JSON.stringify(this.targetDemoInstance.instance.examples[selected], undefined, 2);

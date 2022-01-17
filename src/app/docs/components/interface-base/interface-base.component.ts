@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { Subscription } from 'rxjs';
 
-import { CocoaDocsService } from '../../services/docs.service';
+import { DocsService } from '../../services/docs.service';
 import { PropertiesColumns } from '../../constants';
 
 /**
@@ -14,7 +14,7 @@ import { PropertiesColumns } from '../../constants';
   templateUrl: './interface-base.component.html',
   styleUrls: ['../../assets/styles/base-styles.scss']
 })
-export class CocoaDocsInterfaceBaseComponent implements  OnInit, OnDestroy {
+export class DocsInterfaceBaseComponent implements  OnInit, OnDestroy {
 
   dropdownItems: any = [];
   selectedItem: any;
@@ -36,7 +36,7 @@ export class CocoaDocsInterfaceBaseComponent implements  OnInit, OnDestroy {
     private router: Router,
     public viewContainer: ViewContainerRef,
     public componentFactoryResolver: ComponentFactoryResolver,
-    private docsService: CocoaDocsService
+    private docsService: DocsService
   ) {
     this.navigation = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {

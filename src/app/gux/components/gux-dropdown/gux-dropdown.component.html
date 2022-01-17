@@ -1,0 +1,35 @@
+<span #guxDropdownElement class="dropdownWrap">
+  <span class="inner-label" *ngIf="label"> {{ label }}</span>
+  <p-dropdown
+    styleClass="gux-dropdown"
+    [options]="options"
+    (onClick)="click($event)"
+    (onChange)="change($event)"
+    (onFocus)="focus($event)"
+    (onBlur)="blur($event)"
+    (onShow)="show($event)"
+    (onHide)="hide($event)"
+    [placeholder]="placeholder"
+  ></p-dropdown>
+</span>
+
+
+<span *ngIf="label && labelPosition == 'float'" class="p-float-label">
+  <p-dropdown
+    inputId="dropdown"
+    [options]="options"
+    [autoDisplayFirst]="false"
+    optionLabel="name"
+  ></p-dropdown>
+  <label for="dropdown">Dropdown</label>
+</span>
+
+<!--
+<span>
+  <label *ngIf="label && labelPosition == 'top'"> {{ label }}</label>
+  <ng-template *ngIf="selectedItemIcon" let-item pTemplate="selectedItem">
+    <img src="{{ selectedItemIcon }}" class="selectedItemIcon" />
+    <span>{{ item.label }}</span>
+  </ng-template>
+</span>
+-->

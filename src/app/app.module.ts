@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,12 +13,12 @@ import { DemosModule } from './demos/demos.module';
 import { DocsModule } from './docs/docs.module';
 import { GuxModule } from './gux/gux.module';
 
-
 @NgModule({
   declarations: [ AppComponent ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -34,31 +34,4 @@ import { GuxModule } from './gux/gux.module';
   bootstrap: [ AppComponent ]
 })
 
-export class AppModule {
-  /**
-  constructor(private docsService: docsService) {
-    this.docsService.setDemoComponents({
-      GuxBadgeComponent: {
-        name: 'GuxBadgeDemoComponent',
-        demo: GuxBadgeDemoComponent
-      },
-      GuxBannerComponent: {
-        name: 'GuxBannerDemoComponent',
-        demo: GuxBannerDemoComponent
-      },
-      GuxButtonComponent: {
-        name: 'GuxButtonDemoComponent',
-        demo: GuxButtonDemoComponent
-      },
-      GuxCheckboxComponent: {
-        name: 'GuxCheckboxDemoComponent',
-        demo: GuxCheckboxDemoComponent
-      },
-      GuxInputDirective: {
-        name: 'GuxInputDemoComponent',
-        demo: GuxInputDemoComponent
-      }
-    });
-  }
-  */
-}
+export class AppModule { }

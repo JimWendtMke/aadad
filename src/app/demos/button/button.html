@@ -1,0 +1,23 @@
+<div class="button-demo-container">
+  <div class="button-container">
+    <div class="p-mr-2 p-mb-2" *ngFor="let item of example">
+      <gux-button
+        [label]="item.label"
+        [buttonMode]="item.buttonMode"
+        [buttonSize]="item.buttonSize"
+        [icon]="item.icon"
+        [iconPosition]="item.iconPosition"
+        [tooltip]="item.tooltip"
+        [tooltipPosition]="item.tooltipPosition"
+        [isDisabled]="item.isDisabled"
+        [isTextOnly]="item.isTextOnly"
+        [isRaised]="item.isRaised"
+        [isOutlined]="item.isOutlined"
+        [isRounded]="item.isRounded"
+        (onClick)="btnClicked($event, item.label)"
+      ></gux-button>
+    </div>
+  </div>
+
+  <div class="click-message">Click result handled by event: {{ btnClickedMsg }}</div>
+</div>

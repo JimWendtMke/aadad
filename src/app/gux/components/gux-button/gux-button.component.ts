@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { GuxButtonType } from '../../interfaces/gux-button.interface';
-
+/**
+* Presents variations of the PrimeFaces button component
+*/
 @Component({
   selector: 'gux-button',
   templateUrl: './gux-button.component.html',
@@ -11,60 +12,75 @@ export class GuxButtonComponent implements OnInit {
   /**
   * Type of the button
   */
-  @Input() type: GuxButtonType['type'] = 'button';
+  @Input() type: string = 'button';
   /**
   * When present, it specifies the text of the button
   */
-  @Input() label: GuxButtonType['label'] = '';
+  @Input() label: string = '';
   /**
   * Style of the button color
   */
-  @Input() buttonMode: GuxButtonType['buttonMode'] = 'primary';
+  @Input() buttonMode: string = 'primary';
   /**
   * Size of the button
   */
-  @Input() buttonSize: GuxButtonType['buttonSize'] = '';
+  @Input() buttonSize: string = '';
   /**
   * When present, it specifies the icon to be displayed in the button
   */
-  @Input() icon: GuxButtonType['icon'] = '';
+  @Input() icon: string = '';
   /**
   * Position of the icon displayed in the button
   */
-  @Input() iconPosition: GuxButtonType['iconPosition'] = '';
+  @Input() iconPosition: string = '';
   /**
   * When present, it specifies the tooltip text for the button
   */
-  @Input() tooltip: GuxButtonType['tooltip'] = '';
+  @Input() tooltip: string = '';
   /**
   * Position of the tooltip displayed for the button
   */
-  @Input() tooltipPosition: GuxButtonType['tooltipPosition'] = '';
+  @Input() tooltipPosition: string = '';
   /**
   * When present, it specifies that the button should be disabled
   */
-  @Input() isDisabled: GuxButtonType['isDisabled'] = false;
+  @Input() isDisabled: boolean = false;
+  /**
+  * When present and true, it specifies that the button should be text only
+  */
+  @Input() isTextOnly?: boolean = false;
   /**
   * When present, it specifies that the button should be raised
   */
-  @Input() isRaised: GuxButtonType['isRaised'] = false;
+  @Input() isRaised: boolean = false;
   /**
   * When present, it specifies that the button should be rounded
   */
-  @Input() isRounded: GuxButtonType['isRounded'] = false;
+  @Input() isRounded: boolean = false;
   /**
   * When present, it specifies that the button should be outlined
   */
-  @Input() isOutlined: GuxButtonType['isOutlined'] = false;
+  @Input() isOutlined: boolean = false;
   /**
   * When present, it specifies that the inline style to apply to the button
   */
-  @Input() inlineStyle: GuxButtonType['inlineStyle'] = '';
-
+  @Input() inlineStyle: string = '';
+  /**
+  * Event to emit when the button is clicked
+  */
   @Output() onClick = new EventEmitter();
+  /**
+  * Event to emit when the button is focused
+  */
   @Output() onFocus = new EventEmitter();
+  /**
+  * Event to emit when the button loses focus
+  */
   @Output() onBlur = new EventEmitter();
 
+  /**
+  * Contains the button class string
+  */
   buttonClass: string = 'p-button ';
 
   constructor() {}
@@ -73,12 +89,18 @@ export class GuxButtonComponent implements OnInit {
     this.buildButtonConfig();
   }
 
+  /**
+  * Builds the logic to create the button class string
+  */
   buildButtonConfig() {
     if (this.buttonSize) {
       this.buttonClass = 'p-button-' + this.buttonSize + ' ';    
     }
     if (this.buttonMode) {
       this.buttonClass += 'p-button-' + this.buttonMode + ' ';
+    }
+    if (this.isTextOnly) {
+      this.buttonClass += 'p-button-text ';
     }
     if (!!this.isRaised) {
       this.buttonClass += 'p-button-raised ';
@@ -91,18 +113,24 @@ export class GuxButtonComponent implements OnInit {
     }
   }
 
+  /**
+  * Handles the button click and emits the onClick event
+  */
   public onBtnClick = ($event) => {
-    console.log('Clicked');
     this.onClick.emit({ event: $event });
   }
 
+  /**
+  * Handles the button focus and emits the onFocus event
+  */
   public onBtnFocus = ($event) => {
-    console.log('Focused');
     this.onFocus.emit({ event: $event });
   }
 
+  /**
+  * Handles the button blur and emits the onBlur event
+  */
   public onBtnBlur = ($event) => {
-    console.log('Blurred');
     this.onBlur.emit({ event: $event });
   }
 

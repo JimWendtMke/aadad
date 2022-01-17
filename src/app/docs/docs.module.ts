@@ -9,19 +9,24 @@ import { PrimengModule } from '../primeng/primeng.module';
 
 import { DocsComponent } from './docs.component';
 import { DocsComponentBaseComponent } from './components/component-base/component-base.component';
+import { DocsInterfaceBaseComponent } from './components/interface-base/interface-base.component';
 
 import { DocsService } from './services/docs.service';
+
+import { GuxButtonDemoComponent } from '../demos/button/button';
 
 
 
 @NgModule({
   declarations: [
     DocsComponent,
-    DocsComponentBaseComponent
+    DocsComponentBaseComponent,
+    DocsInterfaceBaseComponent
   ],
   imports: [
     CommonModule,
     PrimengModule,
+    ClipboardModule,
     HighlightModule
   ],
   providers: [{
@@ -45,6 +50,12 @@ export class DocsModule {
     private docsService: DocsService
   ) {
     this.docsService.getDocumentation();
+    this.docsService.setDemoComponents({
+      GuxButtonComponent: {
+        name: 'GuxButtonDemoComponent',
+        demo: GuxButtonDemoComponent
+      }
+    });
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

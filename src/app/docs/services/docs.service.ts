@@ -167,9 +167,6 @@ export class DocsService {
   }
 
   getDemoComponentByName(name) {
-
-    
-    return null;
     return this.demoComponents[name] || null;
   }
 
