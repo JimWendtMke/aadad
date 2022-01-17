@@ -160,8 +160,8 @@ export class DocsComponentBaseComponent implements OnInit, OnDestroy {
     this.selectedItem = this.targetDemoInstance.instance.dropdownItems[selected];
     this.targetDemoInstance.instance.example = this.targetDemoInstance.instance.examples[selected];
     this.targetDemoData = JSON.stringify(this.targetDemoInstance.instance.examples[selected], undefined, 2);
-    if (this.targetDemoInstance.instance.sendCocoaMessage) {
-      this.targetDemoInstance.instance.sendCocoaMessage();
+    if (this.targetDemoInstance.instance.sendMessage) {
+      this.targetDemoInstance.instance.sendMessage();
     }
   }
 

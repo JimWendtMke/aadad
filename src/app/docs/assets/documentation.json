@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "City",
-            "id": "interface-City-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
+            "id": "interface-City-4bd1f36dd1aadfadc79956deefee07f7906565ba6e814522e3353d9f5dda9e73060ce5c67e5819defd037af6239c352d4401a8839da788c7df58596ee56d1603",
             "file": "src/app/app.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      if (message.key === 'cux-banner') {\n        this.messages.push(message);\n        this.primeMessageService.add(message);\n      }\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
             "properties": [
                 {
                     "name": "code",
@@ -166,18 +166,18 @@
         },
         {
             "name": "GuxButtonType",
-            "id": "interface-GuxButtonType-8415011beb811c8b6f34a8ffc07f493ecd16594221b89e6880522cc78fa2183728e6c13952bbdf7ced2cbe8a5b01cb17803fadd0d9fc44ac61a957a95bf7a2ee",
+            "id": "interface-GuxButtonType-f2600b6cb2cc53c6645b2b4cab891098e84ccb9c34eb92a2a915d29cb089bf1a0bd37dbe8f6020363058672283bebbbbe8d8e3bc39db9fe600f053e467d8cf37",
             "file": "src/app/gux/interfaces/gux-button.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface GuxButtonType {\n  /**\n  * Type of the button\n  */\n  type?: undefined | 'button' | 'submit' | 'reset';\n  /**\n  * When present, it specifies the text of the button\n  */\n  label?: string;\n  /**\n  * Style of the button color\n  */\n  buttonMode?: undefined | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger';\n  /**\n  * Size of the button\n  */\n  buttonSize?: undefined | 'sm' | 'lg';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  icon?: string;\n  /**\n  * Position of the icon displayed in the button\n  */\n  iconPosition?: undefined | 'left' | 'right';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  tooltipPosition?: undefined | 'top' | 'left' | 'bottom' | 'right';\n  /**\n  * When present and true, it specifies that the button should be disabled\n  */\n  isDisabled?: boolean;\n  /**\n  * When present and true, it specifies that the button should be text only\n  */\n  isTextOnly?: boolean;\n  /**\n  * When present and true, it specifies that the button should be raised\n  */\n  isRaised?: boolean;\n  /**\n  * When present and true, it specifies that the button should be rounded\n  */\n  isRounded?: boolean;\n  /**\n  * When present and true, it specifies that the button should be outlined\n  */\n  isOutlined?: boolean;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  inlineStyle?: string;\n}\n",
+            "sourceCode": "export interface GuxButtonType {\n  /**\n  * When present, it specifies the type of the button\n  */\n  type?: 'button' | 'submit' | 'reset';\n  /**\n  * When present, it specifies the text of the button\n  */\n  label?: string;\n  /**\n  * Style of the button color\n  */\n  buttonMode?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger';\n  /**\n  * Size of the button\n  */\n  buttonSize?: 'sm' | 'lg';\n  /**\n  * When present, it specifies the icon to be displayed in the button\n  */\n  icon?: string;\n  /**\n  * Position of the icon displayed in the button\n  */\n  iconPosition?: 'left' | 'right';\n  /**\n  * When present, it specifies the tooltip text for the button\n  */\n  tooltip?: string;\n  /**\n  * Position of the tooltip displayed for the button\n  */\n  tooltipPosition?: 'top' | 'left' | 'bottom' | 'right';\n  /**\n  * When present and true, it specifies that the button should be disabled\n  */\n  isDisabled?: boolean;\n  /**\n  * When present and true, it specifies that the button should be text only\n  */\n  isTextOnly?: boolean;\n  /**\n  * When present and true, it specifies that the button should be raised\n  */\n  isRaised?: boolean;\n  /**\n  * When present and true, it specifies that the button should be rounded\n  */\n  isRounded?: boolean;\n  /**\n  * When present and true, it specifies that the button should be outlined\n  */\n  isOutlined?: boolean;\n  /**\n  * When present, it specifies that the inline style to apply to the button\n  */\n  inlineStyle?: string;\n}\n",
             "properties": [
                 {
                     "name": "buttonMode",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "undefined | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"help\" | \"danger\"",
+                    "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"help\" | \"danger\"",
                     "optional": true,
                     "description": "<p>Style of the button color</p>\n",
                     "line": 13,
@@ -187,7 +187,7 @@
                     "name": "buttonSize",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "undefined | \"sm\" | \"lg\"",
+                    "type": "\"sm\" | \"lg\"",
                     "optional": true,
                     "description": "<p>Size of the button</p>\n",
                     "line": 17,
@@ -207,7 +207,7 @@
                     "name": "iconPosition",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "undefined | \"left\" | \"right\"",
+                    "type": "\"left\" | \"right\"",
                     "optional": true,
                     "description": "<p>Position of the icon displayed in the button</p>\n",
                     "line": 25,
@@ -297,7 +297,7 @@
                     "name": "tooltipPosition",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "undefined | \"top\" | \"left\" | \"bottom\" | \"right\"",
+                    "type": "\"top\" | \"left\" | \"bottom\" | \"right\"",
                     "optional": true,
                     "description": "<p>Position of the tooltip displayed for the button</p>\n",
                     "line": 33,
@@ -307,11 +307,11 @@
                     "name": "type",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "undefined | \"button\" | \"submit\" | \"reset\"",
+                    "type": "\"button\" | \"submit\" | \"reset\"",
                     "optional": true,
-                    "description": "<p>Type of the button</p>\n",
+                    "description": "<p>When present, it specifies the type of the button</p>\n",
                     "line": 5,
-                    "rawdescription": "\n\nType of the button\n"
+                    "rawdescription": "\n\nWhen present, it specifies the type of the button\n"
                 }
             ],
             "indexSignatures": [],
@@ -615,91 +615,7 @@
             "type": "injectable"
         }
     ],
-    "guards": [
-        {
-            "name": "CocoaDocsRouteGuardService",
-            "id": "injectable-CocoaDocsRouteGuardService-81140b432c77f134cb0ff8555de9b4437c50e7ccf179e93f388d43a6c5e874b4cca0d373dfec51ec79867e7d75dc090ece6fdcc3c74fd21adedd5d2a6e0b7d2c",
-            "file": "src/app/docs/services/route-guard.service.ts",
-            "properties": [],
-            "methods": [
-                {
-                    "name": "canActivate",
-                    "args": [
-                        {
-                            "name": "route",
-                            "type": "ActivatedRouteSnapshot",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "Observable<boolean>",
-                    "typeParameters": [],
-                    "line": 17,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "route",
-                            "type": "ActivatedRouteSnapshot",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';\r\nimport { Observable, of } from 'rxjs';\r\n\r\nimport { CocoaDocsService } from './docs.service';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class CocoaDocsRouteGuardService implements CanActivate {\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private cocoaDocsService: CocoaDocsService\r\n  ) { }\r\n\r\n  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {\r\n\r\n    /**\r\n    * Hard coded route (ie: home, variables)\r\n    */\r\n    if (!route.params && !route.params.target) {\r\n      return of(true);\r\n    }\r\n\r\n    /**\r\n    * Get the URL parameters for testing\r\n    */\r\n    let target: string;\r\n    let type: string;\r\n    if (route.params && route.params.target) {\r\n      target = route.params.target;\r\n    }\r\n    if (route.routeConfig.path.search(/:target/)) {\r\n      type = route.routeConfig.path.split('/')[0];\r\n    }\r\n\r\n    if (this.cocoaDocsService.canNavigate(type, target)) {\r\n      return of(true);\r\n    }\r\n    this.router.navigate(['error404']);\r\n    return of(false);\r\n  }\r\n\r\n}\r\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "cocoaDocsService",
-                        "type": "CocoaDocsService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 10,
-                "jsdoctags": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "cocoaDocsService",
-                        "type": "CocoaDocsService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "type": "guard"
-        }
-    ],
+    "guards": [],
     "interceptors": [],
     "classes": [
         {
@@ -744,7 +660,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
+            "id": "component-AppComponent-4bd1f36dd1aadfadc79956deefee07f7906565ba6e814522e3353d9f5dda9e73060ce5c67e5819defd037af6239c352d4401a8839da788c7df58596ee56d1603",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -856,7 +772,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 79,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -866,7 +782,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -876,7 +792,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 92,
+                    "line": 94,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -893,7 +809,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -927,7 +843,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 83,
+                    "line": 85,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -959,7 +875,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      if (message.key === 'cux-banner') {\n        this.messages.push(message);\n        this.primeMessageService.add(message);\n      }\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1179,7 +1095,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "  <div id=\"content\">\n    <div class=\"comp-error-container row\">\n      <div class=\"col-md-12\">\n        <div class=\"comp-error-title\">\n          The documentation page you navigated to is not currently in CocoaCUX\n        </div>\n        <div class=\"comp-error-body\">\n          <div class=\"comp-error-header\">\n            404 - Not Found\n          </div>\n          <div class=\"comp-error-content\">\n            The page you requested does not exist. You may have typed the address incorrectly, or the link or applicaiton that brought you here may be out of date.\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+            "templateData": "  <div id=\"content\">\n    <div class=\"comp-error-container row\">\n      <div class=\"col-md-12\">\n        <div class=\"comp-error-title\">\n          The documentation page you navigated to is not currently in Gux\n        </div>\n        <div class=\"comp-error-body\">\n          <div class=\"comp-error-header\">\n            404 - Not Found\n          </div>\n          <div class=\"comp-error-content\">\n            The page you requested does not exist. You may have typed the address incorrectly, or the link or applicaiton that brought you here may be out of date.\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
         },
         {
             "name": "GuxButtonComponent",
@@ -1477,7 +1393,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "h1 {\n  font-size: 26px;\n}\nh2 {\n  font-size: 22px;\n}\nh3 {\n  font-size: 20px;\n  font-weight: bold;\n}\nh4, h5 {\n  font-size: 18px;\n}\nh6 {\n  font-size: 16px;\n}\n\n.comment {\n  margin: 15px 0;\n}\n",
+                    "data": "",
                     "styleUrl": "./gux-button.component.scss"
                 }
             ],
@@ -1497,7 +1413,7 @@
         },
         {
             "name": "GuxButtonDemoComponent",
-            "id": "component-GuxButtonDemoComponent-1a902d9b195648511e4c3c7af4735a51bfd81d9bfa93724a46384c15cfeee1ede8f4e4211769ab1c39d701133a8efeef4f7df0e96b7e05bca6107092ccd81f6e",
+            "id": "component-GuxButtonDemoComponent-a9c4e7463051014d1cbf83ef2bdce34c936e18f417091143e3396a1faf87d59e23f8457da496030ddc5bbd90fb353e5b31b0c432e6362723e239e74d89ea37a7",
             "file": "src/app/demos/button/button.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1594,7 +1510,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\nimport { GlobalMessageService } from 'src/app/services/global-message.service';\nimport { GlobalMessageType } from 'src/app/interfaces/global-message-type';\n\nimport { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';\nimport { DropdownItems, Examples } from './button.data';\n\n@Component({\n  selector: 'button-demo',\n  templateUrl: './button.html',\n  styleUrls: ['./button.scss']\n})\nexport class GuxButtonDemoComponent implements OnInit {\n\n  /**\n  * Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n  */\n  dropdownItems = DropdownItems;\n  examples = Examples;\n   \n  /**\n  * Setup demo (REQUIRED)\n  */\n  example: GuxButtonType[];\n    \n  public btnClickedMsg: string = 'Click a button';\n\n  constructor(\n    private globalMessageService: GlobalMessageService\n  ) { }\n\n  ngOnInit() {\n    this.example = this.examples[0];\n  }\n\n  /**\n  * This method displays handling the button click event both as an event\n  * and by sending the data to the Global Message Service\n  */\n  public btnClicked = ($event, btnLabel) => {\n    const msg = 'Clicked ' + btnLabel + ' button';\n    this.btnClickedMsg = msg;\n    const messagePacket: GlobalMessageType = {\n      severity: 'warn',\n      summary: 'This is the message summary',\n      detail: 'This is the message detail',\n      id: 0,\n      key: 'gux-banner',\n      life: 30,\n      sticky: true,\n      closable: true,\n      data: {\n        field1: '1',\n        field2: '2'\n      },\n      icon: 'warning',\n      contentStyleClass: '',\n      styleClass: ''\n    }\n    this.globalMessageService.sendMessage(messagePacket);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\nimport { GlobalMessageService } from 'src/app/services/global-message.service';\nimport { GlobalMessageType } from 'src/app/interfaces/global-message-type';\n\nimport { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';\nimport { DropdownItems, Examples } from './button.data';\n\n@Component({\n  selector: 'button-demo',\n  templateUrl: './button.html',\n  styleUrls: ['./button.scss']\n})\nexport class GuxButtonDemoComponent implements OnInit {\n\n  /**\n  * Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n  */\n  dropdownItems = DropdownItems;\n  examples = Examples;\n   \n  /**\n  * Setup demo (REQUIRED)\n  */\n  example: GuxButtonType[];\n    \n  public btnClickedMsg: string = 'Click a button';\n\n  constructor(\n    private globalMessageService: GlobalMessageService\n  ) { }\n\n  ngOnInit() {\n    this.example = this.examples[0];\n  }\n\n  /**\n  * This method displays handling the button click event both as an event\n  * and by sending the data to the Global Message Service\n  */\n  public btnClicked = ($event, btnLabel) => {\n    if (btnLabel) {\n      this.btnClickedMsg = 'Clicked on button with label: ' + btnLabel;\n    } else {\n      this.btnClickedMsg = 'Clicked on button with no label';\n    }\n    const messagePacket: GlobalMessageType = {\n      severity: 'warn',\n      summary: 'This is the message summary',\n      detail: 'This is the message detail',\n      id: 0,\n      key: 'gux-toast',\n      life: 30,\n      sticky: true,\n      closable: true,\n      data: {\n        field1: '1',\n        field2: '2'\n      },\n      icon: 'warning',\n      contentStyleClass: '',\n      styleClass: ''\n    }\n    this.globalMessageService.sendMessage(messagePacket);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2766,7 +2682,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "TreeNode[]",
-                "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'components/GuxButtonComponent'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'components/GuxDropdownComponent'\n    }]\n  }, {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [{\n      label: 'Success Message',\n      type: 'navigation',\n      data: 'services/SuccessMessageService'\n    }]\n  }, {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'interfaces/GuxButtonType'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownType'\n    }, {\n      label: 'Dropdown Option',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownOptionType'\n    }]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                "defaultValue": "[{\n  label: 'Home',\n  type: 'navigation',\n  data: '/'\n}, {\n  label: 'Components',\n  type: 'navigation',\n  data: 'components/home/cux',\n  children: [{\n    label: 'Button',\n    type: 'navigation',\n    data: 'components/GuxButtonComponent'\n  }, {\n    label: 'Dropdown',\n    type: 'navigation',\n    data: 'components/GuxDropdownComponent'\n  }]\n}, {\n  label: 'Interfaces',\n  type: 'navigation',\n  data: 'interfaces/home/cux',\n  children: [{\n    label: 'Button',\n    type: 'navigation',\n    data: 'interfaces/GuxButtonType'\n  }, {\n    label: 'Dropdown',\n    type: 'navigation',\n    data: 'interfaces/GuxDropdownType'\n  }, {\n    label: 'Dropdown Option',\n    type: 'navigation',\n    data: 'interfaces/GuxDropdownOptionType'\n  }]\n}]"
             },
             {
                 "name": "OutputColumns",
@@ -3010,7 +2926,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "TreeNode[]",
-                    "defaultValue": "[\n  {\n    label: 'Home',\n    type: 'navigation',\n    data: '/'\n  }, {\n    label: 'Components',\n    type: 'navigation',\n    data: 'components/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'components/GuxButtonComponent'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'components/GuxDropdownComponent'\n    }]\n  }, {\n    label: 'Services',\n    type: 'navigation',\n    data: 'services/home/cux',\n    children: [{\n      label: 'Success Message',\n      type: 'navigation',\n      data: 'services/SuccessMessageService'\n    }]\n  }, {\n    label: 'Interfaces',\n    type: 'navigation',\n    data: 'interfaces/home/cux',\n    children: [{\n      label: 'Button',\n      type: 'navigation',\n      data: 'interfaces/GuxButtonType'\n    }, {\n      label: 'Dropdown',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownType'\n    }, {\n      label: 'Dropdown Option',\n      type: 'navigation',\n      data: 'interfaces/GuxDropdownOptionType'\n    }]\n  }, {\n    label: 'Pipes',\n  }, {\n    label: 'Directives',\n    type: 'navigation',\n    data: 'directives/home/cux',\n    children: [{\n      label: 'Ellipsify',\n      type: 'navigation',\n      data: 'directives/CuxEllipsifyDirective'\n    }, {\n      label: 'Input',\n      type: 'navigation',\n      data: 'directives/CuxInputDirective'\n    }, {\n      label: 'Tooltip',\n      type: 'navigation',\n      data: 'directives/CuxTitleTooltipDirective'\n    }]\n  }, {\n    label: 'Miscellaneous',\n    type: 'navigation',\n    data: 'miscellaneous/home/cux',\n    children: [{\n      label: 'Variables, Enumerations, etc.',\n      type: 'navigation',\n      data: 'miscellaneous/cux'\n    }]\n  }\n]"
+                    "defaultValue": "[{\n  label: 'Home',\n  type: 'navigation',\n  data: '/'\n}, {\n  label: 'Components',\n  type: 'navigation',\n  data: 'components/home/cux',\n  children: [{\n    label: 'Button',\n    type: 'navigation',\n    data: 'components/GuxButtonComponent'\n  }, {\n    label: 'Dropdown',\n    type: 'navigation',\n    data: 'components/GuxDropdownComponent'\n  }]\n}, {\n  label: 'Interfaces',\n  type: 'navigation',\n  data: 'interfaces/home/cux',\n  children: [{\n    label: 'Button',\n    type: 'navigation',\n    data: 'interfaces/GuxButtonType'\n  }, {\n    label: 'Dropdown',\n    type: 'navigation',\n    data: 'interfaces/GuxDropdownType'\n  }, {\n    label: 'Dropdown Option',\n    type: 'navigation',\n    data: 'interfaces/GuxDropdownOptionType'\n  }]\n}]"
                 }
             ]
         },

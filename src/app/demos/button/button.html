@@ -14,10 +14,9 @@
         [isRaised]="item.isRaised"
         [isOutlined]="item.isOutlined"
         [isRounded]="item.isRounded"
-        (onClick)="btnClicked($event, item.label)"
+        (onClick)="btnClicked($event, item.label, item.icon)"
       ></gux-button>
     </div>
   </div>
 
-  <div class="click-message">Click result handled by event: {{ btnClickedMsg }}</div>
 </div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CocoaDocsComponentHomeComponent } from './component-home.component';
+import { DocsComponentHomeComponent } from './component-home.component';
 
 describe('BaseComponentComponent', () => {
-  let component: CocoaDocsComponentHomeComponent;
-  let fixture: ComponentFixture<CocoaDocsComponentHomeComponent>;
+  let component: DocsComponentHomeComponent;
+  let fixture: ComponentFixture<DocsComponentHomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CocoaDocsComponentHomeComponent ]
+      declarations: [ DocsComponentHomeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CocoaDocsComponentHomeComponent);
+    fixture = TestBed.createComponent(DocsComponentHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

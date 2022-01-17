@@ -2,11 +2,8 @@
 * @ignore
 */
 export const MiscellaneousList: any = [{
-  name: 'cocoa',
-  location: 'projects/cocoa/src'
-}, {
-  name: 'cux',
-  location: 'projects/cocoa/cux/src'
+  name: 'gux',
+  location: 'src/app/gux'
 }];
 
 export const EnumerationIgnore: string[] = [];

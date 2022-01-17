@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MessageService } from 'primeng/api';
+
 import { GlobalMessageService } from 'src/app/services/global-message.service';
 import { GlobalMessageType } from 'src/app/interfaces/global-message-type';
 
@@ -13,20 +15,13 @@ import { DropdownItems, Examples } from './button.data';
 })
 export class GuxButtonDemoComponent implements OnInit {
 
-  /**
-  * Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)
-  */
   dropdownItems = DropdownItems;
   examples = Examples;
-   
-  /**
-  * Setup demo (REQUIRED)
-  */
+
   example: GuxButtonType[];
     
-  public btnClickedMsg: string = 'Click a button';
-
   constructor(
+    private messageService: MessageService,
     private globalMessageService: GlobalMessageService
   ) { }
 
@@ -34,31 +29,28 @@ export class GuxButtonDemoComponent implements OnInit {
     this.example = this.examples[0];
   }
 
-  /**
-  * This method displays handling the button click event both as an event
-  * and by sending the data to the Global Message Service
-  */
-  public btnClicked = ($event, btnLabel) => {
-    const msg = 'Clicked ' + btnLabel + ' button';
-    this.btnClickedMsg = msg;
+  public btnClicked = ($event, btnLabel, btnIcon) => {
+    let detail: string = 'Unknown value';
+    if (btnLabel) {
+      detail = 'Clicked on button with label: ' + btnLabel;
+    } else if (btnIcon) {
+      detail = 'Clicked on button with icon: ' + btnIcon;
+    }
     const messagePacket: GlobalMessageType = {
-      severity: 'warn',
-      summary: 'This is the message summary',
-      detail: 'This is the message detail',
-      id: 0,
-      key: 'gux-banner',
+      severity: 'success',
+      summary: 'Global Message Bus Delivery',
+      detail: detail,
+      key: 'gux-toast',
       life: 30,
       sticky: true,
-      closable: true,
-      data: {
-        field1: '1',
-        field2: '2'
-      },
-      icon: 'warning',
-      contentStyleClass: '',
-      styleClass: ''
+      closable: false
     }
     this.globalMessageService.sendMessage(messagePacket);
+
+    setTimeout(() => {
+      this.messageService.clear();
+    }, 1500);
+
   }
 
 }

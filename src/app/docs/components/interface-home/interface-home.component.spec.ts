@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CocoaDocsInterfaceHomeComponent } from './interface-home.component';
+import { DocsInterfaceHomeComponent } from './interface-home.component';
 
 describe('BaseComponentComponent', () => {
-  let component: CocoaDocsInterfaceHomeComponent;
-  let fixture: ComponentFixture<CocoaDocsInterfaceHomeComponent>;
+  let component: DocsInterfaceHomeComponent;
+  let fixture: ComponentFixture<DocsInterfaceHomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CocoaDocsInterfaceHomeComponent ]
+      declarations: [ DocsInterfaceHomeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CocoaDocsInterfaceHomeComponent);
+    fixture = TestBed.createComponent(DocsInterfaceHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

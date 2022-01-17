@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './interface-home.component.html',
   styleUrls: ['../../assets/styles/base-styles.scss']
 })
-export class CocoaDocsInterfaceHomeComponent implements OnInit, OnDestroy {
+export class DocsInterfaceHomeComponent implements OnInit, OnDestroy {
   
   navigation: Subscription;
   target: string = '';
