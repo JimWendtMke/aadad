@@ -3,7 +3,7 @@
   background-color: white;
   border-radius: 10px 10px 0px 0px;
   .selector {
-    color: orange;
+    color: #007bff;
   }
   .arrows {
     color: #b6b6b6;
@@ -28,7 +28,7 @@
     background-color: transparent;
     font-size: 24px;
     :hover {
-      color: orange;
+      color: #007bff;
     }
   }
 }
@@ -49,7 +49,7 @@
   .comp-error-title {
     margin-bottom: 10px;
     font-size: 24px;
-    color: orange;
+    color: #007bff;
   }
   .comp-error-body {
     padding: 20px;
@@ -80,7 +80,7 @@
   margin-top: 1.2rem;
   width: 80%;
   float: left;
-  border-top-color: orange;
+  border-top-color: #007bff;
 }
 
 :host ::ng-deep .p-grid {
