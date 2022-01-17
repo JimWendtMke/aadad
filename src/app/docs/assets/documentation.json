@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "City",
-            "id": "interface-City-4bd1f36dd1aadfadc79956deefee07f7906565ba6e814522e3353d9f5dda9e73060ce5c67e5819defd037af6239c352d4401a8839da788c7df58596ee56d1603",
+            "id": "interface-City-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
             "file": "src/app/app.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      if (message.key === 'cux-banner') {\n        this.messages.push(message);\n        this.primeMessageService.add(message);\n      }\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
             "properties": [
                 {
                     "name": "code",
@@ -660,7 +660,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-4bd1f36dd1aadfadc79956deefee07f7906565ba6e814522e3353d9f5dda9e73060ce5c67e5819defd037af6239c352d4401a8839da788c7df58596ee56d1603",
+            "id": "component-AppComponent-01b29d4eb469267c0e2e5a5f49f1719b6df6d590d52838bcb22a126b7f255b60b1306617870a34a87fc86f799148606da3a1f7508ea4b7620320957aab7f52b1",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -772,7 +772,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 79,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -782,7 +782,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 71,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -792,7 +792,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 94,
+                    "line": 92,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -809,7 +809,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 67,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -843,7 +843,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 85,
+                    "line": 83,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -875,7 +875,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      if (message.key === 'cux-banner') {\n        this.messages.push(message);\n        this.primeMessageService.add(message);\n      }\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Router } from '@angular/router';\n\nimport { Subscription } from 'rxjs';\n\nimport { TreeNode } from 'primeng/api';\nimport { MessageService as PrimeMessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from './services/global-message.service';\nimport { GlobalMessageType } from './interfaces/global-message-type';\n\nimport { Navigation } from './navigation';\n\n\ninterface City {\n  name: string,\n  code: string,\n  disabled?: boolean\n}\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss'],\n  providers: [ GlobalMessageService, PrimeMessageService ]\n})\n\nexport class AppComponent implements OnDestroy {\n  title = 'developer';\n  navigation: any;\n  messages: any = [];\n  subscription: Subscription;\n\n\n  cities: City[];\n  selectedCity: City;\n\n\n  sourceCode: string = \"\";\n\n  constructor(\n    private router: Router,\n    public primeMessageService: PrimeMessageService,\n    private globalMessageService: GlobalMessageService\n  ) {\n    this.selectedCity = {\n      name: '',\n      code: ''\n    }\n    this.cities = [\n      {name: 'New York', code: 'NY'},\n      {name: 'Rome, Italy', code: 'RM'},\n      {name: 'London', code: 'LDN'},\n      {name: 'Istanbul', code: 'IST'},\n      {name: 'Paris', code: 'PRS'}\n    ];\n\n\n    this.navigation = Navigation;\n    this.subscription = this.globalMessageService.getMessage().subscribe((message: GlobalMessageType) => {\n      this.messages.push(message);\n      this.primeMessageService.add(message);\n    });\n  }\n\n  nodeSelect(event) {\n    if (event.node.type === 'navigation' && event.node.data) {\n      this.router.navigateByUrl(event.node.data);\n    }\n  }\n\n  expandAll(){\n    this.navigation.forEach(node => {\n      this.recursiveToggle(node, true);\n    });\n  }\n\n  collapseAll(){\n    this.navigation.forEach( node => {\n      this.recursiveToggle(node, false);\n    });\n  }\n\n  recursiveToggle(node:TreeNode, isExpand:boolean){\n    node.expanded = isExpand;\n    if (node.children) {\n      node.children.forEach( childNode => {\n        this.recursiveToggle(childNode, isExpand);\n      });\n    }\n  }\n\n  ngOnDestroy() {\n    this.subscription.unsubscribe();\n  }\n\n}\n\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -943,7 +943,7 @@
             "implements": [
                 "OnDestroy"
             ],
-            "templateData": "\n<div class=\"banner\">\n  <p-messages [(value)]=\"messages\"></p-messages>\n</div>\n<p-toast></p-toast>\n\n<!--\n<gux-banner></gux-banner>\n-->\n\n<div class=\"content-wrapper\">\n  <span class=\"left\">\n    <!--\n    <div>\n      <span class=\"icon\"></span>\n    </div>\n    -->\n\n    <div class=\"button-wrapper\">\n      <gux-button\n        icon=\"angle-double-right\"\n        isRounded=\"true\"\n        isRaised=\"true\"\n        pTooltip=\"Expand All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"expandAll()\"\n        inlineStyle=\"margin-right:.5rem\"\n      ></gux-button>\n      <gux-button\n        isRounded=\"true\"\n        isRaised=\"true\"\n        icon=\"angle-double-up\"\n        pTooltip=\"Collapse All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"collapseAll()\"\n      ></gux-button>\n    </div>\n\n    <p-tree\n        class=\"navTree\"\n        [value]=\"navigation\"\n        selectionMode=\"single\"\n        (onNodeSelect)=\"nodeSelect($event)\"\n    ></p-tree>\n  </span>\n\n  <div class=\"right\" style=\"overflow-y:auto\">\n    <div class=\"demo-header\">\n      <h1><u>A</u>utomated <u>A</u>ngular <u>D</u>ocumentation <u>a</u>nd <u>D</u>emo Library</h1>\n    </div>\n    <div class=\"content\">\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n\n</div>"
+            "templateData": "\n<div class=\"banner\">\n  <p-messages key=\"gux-banner\"></p-messages>\n</div>\n<p-toast\n  key=\"gux-toast\"\n></p-toast>\n\n<!--\n<gux-banner></gux-banner>\n-->\n\n<div class=\"content-wrapper\">\n  <span class=\"left\">\n    <!--\n    <div>\n      <span class=\"icon\"></span>\n    </div>\n    -->\n\n    <div class=\"button-wrapper\">\n      <gux-button\n        icon=\"angle-double-right\"\n        isRounded=\"true\"\n        isRaised=\"true\"\n        pTooltip=\"Expand All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"expandAll()\"\n        inlineStyle=\"margin-right:.5rem\"\n      ></gux-button>\n      <gux-button\n        isRounded=\"true\"\n        isRaised=\"true\"\n        icon=\"angle-double-up\"\n        pTooltip=\"Collapse All\"\n        tooltipPosition=\"bottom\"\n        (click)=\"collapseAll()\"\n      ></gux-button>\n    </div>\n\n    <p-tree\n        class=\"navTree\"\n        [value]=\"navigation\"\n        selectionMode=\"single\"\n        (onNodeSelect)=\"nodeSelect($event)\"\n    ></p-tree>\n  </span>\n\n  <div class=\"right\" style=\"overflow-y:auto\">\n    <div class=\"demo-header\">\n      <h1><u>A</u>utomated <u>A</u>ngular <u>D</u>ocumentation <u>a</u>nd <u>D</u>emo Library</h1>\n    </div>\n    <div class=\"content\">\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n\n</div>"
         },
         {
             "name": "DocsComponent",
@@ -1413,7 +1413,7 @@
         },
         {
             "name": "GuxButtonDemoComponent",
-            "id": "component-GuxButtonDemoComponent-a9c4e7463051014d1cbf83ef2bdce34c936e18f417091143e3396a1faf87d59e23f8457da496030ddc5bbd90fb353e5b31b0c432e6362723e239e74d89ea37a7",
+            "id": "component-GuxButtonDemoComponent-375b01d9e6cdd606c2072dfb069e52ec64051a651cc95309caa9f491b0cb43a896b24e47a9faf2f4bf5f88a68633619894c1c492fe8349928221f497c566d346",
             "file": "src/app/demos/button/button.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1439,22 +1439,8 @@
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "<p>This method displays handling the button click event both as an event\nand by sending the data to the Global Message Service</p>\n",
-                    "line": 41,
-                    "rawdescription": "\n\nThis method displays handling the button click event both as an event\nand by sending the data to the Global Message Service\n",
-                    "modifierKind": [
-                        123
-                    ]
-                },
-                {
-                    "name": "btnClickedMsg",
-                    "defaultValue": "'Click a button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 32,
                     "modifierKind": [
                         123
                     ]
@@ -1466,9 +1452,8 @@
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
-                    "description": "<p>Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)</p>\n",
-                    "line": 19,
-                    "rawdescription": "\n\nSetup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n"
+                    "description": "",
+                    "line": 18
                 },
                 {
                     "name": "example",
@@ -1476,9 +1461,8 @@
                     "deprecationMessage": "",
                     "type": "GuxButtonType[]",
                     "optional": false,
-                    "description": "<p>Setup demo (REQUIRED)</p>\n",
-                    "line": 25,
-                    "rawdescription": "\n\nSetup demo (REQUIRED)\n"
+                    "description": "",
+                    "line": 21
                 },
                 {
                     "name": "examples",
@@ -1488,7 +1472,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 19
                 }
             ],
             "methodsClass": [
@@ -1498,7 +1482,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1510,11 +1494,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\nimport { GlobalMessageService } from 'src/app/services/global-message.service';\nimport { GlobalMessageType } from 'src/app/interfaces/global-message-type';\n\nimport { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';\nimport { DropdownItems, Examples } from './button.data';\n\n@Component({\n  selector: 'button-demo',\n  templateUrl: './button.html',\n  styleUrls: ['./button.scss']\n})\nexport class GuxButtonDemoComponent implements OnInit {\n\n  /**\n  * Setup examples data (REQUIRED TO MODIFY DEMO DATA IF MULTIPLE DEMOS ARE DISPLAYED)\n  */\n  dropdownItems = DropdownItems;\n  examples = Examples;\n   \n  /**\n  * Setup demo (REQUIRED)\n  */\n  example: GuxButtonType[];\n    \n  public btnClickedMsg: string = 'Click a button';\n\n  constructor(\n    private globalMessageService: GlobalMessageService\n  ) { }\n\n  ngOnInit() {\n    this.example = this.examples[0];\n  }\n\n  /**\n  * This method displays handling the button click event both as an event\n  * and by sending the data to the Global Message Service\n  */\n  public btnClicked = ($event, btnLabel) => {\n    if (btnLabel) {\n      this.btnClickedMsg = 'Clicked on button with label: ' + btnLabel;\n    } else {\n      this.btnClickedMsg = 'Clicked on button with no label';\n    }\n    const messagePacket: GlobalMessageType = {\n      severity: 'warn',\n      summary: 'This is the message summary',\n      detail: 'This is the message detail',\n      id: 0,\n      key: 'gux-toast',\n      life: 30,\n      sticky: true,\n      closable: true,\n      data: {\n        field1: '1',\n        field2: '2'\n      },\n      icon: 'warning',\n      contentStyleClass: '',\n      styleClass: ''\n    }\n    this.globalMessageService.sendMessage(messagePacket);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\nimport { MessageService } from 'primeng/api';\n\nimport { GlobalMessageService } from 'src/app/services/global-message.service';\nimport { GlobalMessageType } from 'src/app/interfaces/global-message-type';\n\nimport { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';\nimport { DropdownItems, Examples } from './button.data';\n\n@Component({\n  selector: 'button-demo',\n  templateUrl: './button.html',\n  styleUrls: ['./button.scss']\n})\nexport class GuxButtonDemoComponent implements OnInit {\n\n  dropdownItems = DropdownItems;\n  examples = Examples;\n\n  example: GuxButtonType[];\n    \n  constructor(\n    private messageService: MessageService,\n    private globalMessageService: GlobalMessageService\n  ) { }\n\n  ngOnInit() {\n    this.example = this.examples[0];\n  }\n\n  public btnClicked = ($event, btnLabel, btnIcon) => {\n    let detail: string = 'Unknown value';\n    if (btnLabel) {\n      detail = 'Clicked on button with label: ' + btnLabel;\n    } else if (btnIcon) {\n      detail = 'Clicked on button with icon: ' + btnIcon;\n    }\n    const messagePacket: GlobalMessageType = {\n      severity: 'success',\n      summary: 'Global Message Bus Delivery',\n      detail: detail,\n      key: 'gux-toast',\n      life: 30,\n      sticky: true,\n      closable: false\n    }\n    this.globalMessageService.sendMessage(messagePacket);\n\n    setTimeout(() => {\n      this.messageService.clear();\n    }, 1500);\n\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".button-demo-container {\n  border: 1px solid white;\n  border-radius: 10px;\n  .button-container {\n    background-color: white;\n    display: flex;\n    justify-content: space-evenly;\n    border: 1px solid white;\n    border-radius: 10px 10px 0px 0px;\n    .button-wrapper {\n      margin: 20px 0px;\n    }\n  }\n  .click-message {\n    display: flex;\n    justify-content: center;\n    padding: 50px;\n    border-radius: 10px 0px 10px 10px;\n    font-size: 20px;\n    align-items: center;\n  }\n}\n",
+                    "data": ".button-demo-container {\n  border: 1px solid white;\n  border-radius: 10px;\n  .button-container {\n    background-color: white;\n    display: flex;\n    justify-content: space-evenly;\n    border: 1px solid white;\n    border-radius: 10px 10px 0px 0px;\n    padding-bottom: 20px;\n  }\n}\n",
                     "styleUrl": "./button.scss"
                 }
             ],
@@ -1526,14 +1510,29 @@
                 "deprecationMessage": "",
                 "args": [
                     {
+                        "name": "messageService",
+                        "type": "MessageService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
                         "name": "globalMessageService",
                         "type": "GlobalMessageService",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 27,
+                "line": 21,
                 "jsdoctags": [
+                    {
+                        "name": "messageService",
+                        "type": "MessageService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
                     {
                         "name": "globalMessageService",
                         "type": "GlobalMessageService",
@@ -1548,7 +1547,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"button-demo-container\">\n  <div class=\"button-container\">\n    <div class=\"p-mr-2 p-mb-2\" *ngFor=\"let item of example\">\n      <gux-button\n        [label]=\"item.label\"\n        [buttonMode]=\"item.buttonMode\"\n        [buttonSize]=\"item.buttonSize\"\n        [icon]=\"item.icon\"\n        [iconPosition]=\"item.iconPosition\"\n        [tooltip]=\"item.tooltip\"\n        [tooltipPosition]=\"item.tooltipPosition\"\n        [isDisabled]=\"item.isDisabled\"\n        [isTextOnly]=\"item.isTextOnly\"\n        [isRaised]=\"item.isRaised\"\n        [isOutlined]=\"item.isOutlined\"\n        [isRounded]=\"item.isRounded\"\n        (onClick)=\"btnClicked($event, item.label)\"\n      ></gux-button>\n    </div>\n  </div>\n\n  <div class=\"click-message\">Click result handled by event: {{ btnClickedMsg }}</div>\n</div>\n"
+            "templateData": "<div class=\"button-demo-container\">\n  <div class=\"button-container\">\n    <div class=\"p-mr-2 p-mb-2\" *ngFor=\"let item of example\">\n      <gux-button\n        [label]=\"item.label\"\n        [buttonMode]=\"item.buttonMode\"\n        [buttonSize]=\"item.buttonSize\"\n        [icon]=\"item.icon\"\n        [iconPosition]=\"item.iconPosition\"\n        [tooltip]=\"item.tooltip\"\n        [tooltipPosition]=\"item.tooltipPosition\"\n        [isDisabled]=\"item.isDisabled\"\n        [isTextOnly]=\"item.isTextOnly\"\n        [isRaised]=\"item.isRaised\"\n        [isOutlined]=\"item.isOutlined\"\n        [isRounded]=\"item.isRounded\"\n        (onClick)=\"btnClicked($event, item.label, item.icon)\"\n      ></gux-button>\n    </div>\n  </div>\n\n</div>\n"
         },
         {
             "name": "GuxComponent",
