@@ -1163,7 +1163,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".content {\n  font-family: \"Open Sans\";\n  background-color: white;\n  border-radius: 10px 10px 0px 0px;\n  .selector {\n    color: orange;\n  }\n  .arrows {\n    color: #b6b6b6;\n  }\n  .deprecated {\n    font-style: italic;\n    color: red;\n  }\n  .deprecation-message {\n    margin-top: -15px;\n  }\n  table {\n    border-collapse: collapse;\n    width: 100%;\n    td,\n    th {\n      text-align: left;\n    }\n  }\n  .copy-data {\n    color: #343a40;\n    background-color: transparent;\n    font-size: 24px;\n    :hover {\n      color: orange;\n    }\n  }\n}\n\n.selector-wrapper {\n    border: 1px solid #c8c8c8;\n    background: #f4f4f4;\n    padding: 10px;\n    margin-bottom: 5px;\n    border-radius: 3px;\n}\n\n.comp-error-container {\n  padding: 20px;\n  padding-top: 85px;\n  margin-right: 0px;\n  margin-left: 0px;\n  .comp-error-title {\n    margin-bottom: 10px;\n    font-size: 24px;\n    color: orange;\n  }\n  .comp-error-body {\n    padding: 20px;\n    border: 1px solid #acb3b9;\n    border-radius: 10px;\n    .comp-error-header {\n      font-size: 16px;\n      font-weight: bold;\n    }\n    .comp-error-content {\n      margin: 15px 0px;\n      color: #838b92;\n    }\n    .comp-error-footer {\n      color: #838b92;\n      margin-bottom: 30px;\n    }\n  }\n}\n\n.style-url {\n  font-weight: bold;\n  padding-left: 15px;\n  margin-bottom: -15px;\n}\n\n:host ::ng-deep hr {\n  margin-top: 1.2rem;\n  width: 80%;\n  float: left;\n  border-top-color: orange;\n}\n\n:host ::ng-deep .p-grid {\n  margin: 10px 5px;\n  .p-col {\n    padding: 10px;\n  }\n}\n/**\n* Override the github css styles for easier reading\n*/\n:host ::ng-deep .hljs-ln-numbers {\n  width: 25px;\n  border-right: 1px solid #24292e;\n}\n:host ::ng-deep .hljs-ln-code {\n  padding-left: 15px;\n}\n",
+                    "data": ".content {\n  font-family: \"Open Sans\";\n  background-color: white;\n  border-radius: 10px 10px 0px 0px;\n  .selector {\n    color: #007bff;\n  }\n  .arrows {\n    color: #b6b6b6;\n  }\n  .deprecated {\n    font-style: italic;\n    color: red;\n  }\n  .deprecation-message {\n    margin-top: -15px;\n  }\n  table {\n    border-collapse: collapse;\n    width: 100%;\n    td,\n    th {\n      text-align: left;\n    }\n  }\n  .copy-data {\n    color: #343a40;\n    background-color: transparent;\n    font-size: 24px;\n    :hover {\n      color: #007bff;\n    }\n  }\n}\n\n.selector-wrapper {\n    border: 1px solid #c8c8c8;\n    background: #f4f4f4;\n    padding: 10px;\n    margin-bottom: 5px;\n    border-radius: 3px;\n}\n\n.comp-error-container {\n  padding: 20px;\n  padding-top: 85px;\n  margin-right: 0px;\n  margin-left: 0px;\n  .comp-error-title {\n    margin-bottom: 10px;\n    font-size: 24px;\n    color: #007bff;\n  }\n  .comp-error-body {\n    padding: 20px;\n    border: 1px solid #acb3b9;\n    border-radius: 10px;\n    .comp-error-header {\n      font-size: 16px;\n      font-weight: bold;\n    }\n    .comp-error-content {\n      margin: 15px 0px;\n      color: #838b92;\n    }\n    .comp-error-footer {\n      color: #838b92;\n      margin-bottom: 30px;\n    }\n  }\n}\n\n.style-url {\n  font-weight: bold;\n  padding-left: 15px;\n  margin-bottom: -15px;\n}\n\n:host ::ng-deep hr {\n  margin-top: 1.2rem;\n  width: 80%;\n  float: left;\n  border-top-color: #007bff;\n}\n\n:host ::ng-deep .p-grid {\n  margin: 10px 5px;\n  .p-col {\n    padding: 10px;\n  }\n}\n/**\n* Override the github css styles for easier reading\n*/\n:host ::ng-deep .hljs-ln-numbers {\n  width: 25px;\n  border-right: 1px solid #24292e;\n}\n:host ::ng-deep .hljs-ln-code {\n  padding-left: 15px;\n}\n",
                     "styleUrl": "../../assets/styles/base-styles.scss"
                 }
             ],
@@ -2702,21 +2702,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "HostListenersColumns",
@@ -2977,18 +2977,6 @@
                     "defaultValue": "[\n  'MODAL_DATA',\n  'require',\n  'testCardAddress'\n]"
                 }
             ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -2999,6 +2987,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/app/navigation.ts": [
