@@ -48,7 +48,7 @@ export class GuxButtonComponent implements OnInit {
   /**
   * When present and true, it specifies that the button should be text only
   */
-  @Input() isTextOnly?: boolean = false;
+  @Input() isTextOnly: boolean = false;
   /**
   * When present, it specifies that the button should be raised
   */

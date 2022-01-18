@@ -1,5 +1,4 @@
 .content {
-  font-family: "Open Sans";
   background-color: white;
   border-radius: 10px 10px 0px 0px;
   .selector {
@@ -21,14 +20,6 @@
     td,
     th {
       text-align: left;
-    }
-  }
-  .copy-data {
-    color: #343a40;
-    background-color: transparent;
-    font-size: 24px;
-    :hover {
-      color: #007bff;
     }
   }
 }
@@ -69,11 +60,8 @@
     }
   }
 }
-
-.style-url {
-  font-weight: bold;
-  padding-left: 15px;
-  margin-bottom: -15px;
+pre code {
+  border-radius: 10px;
 }
 
 :host ::ng-deep hr {

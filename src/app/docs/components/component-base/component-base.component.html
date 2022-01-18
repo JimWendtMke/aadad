@@ -28,9 +28,17 @@
     </p-tabPanel>
 
     <p-tabPanel *ngIf="targetDemoComponent && dropdownItems && dropdownItems.length" header="Example Data">
-      <h1>Example {{ selectedItem.value + 1 }}: {{ selectedItem.label }}
-        <button class="copy-data" (click)="copyToClipboard(targetDemoData)" title="Copy data to clipboard"><span class="pi pi-copy"></span></button>
-      </h1>
+      <h3>Example {{ selectedItem.value + 1 }}: {{ selectedItem.label }}
+        <gux-button
+          buttonMode="primary"
+          icon="copy"
+          isRounded="true"
+          isOutlined="true"
+          tooltip="Copy data to clipboard"
+          tooltipPosition="bottom"
+          (click)="copyToClipboard(targetDemoData)"
+        ></gux-button>
+      </h3>
       <pre><code [highlight]="targetDemoData" [languages]="['typescript']" [lineNumbers]=true></code></pre>
     </p-tabPanel>
 
@@ -109,9 +117,15 @@
     </p-tabPanel>
 
     <p-tabPanel header="Styles [{{ styleUrlsData.length}}]">
+
       <div *ngFor="let item of styleUrlsData">
-        <p class="style-url">{{ item.styleUrl }}</p>
-        <pre><code [highlight]="item.data" [languages]="['css']" [lineNumbers]=true></code></pre>
+        <h3>{{ item.styleUrl }}</h3>
+        <div *ngIf="!item.data.length">
+          <span class="arrows">Empty</span>
+        </div>
+        <pre *ngIf="item.data.length">
+          <code [highlight]="item.data" [languages]="['css']" [lineNumbers]=true></code>
+        </pre>
       </div>
     </p-tabPanel>
 

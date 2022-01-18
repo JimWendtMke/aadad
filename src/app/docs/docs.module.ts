@@ -6,6 +6,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 import { PrimengModule } from '../primeng/primeng.module';
+import { GuxModule } from '../gux/gux.module';
 
 import { DocsComponent } from './docs.component';
 import { DocsComponentBaseComponent } from './components/component-base/component-base.component';
@@ -26,6 +27,7 @@ import { GuxButtonDemoComponent } from '../demos/button/button';
   imports: [
     CommonModule,
     PrimengModule,
+    GuxModule,
     ClipboardModule,
     HighlightModule
   ],
