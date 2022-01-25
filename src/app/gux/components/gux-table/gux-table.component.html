@@ -1,0 +1,44 @@
+<p-table
+  styleClass="p-datatable-striped"
+  [columns]="columns"
+  [value]="rowData">
+
+  <ng-template
+    *ngIf="caption"
+    pTemplate="caption">
+      {{ caption }}
+  </ng-template>
+
+  <ng-template
+    *ngIf="columns.length"
+    pTemplate="header"
+    let-columns>
+    <tr>
+      <th *ngFor="let col of columns" class="{{ rowClass }}">{{ col.header }}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    *ngIf="rowData.length"
+    pTemplate="body"
+    let-rowData
+    let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns" class="{{ rowClass }}">{{ rowData[col.field] }}</td>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    *ngIf="!rowData.length && emptyText"
+    pTemplate="footer">
+    <div class="empty">{{ emptyText }}</div>
+  </ng-template>
+
+  <ng-template
+    *ngIf="summaryText"
+    pTemplate="summary">
+      {{ summaryText }}
+  </ng-template>
+
+</p-table>
+<div>&nbsp;</div>

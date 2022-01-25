@@ -24,6 +24,7 @@ export class DocsComponentBaseComponent implements OnInit, OnDestroy {
   dropdownItems: any = [];
   selectedItem: any;
 
+  rowHeight: string;
   navigation: Subscription;
   target: string;
   targetJSON: any;
@@ -41,17 +42,32 @@ export class DocsComponentBaseComponent implements OnInit, OnDestroy {
   sourceCode: string = '';
   styleUrlsData: Array<{}> = [];
 
+  inputCaption: string;
   inputItems: any = [];
   inputColumns: any[] = InputColumns;
+  inputFooter: boolean;
+  inputEmptyText: string;
+  inputSummaryText: string;
 
+  outputCaption: string;
   outputItems: any = [];
   outputColumns: any[] = OutputColumns;
+  outputFooter: boolean;
+  outputEmptyText: string;
+  outputSummaryText: string;
 
+  propertiesCaption: string;
   propertiesItems: any = [];
   propertiesColumns: any[] = PropertiesColumns;
+  propertiesFooter: boolean;
+  propertiesEmptyText: string;
+  propertiesSummaryText: string;
 
+  interfaceCaption: string;
   interfaceItems: string[] = [];
   interfaceColumns: any[] = InterfaceColumns;
+
+  languages: string[] = ['typescript'];
 
   constructor(
     private route: ActivatedRoute,
@@ -125,21 +141,32 @@ export class DocsComponentBaseComponent implements OnInit, OnDestroy {
         this.targetDemoData = JSON.stringify(this.targetDemoInstance.instance.examples[0], undefined, 2);
       }
     }
-
+    this.rowHeight = 'sm';
     /**
     * Input items table data of documentation tab
     */
+    this.inputCaption = 'Input Items';
     this.inputItems = this.targetJSON.inputsClass;
-
+    this.inputFooter = false;
+    this.inputEmptyText = 'None';
+    this.inputSummaryText = '';
     /**
     * Ouput items table data of documentation tab
     */
+    this.outputCaption = 'Output Items';
     this.outputItems = this.targetJSON.outputsClass;
+    this.outputFooter = false;
+    this.outputEmptyText = 'None';
+    this.outputSummaryText = '';
 
     /**
     * Properties items table data of documentation tab
     */
+    this.propertiesCaption = 'Properties/Methods';
     this.propertiesItems = this.targetJSON.propertiesClass;
+    this.propertiesFooter = false;
+    this.propertiesEmptyText = 'None';
+    this.propertiesSummaryText = '';
 
     /**
     * Data for source code tab

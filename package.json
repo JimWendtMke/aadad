@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run gen-docs && ng serve",
+    "build": "npm run gen-docs && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gen-docs:json": "compodoc -p ./tsconfig.json -e json -d ./src/app/docs/assets --disableCoverage",
-    "deploy-ghpages": "ng deploy --base-href=/docs/"
+    "gen-docs": "compodoc -p ./tsconfig.json -e json -d ./src/app/docs/assets --disableCoverage",
+    "deploy-ghpages": "npm run gen-docs && ng deploy --base-href=/docs/"
   },
   "private": true,
   "dependencies": {

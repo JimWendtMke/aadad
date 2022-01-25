@@ -12,10 +12,6 @@ body {
     width: 600px;
 }
 
-
-.minWidth {
-
-}
 .content-wrapper {
     position: absolute;
     top: 0px;
@@ -31,8 +27,11 @@ body {
         min-width: 300px;
         max-width: 300px;
         box-shadow: -6px 10px 4px 8px #c8c8c8;
-        .button-wrapper {
+        .avatar-wrapper {
             margin: 35px;
+            text-align: center;
+        }
+        .button-wrapper {
             text-align: center;
         }
     }

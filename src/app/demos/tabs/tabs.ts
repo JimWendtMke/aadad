@@ -1,29 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { GlobalMessageService } from 'src/app/services/global-message.service';
 import { GlobalMessageType } from 'src/app/interfaces/global-message-type';
 
-import { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';
-import { DropdownItems, Examples } from './button.data';
+import { GuxTabViewType } from 'src/app/gux/interfaces/gux-tabview-interface';
+import { DropdownItems, Examples } from './tabs.data';
 
 @Component({
-  selector: 'button-demo',
-  templateUrl: './button.html',
+  selector: 'tabs-demo',
+  templateUrl: './tabs.html',
   styleUrls: ['../../docs/assets/styles/base-styles.scss']
 })
-export class GuxButtonDemoComponent implements OnInit {
+export class GuxTabsDemoComponent implements OnInit {
 
   dropdownItems = DropdownItems;
   examples = Examples;
 
-  example: GuxButtonType[];
+  example: GuxTabViewType[];
     
   constructor(
+    public componentFactoryResolver: ComponentFactoryResolver,
     private globalMessageService: GlobalMessageService
   ) { }
 
   ngOnInit() {
     this.example = this.examples[0];
+    
+    if (!this.cardData.body.isHTML) {
+      let contentFactory = this.componentFactoryResolver.resolveComponentFactory(this.cardData.body.content);
+      cardComponent.instance['componentData'] = this.cardData.body.componentData;
+    }
   }
 
   public btnClicked = ($event, btnLabel, btnIcon) => {
@@ -46,3 +52,4 @@ export class GuxButtonDemoComponent implements OnInit {
   }
 
 }
+

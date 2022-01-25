@@ -1,6 +1,9 @@
 /**
 * @ignore
 */
+
+import { GuxTableColumnType } from "../gux/interfaces/gux-table-column";
+
 export const MiscellaneousList: any = [{
   name: 'gux',
   location: 'src/app/gux'
@@ -14,14 +17,14 @@ export const VariableIgnore: string[] = [
   'testCardAddress'
 ];
 
-export const EnumerationColumns: any[] = [{
+export const EnumerationColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
   field: 'value',
   header: 'Value'
 }];
-export const HostListenersColumns: any[] = [{
+export const HostListenersColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
@@ -29,7 +32,7 @@ export const HostListenersColumns: any[] = [{
   header: 'Description'
 }];
 
-export const InputColumns: any[] = [{
+export const InputColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
@@ -43,7 +46,7 @@ export const InputColumns: any[] = [{
   header: 'Description'
 }];
 
-export const InterfaceColumns: any[] = [{
+export const InterfaceColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
@@ -60,7 +63,7 @@ export const InterfaceColumns: any[] = [{
   header: 'Description'
 }];
 
-export const MethodsColumns: any[] = [{
+export const MethodsColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
@@ -68,7 +71,7 @@ export const MethodsColumns: any[] = [{
   header: 'Description'
 }];
 
-export const OutputColumns: any[] = [{
+export const OutputColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {
@@ -82,7 +85,7 @@ export const OutputColumns: any[] = [{
   header: 'Description'
 }];
 
-export const PropertiesColumns: any[] = [{
+export const PropertiesColumns: GuxTableColumnType[] = [{
   field: 'name',
   header: 'Name'
 }, {

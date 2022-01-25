@@ -1,4 +1,4 @@
-import { GuxDropdownOptionType } from "./gux-dropdown-option.interface";
+import { GuxDropdownOptionType } from './gux-dropdown-option.interface';
 
 export interface GuxDropdownType {
   /**
@@ -28,7 +28,7 @@ export interface GuxDropdownType {
   /**
   * Position of the label, valid values are top, left and float
   */
-  labelPosition?: string;
+  labelPosition?: 'top' | 'left' | 'float';
   /**
   * When present, it specifies that an input field must be filled out before submitting the form
   */
@@ -64,5 +64,5 @@ export interface GuxDropdownType {
   /**
   * Position of the tooltip, valid values are right, left, top and bottom
   */
-  tooltipPosition?: string;
+  tooltipPosition?: 'top' | 'left' | 'bottom' | 'right';
 }

@@ -6,23 +6,17 @@
   <p *ngIf="deprecationMessage" class="deprecation-message">{{ deprecationMessage }}</p>
 
   <p-tabView>
-
+  
     <p-tabPanel header="Documentation">
-      <div class="demo-container">
-
-        <!-- PROPERTIES ITEMS TABLE-->
-        <h2 style="margin: 10px 0 0 0;">Properties</h2>
-        <p *ngIf="!propertiesItems.length">None</p>
-        <p-table *ngIf="propertiesItems.length" [value]="propertiesItems">
-          <ng-template pTemplate="header">
-            <tr><th *ngFor="let col of propertiesColumns">{{col.header}}</th></tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-item>
-            <tr><td *ngFor="let col of propertiesColumns">{{item[col.field]}}</td></tr>
-          </ng-template>
-        </p-table>
-
-      </div>
+      <gux-table
+        [caption]="propertiesCaption"
+        [columns]="propertiesColumns"
+        [rowData]="propertiesItems"
+        [footer]="propertiesFooter"
+        [emptyText]="propertiesEmptyText"
+        [summaryText]="propertiesSummaryText"
+        [rowHeight]="rowHeight"
+      ></gux-table>
     </p-tabPanel>
 
     <p-tabPanel header="Source Code">

@@ -1,0 +1,15 @@
+<div class="demo-container">
+  <div class="demo-wrapper">
+    <div class="p-mr-2 p-mb-2" style="text-align: center;" *ngFor="let item of example">
+      <gux-avatar
+        [shape]="item.shape"
+        [label]="item.label"
+        [size]="item.size"
+        [icon]="item.icon"
+        [image]="item.image"
+        [mode]="item.mode"
+      ></gux-avatar>
+      <div *ngIf="item.mode">{{ item.mode }}</div>
+    </div>
+  </div>
+</div>

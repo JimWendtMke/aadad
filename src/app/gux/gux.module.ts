@@ -4,8 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PrimengModule } from '../primeng/primeng.module';
 
+import { GuxAvatarComponent } from './components/gux-avatar/gux-avatar.component';
 import { GuxButtonComponent } from './components/gux-button/gux-button.component';
-import { GuxDropdownComponent } from './components/gux-dropdown/gux-dropdown.component'
+import { GuxDropdownComponent } from './components/gux-dropdown/gux-dropdown.component';
+import { GuxTableComponent } from './components/gux-table/gux-table.component';
+
 
 @NgModule({
   imports: [
@@ -15,12 +18,16 @@ import { GuxDropdownComponent } from './components/gux-dropdown/gux-dropdown.com
     PrimengModule
   ],
   declarations: [
+    GuxAvatarComponent,
     GuxButtonComponent,
-    GuxDropdownComponent
+    GuxDropdownComponent,
+    GuxTableComponent
   ],
   exports: [
+    GuxAvatarComponent,
     GuxButtonComponent,
-    GuxDropdownComponent
+    GuxDropdownComponent,
+    GuxTableComponent
   ]
 })
 export class GuxModule { }

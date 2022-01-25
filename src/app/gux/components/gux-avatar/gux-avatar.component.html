@@ -1,0 +1,22 @@
+<p-avatar
+  *ngIf="image"
+  [size]="size"
+  [shape]="shape"
+  [image]="image"
+></p-avatar>
+
+<p-avatar
+  *ngIf="icon"
+  [size]="size"
+  [shape]="shape"
+  [icon]="'pi pi-' + icon"
+  styleClass="{{ styleClass }}"
+></p-avatar>
+
+<p-avatar
+  *ngIf="label"
+  [size]="size"
+  [shape]="shape"
+  [label]="label"
+  styleClass="{{ styleClass }}"
+></p-avatar>

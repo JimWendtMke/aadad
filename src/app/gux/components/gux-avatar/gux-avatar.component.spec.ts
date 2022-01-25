@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuxComponent } from './gux.component';
+import { GuxAvatarComponent } from './gux-avatar.component';
 
-describe('GuxComponent', () => {
-  let component: GuxComponent;
-  let fixture: ComponentFixture<GuxComponent>;
+describe('GuxAvatarComponent', () => {
+  let component: GuxAvatarComponent;
+  let fixture: ComponentFixture<GuxAvatarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuxComponent ]
+      declarations: [ GuxAvatarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GuxComponent);
+    fixture = TestBed.createComponent(GuxAvatarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

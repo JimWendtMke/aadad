@@ -24,6 +24,19 @@
   }
 }
 
+.demo-container {
+  border: 1px solid white;
+  border-radius: 10px;
+  .demo-wrapper {
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid white;
+    border-radius: 10px 10px 0px 0px;
+    padding-bottom: 20px;
+  }
+}
+
 .selector-wrapper {
     border: 1px solid #c8c8c8;
     background: #f4f4f4;

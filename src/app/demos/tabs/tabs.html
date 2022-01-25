@@ -1,6 +1,6 @@
 <div class="demo-container">
   <div class="demo-wrapper">
-    <div class="p-mr-2 p-mb-2" style="text-align: center;" *ngFor="let item of example">
+    <div class="p-mr-2 p-mb-2" *ngFor="let item of example">
       <gux-button
         [label]="item.label"
         [buttonMode]="item.buttonMode"
@@ -16,7 +16,6 @@
         [isRounded]="item.isRounded"
         (onClick)="btnClicked($event, item.label, item.icon)"
       ></gux-button>
-      <div *ngIf="item.buttonMode">{{ item.buttonMode }}</div>
     </div>
   </div>
 

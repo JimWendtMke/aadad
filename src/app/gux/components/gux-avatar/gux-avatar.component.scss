@@ -1,0 +1,32 @@
+
+:host ::ng-deep {
+  .gux-avatar-primary {
+    background-color: var(--primary-color);
+    color: var(--primary-color-text);
+  }
+  .gux-avatar-secondary {
+    background-color: var(--bs-secondary);
+    color: var(--primary-color-text);
+  }
+  .gux-avatar-success {
+    background-color: var(--bs-success);
+    color: var(--primary-color-text);
+  }
+  .gux-avatar-info {
+    background-color: var(--bs-info);
+  }
+  .gux-avatar-warning {
+    background-color: var(--bs-warning);
+  }
+  .gux-avatar-danger {
+    background-color: var(--bs-danger);
+    color: var(--primary-color-text);
+  }
+  .gux-avatar-light {
+    background-color: var(--bs-light);
+  }
+  .gux-avatar-dark {
+    background-color: var(--bs-dark);
+    color: var(--primary-color-text);
+  }
+}

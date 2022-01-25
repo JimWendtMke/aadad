@@ -19,6 +19,7 @@ export class DocsInterfaceBaseComponent implements  OnInit, OnDestroy {
   dropdownItems: any = [];
   selectedItem: any;
 
+  rowHeight: string;
   navigation: Subscription;
   target: string;
   targetJSON: any;
@@ -28,8 +29,12 @@ export class DocsInterfaceBaseComponent implements  OnInit, OnDestroy {
 
   sourceCode: string = '';
 
+  propertiesCaption: string;
   propertiesItems: any = [];
   propertiesColumns: any[] = PropertiesColumns;
+  propertiesFooter: boolean;
+  propertiesEmptyText: string;
+  propertiesSummaryText: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,10 +64,15 @@ export class DocsInterfaceBaseComponent implements  OnInit, OnDestroy {
     this.deprecated = this.targetJSON.deprecated;
     this.deprecationMessage = this.targetJSON.deprecationMessage;
 
+    this.rowHeight = 'sm';
     /**
     * Properties items table data of documentation tab
     */
-    this.propertiesItems = this.targetJSON.properties;
+     this.propertiesCaption = 'Properties/Methods';
+     this.propertiesItems = this.targetJSON.properties;
+     this.propertiesFooter = false;
+     this.propertiesEmptyText = 'None';
+     this.propertiesSummaryText = '';
 
     /**
     * Data for source code tab

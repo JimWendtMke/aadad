@@ -14,9 +14,8 @@ import { DocsInterfaceBaseComponent } from './components/interface-base/interfac
 
 import { DocsService } from './services/docs.service';
 
+import { GuxAvatarDemoComponent } from '../demos/avatar/avatar';
 import { GuxButtonDemoComponent } from '../demos/button/button';
-
-
 
 @NgModule({
   declarations: [
@@ -56,6 +55,10 @@ export class DocsModule {
       GuxButtonComponent: {
         name: 'GuxButtonDemoComponent',
         demo: GuxButtonDemoComponent
+      },
+      GuxAvatarComponent: {
+        name: 'GuxAvatarDemoComponent',
+        demo: GuxAvatarDemoComponent
       }
     });
     this.router.routeReuseStrategy.shouldReuseRoute = function () {

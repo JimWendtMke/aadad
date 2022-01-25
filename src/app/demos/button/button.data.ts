@@ -1,3 +1,4 @@
+import { DropdownOptionType } from "src/app/docs/interfaces/dropdown-option.interface";
 import { GuxButtonType } from 'src/app/gux/interfaces/gux-button.interface';
 
 /**
@@ -8,15 +9,7 @@ export interface ExampleInterface extends Array<GuxButtonType[]> { };
 /**
 * @ignore
 */
-export interface DropdownOption {
-  label: string,
-  value: number
-}
-
-/**
-* @ignore
-*/
-export const DropdownItems: DropdownOption[] = [{
+export const DropdownItems: DropdownOptionType[] = [{
   label: 'Default',
   value: 0
 }, {
