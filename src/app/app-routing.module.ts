@@ -3,12 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DocsComponentBaseComponent } from './docs/components/component-base/component-base.component';
 import { DocsInterfaceBaseComponent } from './docs/components/interface-base/interface-base.component';
+import { TictactoeComponent } from './components/tictactoe/tictactoe.component';
 
 import { DocsComponent } from './docs/docs.component';
 const routes: Routes = [{
   path: '',
   redirectTo: 'docs',
   pathMatch: 'full'
+}, {
+  path: 'tictactoe',
+  component: TictactoeComponent
 }, {
   path: 'docs',
   component: DocsComponent

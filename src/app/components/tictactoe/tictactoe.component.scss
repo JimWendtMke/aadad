@@ -1,0 +1,51 @@
+.rows {
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+}
+.rows:first-child {
+  border-top-color: transparent;
+}
+.rows:last-child {
+  border-bottom-color: transparent;
+}
+
+.box {
+  font-size: 300%;
+  height: 120px;
+  width: 120px;
+  padding: 20px;
+  text-align: center;
+  border-right: solid 2px black;
+}
+.box:last-child {
+  border-right-color: transparent;
+}
+
+.turnBlock {
+  font-size: 150%;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+}
+
+.errorBlock {
+  font-size: 125%;
+  color: red;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+}
+
+.winnerBlock {
+  font-size: 125%;
+  color: green;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+}
+
+.buttonWrapper {
+  width: 500px;
+  text-align: center;
+}
+

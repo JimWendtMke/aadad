@@ -1,0 +1,19 @@
+<div class="buttonWrapper">
+  <button (click)="resetGame()">Reset</button>
+</div>
+<div *ngIf="winner" class="winnerBlock">{{ winner }} player wins the game!</div>
+<table style="width:500px;">
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let row of rows; index as r" class="rows">
+      <td *ngFor="let col of cols; index as c" class="box" (click)="boxClicked($event, r, c)"></td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="turn" class="turnBlock">{{ turn }} player's turn</div>
+<div *ngIf="errorText" class="errorBlock">{{ errorText }}</div>
+<p>Note: This took just over an hour to complete. I was not able to get the diagonal win logic completed in that timeframe.</p>
+<p>Using images instead of text would have drastically improve the presentation.</p>
+<p>The number of boxes may be changed in the code. If time permitted, I would have added the ability to dynamically change this number.</p>
+<p>I was also not able to get the line drawn through the winning boxes. I would have rotated a line using css to complete this if I had time.</p>
+<p>To make this computer vs human, I would have randomly generated the row/column combination</p>

@@ -5,6 +5,10 @@ export const Navigation: TreeNode[] = [{
   type: 'navigation',
   data: '/'
 }, {
+  label: 'TicTacToe',
+  type: 'navigation',
+  data: '/tictactoe'
+}, {
   label: 'Components',
   type: 'navigation',
   data: 'components/home/cux',

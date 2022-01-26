@@ -12,9 +12,13 @@ import { AppComponent } from './app.component';
 import { DemosModule } from './demos/demos.module';
 import { DocsModule } from './docs/docs.module';
 import { GuxModule } from './gux/gux.module';
+import { TictactoeComponent } from './components/tictactoe/tictactoe.component';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [
+    AppComponent,
+    TictactoeComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
