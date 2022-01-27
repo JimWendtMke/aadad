@@ -1,8 +1,8 @@
-<div class="buttonWrapper">
+<div class="buttonWrapper" [ngStyle]="{ 'width.px': (boxCount * 120) }">
   <button (click)="resetGame()">Reset</button>
 </div>
-<div *ngIf="winner" class="winnerBlock">{{ winner }} player wins the game!</div>
-<table style="width:500px;">
+
+<table [ngStyle]="{ 'width.px': (boxCount * 120) }">
   <thead></thead>
   <tbody>
     <tr *ngFor="let row of rows; index as r" class="rows">
@@ -10,8 +10,9 @@
     </tr>
   </tbody>
 </table>
-<div *ngIf="turn" class="turnBlock">{{ turn }} player's turn</div>
-<div *ngIf="errorText" class="errorBlock">{{ errorText }}</div>
+<div *ngIf="turn" class="turnBlock" [ngStyle]="{ 'width.px': (boxCount * 120) }">{{ turn }} player's turn</div>
+<div *ngIf="winner" class="winnerBlock" [ngStyle]="{ 'width.px': (boxCount * 120) }">{{ winner }} player wins the game!</div>
+<div *ngIf="errorText" class="errorBlock" [ngStyle]="{ 'width.px': (boxCount * 120) }">{{ errorText }}</div>
 <p>Note: This took just over an hour to complete. I was not able to get the diagonal win logic completed in that timeframe.</p>
 <p>Using images instead of text would have drastically improve the presentation.</p>
 <p>The number of boxes may be changed in the code. If time permitted, I would have added the ability to dynamically change this number.</p>

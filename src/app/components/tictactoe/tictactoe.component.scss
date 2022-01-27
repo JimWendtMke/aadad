@@ -23,7 +23,6 @@
 
 .turnBlock {
   font-size: 150%;
-  width: 500px;
   text-align: center;
   padding: 10px;
 }
@@ -31,21 +30,19 @@
 .errorBlock {
   font-size: 125%;
   color: red;
-  width: 500px;
   text-align: center;
   padding: 10px;
 }
 
 .winnerBlock {
-  font-size: 125%;
+  font-size: 150%;
   color: green;
-  width: 500px;
   text-align: center;
   padding: 10px;
 }
 
 .buttonWrapper {
-  width: 500px;
   text-align: center;
+  margin-bottom: 15px;
 }
 
